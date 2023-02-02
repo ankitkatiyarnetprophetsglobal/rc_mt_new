@@ -39,7 +39,11 @@
             <li class="nav-item"><a href="javascript:void(0)"><i class="icon-TENDER"></i><span
                         class="menu-title">TENDER</span></a>
             </li>
-
+ @if(Session::get('role_details')->name == 'NCOE' || Session::get('role_details')->name == 'RC') 
+            <li class="nav-item"><a href="{{url('review/index')}}"><i class="icon-TENDER"></i><span
+                class="menu-title">Review</span></a>
+            </li>
+             @endif 
 
             <!-- <li class="nav-item has-sub">
       <a href="#" class="link"><i class="fa fa-question-circle-o"></i><span class="menu-title">Lorem

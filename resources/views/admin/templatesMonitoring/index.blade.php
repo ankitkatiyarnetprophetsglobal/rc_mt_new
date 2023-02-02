@@ -89,8 +89,20 @@
                     @foreach ($data as $key => $value)
                         <tr>
                             <td scope="row ">{{ $key + 1 }}</td>
-                            <td><a href="{{url('admin/template-management/template-wise-regional-center/'.encode5t($value->id))}}"><span
-                                        class="text-decoration-underline">{{ $value->name ?? '' }}</span></a></td>
+                            @if (Session::get('role_details')->id == 1)
+                                <td>                                
+                                    <a href="{{url('admin/template-management/template-wise-regional-center/'.encode5t($value->id))}}">
+                                        <span class="text-decoration-underline">{{ $value->name ?? '' }}</span>
+                                    </a>
+                                </td>
+                            @elseif (Session::get('role_details')->id == 2 || Session::get('role_details')->id == 3)
+                                <td>                                
+                                    {{-- <a href="{{url('admin/template-management/template-wise-regional-center/'.encode5t($value->id))}}"> --}}
+                                        <a href="{{url('admin/template-management/template-of-regional-center/'.encode5t(Session::get('rc_id')->rc_id).'/'.encode5t($value->id))}}">
+                                        <span class="text-decoration-underline">{{ $value->name ?? '' }}</span>
+                                    </a>
+                                </td>
+                            @endif    
                             <td>{{ date('d-m-Y', strtotime($value->from_date)) }} -
                                 {{ date('d-m-Y', strtotime($value->to_date)) }}</td>
                             <td>

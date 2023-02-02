@@ -118,19 +118,83 @@ class ManageController extends Controller
             $user = Session::get('user');
             $rc_id = Session::get('rc_id')->rc_id;
             //dd($user);
-
-            $templates = Template::with(['tempForRc']);
+            $all_data = array();
+            $requested_temp = $requested_rc = $templates = Template::with(['tempForRc']);
 
             if (Session::get('role_details')->id == 1) {
                 $templates = $templates->whereStatus(true)->pluck('name', 'id');
                 $rc_ids = TempForRc::select(DB::raw('DISTINCT(rc_id)'))->pluck('rc_id')->toArray();
+                // echo '<pre>';
+                // print_r($rc_ids);
                 $data = TempForRc::with('infraWork')->where('template_id', decode5t($request->temp_id))->get();
-            } else {
+                // dd($data['0']['template_id']);
+                // $requested_rc = $data['0']['rc_id'];
+                // $requested_temp = $data['0']['rc_id'];
+                // foreach ($data as $value) {
+                // dd($data);    
+                foreach ($data as $x => $value) {
+                    $requested_temp = $value['template_id'];                    
+                    // echo '<hr/>';
+                    $requested_rc = $value['rc_id'];
+                    $all_data[$x]['rc_id'] = $value['rc_id'];
+                    $all_data[$x]['template_id'] = $value['template_id'];
+                    // $all_data[$x]['status']['infra_work'] = array(InfraWork::where('created_by', $requested_rc)->where('template_id', $requested_temp)->where('form_status', true)->count());
+                    $infra_work = InfraWork::where('created_by', $requested_rc)->where('template_id', $requested_temp)->where('form_status', true)->count();
+                    if ($infra_work) {
+                        $all_data[$x]['status']['infra_work'] = array(1);
+                    } else {
+                        $all_data[$x]['status']['infra_work'] = array(0);
+                    }
+                    // $all_data[$x]['status']['financemanages'] = array(Financemanages::where('created_by', $requested_rc)->where('template_id', $requested_temp)->where('status', true)->count());
+                    $finance = Financemanages::where('created_by', $requested_rc)->where('template_id', $requested_temp)->where('status', true)->count();
+                    if ($finance) {
+                        $all_data[$x]['status']['financemanages'] = array(1);
+                    } else {
+                        $all_data[$x]['status']['financemanages'] = array(0);
+                    }
+                    $procurement_first = ProcurementFirstForm::where('created_by', $requested_rc)->where('template_id', $requested_temp)->count();
+                    $procurement_second = ProcurementSecondForm::where('created_by', $requested_rc)->where('template_id', $requested_temp)->count();
+                    $procurement_third = ProcurementThirdForm::where('created_by', $requested_rc)->where('template_id', $requested_temp)->count();
+                    $procurement_fourth = ProcurementServiceForm::where('created_by', $requested_rc)->where('template_id', $requested_temp)->count();
+                    if ($procurement_first && $procurement_second && $procurement_third && $procurement_fourth) {
+                        $all_data[$x]['status']['procurement'] = array(1);
+                    } else {
+                        $all_data[$x]['status']['procurement'] = array(0);
+                    }
+                    $all_data[$x]['status']['miscellaneousmanages'] = array(Miscellaneousmanages::where('created_by', $requested_rc)->where('template_id', $requested_temp)->count());
+                    $all_data[$x]['status']['pendingdemandsmanage'] = array(Pendingdemandsmanage::where('created_by', $requested_rc)->where('template_id', $requested_temp)->count());
+            //         $miscellaneous = Miscellaneousmanages::where('created_by', $requested_rc)->where('template_id', $requested_temp)->count();
+            // $pending_demands = Pendingdemandsmanage::where('created_by', $requested_rc)->where('template_id', $requested_temp)->count();
+
+                    // dd($infra_work);
+                    
+                    // if ($infra_work) {
+                    //     $infra_work = 1;
+                    // } else {
+                    //     $infra_work = 0;
+                    // }
+                    // echo '<hr/>';
+                    // echo '<hr/>';
+                }
+                // echo '<pre>';
+                // print_r($all_data);
+                // exit;
+                // dd($all_data);
+                // exit;
+                // $infra_work = InfraWork::where('created_by', $requested_rc)->where('template_id', $requested_temp)->where('form_status', true)->count();
+                // // dd($infra_work);
+                // if ($infra_work) {
+                //     $infra_work = 1;
+                // } else {
+                //     $infra_work = 0;
+                // }
+                // dd($data);
+            } else if(Session::get('role_details')->id == 2 || Session::get('role_details')->id == 3) {
                 $templates = $templates->whereHas('tempForRc', function ($q) use ($user, $rc_id) {
                     $q->where('rc_id', $rc_id);
                 })->whereStatus(true)->pluck('name', 'id');
                 // dd($templates);
-                $rc_ids = TempForRc::where('rc_id', $user->user_id)->pluck('rc_id')->toArray();
+                $rc_ids = TempForRc::where('rc_id', $rc_id)->pluck('rc_id')->toArray();
                 // dd($rc_ids);
                 $data = TempForRc::with(['infraWork', 'ProcurementFirstForm', 'ProcurementSecondForm', 'ProcurementThirdForm', 'ProcurementServiceForm'])
                     ->where('template_id', decode5t($request->temp_id))->where('rc_id', $rc_id)->get();
@@ -141,9 +205,12 @@ class ManageController extends Controller
                     return $item;
                 }
             })->values();
+            // $rc_details = TempForRc::select(DB::raw('DISTINCT(rc_id)'))->pluck('rc_id')->toArray();
+            // dd($rc_details);
             $select_temp = Template::find(decode5t($request->temp_id));
-            return view('admin.templatesMonitoring.template_rc', ['rc_details' => $rc_details, 'templates' => $templates, 'select_temp' => $select_temp, 'data' => $data]);
+            return view('admin.templatesMonitoring.template_rc', ['rc_details' => $rc_details, 'templates' => $templates, 'select_temp' => $select_temp, 'data' => $data, 'all_data' => $all_data]);
         } catch (\Exception $ex) {
+            dd($ex->getMessage());
             $message = 'Somthing went wrong !,Please try again...';
             return view('404_page', ['message' => $message, 'error_code' => 400]);
         }
@@ -158,7 +225,7 @@ class ManageController extends Controller
             $rc_id = Session::get('rc_id')->rc_id;
             $requested_rc = decode5t($request->rc_id);
             $requested_temp = decode5t($request->temp_id);
-            // dd($rc_id);
+            // dd($requested_rc);
 
             $templates = Template::with(['tempForRc']);
             if (Session::get('role_details')->id == 1) {
@@ -177,6 +244,7 @@ class ManageController extends Controller
                     return $item;
                 }
             })->values();
+            // dd($rc_details);
             $select_temp = Template::find($requested_temp);
             // dd($select_temp);
             $select_rc = decode5t($request->rc_id);

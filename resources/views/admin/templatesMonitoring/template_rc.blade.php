@@ -63,58 +63,160 @@
                             <tr class="dashboard-heading">
                                 <th scope="col">S.No</th>
                                 <th scope="col">NAME OF THE REGIONAL CENTER</th>
+                                @if (Session::get('role_details')->id == 1)
+                                    <th scope="col">INFRASTRUCTURE</th>
+                                    <th scope="col">FINANCE</th>
+                                    <th scope="col">PROCUREMENT</th>
+                                    <th scope="col">MISCELLANEOUS</th>
+                                    <th scope="col">PENDING DEMANDS</th>
+                                @endif                                
                                 {{-- <th scope="col">STATUS</th> --}}
                                 {{-- <th scope="col">ACTION</th> --}}
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
-                            @foreach($data as $key => $value)
-                            <tr>
-                                
-                                <td>{{$key+1}}</td>
-                                <td>
+                            @if (Session::get('role_details')->id == 1)
+                                <tr> 
+                                    @foreach ($all_data as $key1 => $value)                                    
+                                        {{-- dd($value['status']['infra_work'][0]) --}}
+                                        {{-- dd($value['status']['financemanages'][0]) --}}
+                                        <tr>
+
+                                            <td>{{$key1+1}}</td>                                   
+                                            <td>
+                                                <a href="{{url('admin/template-management/template-of-regional-center/'.encode5t($rc_details[$key1]->user_id).'/'.encode5t($select_temp->id))}}">
+                                                    <span class="text-decoration-underline">
+                                                        {{-- {{ $value->rc_id }} --}}
+                                                        {{-- getRcDetails($value->rc_id)['name'] --}}
+                                                        @php $data = getRcDetails($value['rc_id']); @endphp
+                                                            {{ $data->user_name ?? '' }}
+                                                    </span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                {{-- $statusvalue['0'] ?? '' --}}
+                                                @if($value['status']['infra_work'][0] == 0)
+                                                    <div class="red_outline">INCOMPLETE</div>
+                                                @else
+                                                    <div class="green_outline">COMPLETE</div>
+                                                @endif
+                                            </td>    
+                                            <td>
+                                                {{-- $statusvalue['0'] ?? '' --}}
+                                                @if($value['status']['financemanages'][0] == 0)
+                                                    <div class="red_outline">INCOMPLETE</div>
+                                                @else
+                                                    <div class="green_outline">COMPLETE</div>
+                                                @endif
+                                            </td>    
+                                            <td>
+                                                {{-- $statusvalue['0'] ?? '' --}}
+                                                @if($value['status']['procurement'][0] == 0)
+                                                    <div class="red_outline">INCOMPLETE</div>
+                                                @else
+                                                    <div class="green_outline">COMPLETE</div>
+                                                @endif
+                                            </td>    
+                                            <td>
+                                                {{-- $statusvalue['0'] ?? '' --}}
+                                                @if($value['status']['miscellaneousmanages'][0] == 0)
+                                                    <div class="red_outline">INCOMPLETE</div>
+                                                @else
+                                                    <div class="green_outline">COMPLETE</div>
+                                                @endif
+                                            </td>    
+                                            <td>
+                                                {{-- $statusvalue['0'] ?? '' --}}
+                                                @if($value['status']['pendingdemandsmanage'][0] == 0)
+                                                    <div class="red_outline">INCOMPLETE</div>
+                                                @else
+                                                    <div class="green_outline">COMPLETE</div>
+                                                @endif
+                                            </td>    
+                                        </tr>                                    
+                                    @endforeach                                 
+                                    {{-- <td>INFRASTRUCTURE</td>
+                                    <td>FINANCE</td>
+                                    <td>PROCUREMENT</td>
+                                    <td>MISCELLANEOUS</td>
+                                    <td>PENDING DEMANDS</td> --}}
                                     
-                                    <a href="{{url('admin/template-management/template-of-regional-center/'.encode5t($value->rc_id).'/'.encode5t($select_temp->id))}}">
-                                        <span class="text-decoration-underline">
-                                            {{-- {{ $value->rc_id }} --}}
-                                            {{-- getRcDetails($value->rc_id)['name'] --}}
-                                            @php $data = getRcDetails($value->rc_id); @endphp
-                                                {{ $data->user_name ?? '' }}
-                                        </span>
-                                    </a>
-                                </td>
 
 
-                                <!-- <td>
-                                    {{-- {{dd($value->infraWork)}} --}}
-                                @foreach($value->infraWork as $val)
-                                
-                                   @if($val->created_by == $value->rc_id)
-                                     @if($val->form_status == 1)
-                                    <div class="green_outline">Complete</div>
-                                    @else
-                                    <div class="red_outline">In-Complete</div>
+                                    <!-- <td>
+                                        {{-- {{dd($value->infraWork)}} --}}
+                                    {{-- @foreach($value->infraWork as $val)
+                                    
+                                    @if($val->created_by == $value->rc_id)
+                                        @if($val->form_status == 1)
+                                        <div class="green_outline">Complete</div>
+                                        @else
+                                        <div class="red_outline">In-Complete</div>
+                                        @endif
                                     @endif
-                                   @endif
-                                @endforeach
-                                </td> -->
-                                {{-- <td>
-                                    <div class="d-flex justify-content-around align-items-center">
-                                        <div>
-                                            <div><button type="button" class="border-0"><img src="{{ asset('front/themes/images/edit.svg') }}" alt=""></button></div>
-                                            <div>EDIT</div>
+                                    @endforeach --}}
+                                    </td> -->
+                                    {{-- <td>
+                                        <div class="d-flex justify-content-around align-items-center">
+                                            <div>
+                                                <div><button type="button" class="border-0"><img src="{{ asset('front/themes/images/edit.svg') }}" alt=""></button></div>
+                                                <div>EDIT</div>
+                                            </div>
+                                            <div class="vl"></div>
+                                            <div>
+                                                <div><button type="button" class="border-0"><img src="{{ asset('front/themes/images/delete.svg') }}" alt=""></button></div>
+                                                <div>DELETE</div>
+                                            </div>
                                         </div>
-                                        <div class="vl"></div>
-                                        <div>
-                                            <div><button type="button" class="border-0"><img src="{{ asset('front/themes/images/delete.svg') }}" alt=""></button></div>
-                                            <div>DELETE</div>
-                                        </div>
-                                    </div>
-                                </td> --}}
-                            </tr>
-                            @endforeach
-                           
+                                    </td> --}}
+                                </tr>                            
+                            @elseif (Session::get('role_details')->id == 2 || Session::get('role_details')->id == 3)
+                                @foreach($data as $key => $value)
+                                <tr>
+                                    
+                                    <td>{{$key+1}}</td>
+                                    <td>
+                                        
+                                        <a href="{{url('admin/template-management/template-of-regional-center/'.encode5t($value->rc_id).'/'.encode5t($select_temp->id))}}">
+                                            <span class="text-decoration-underline">
+                                                {{-- {{ $value->rc_id }} --}}
+                                                {{-- getRcDetails($value->rc_id)['name'] --}}
+                                                @php $data = getRcDetails($value->rc_id); @endphp
+                                                    {{ $data->user_name ?? '' }}
+                                            </span>
+                                        </a>
+                                    </td>
 
+
+                                    <!-- <td>
+                                        {{-- {{dd($value->infraWork)}} --}}
+                                    @foreach($value->infraWork as $val)
+                                    
+                                    @if($val->created_by == $value->rc_id)
+                                        @if($val->form_status == 1)
+                                        <div class="green_outline">Complete</div>
+                                        @else
+                                        <div class="red_outline">In-Complete</div>
+                                        @endif
+                                    @endif
+                                    @endforeach
+                                    </td> -->
+                                    {{-- <td>
+                                        <div class="d-flex justify-content-around align-items-center">
+                                            <div>
+                                                <div><button type="button" class="border-0"><img src="{{ asset('front/themes/images/edit.svg') }}" alt=""></button></div>
+                                                <div>EDIT</div>
+                                            </div>
+                                            <div class="vl"></div>
+                                            <div>
+                                                <div><button type="button" class="border-0"><img src="{{ asset('front/themes/images/delete.svg') }}" alt=""></button></div>
+                                                <div>DELETE</div>
+                                            </div>
+                                        </div>
+                                    </td> --}}
+                                </tr>
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>

@@ -155,7 +155,11 @@
 
                             </td>
                             <td>
-                                @if ($value->to_date < date('Y-m-d'))
+                                <?php $today = date('Y-m-d 23:59:59'); 
+                                      $date = date('H:i:s');
+                                //   print_r($value->to_date.''.$date);
+                                ?>
+                                @if (($value->to_date.''.$date) <= $today)
                                     <div class="red_outline">EXPIRED</div>
                                 @elseif($value->from_date > date('Y-m-d'))
                                     <div class="yellow_outline">UPCOMING</div>

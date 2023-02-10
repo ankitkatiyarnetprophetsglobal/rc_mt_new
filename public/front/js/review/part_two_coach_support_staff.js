@@ -11,7 +11,7 @@ function getDisciplineHtml(data){
   $(document).on('change','.disciplin_grab',function(){
     
     var form = $(this).data('id');
-    console.log(data_dict.form1);
+    // console.log(data_dict.form1);
     ////console.log($(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val());
    // $(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val();
    if(form == 'form_1'){
@@ -100,10 +100,33 @@ $(document).on('click','.part_two_field_of_play_add',function(){
             </select>
             </td>
             <td>
-                <input type="text" class="form-control" name='part_two_play_field[${counting_11}][fop_surface_play_field]'>
+                <select class="form-select"  name='part_two_play_field[${counting_11}][fop_surface_play_field]'  aria-label="Default select example">
+                <option selected>Select</option>
+               <option value="1">Synthetic</option>
+               <option value="2">Wooden</option>
+               <option value="3">Grass</option>
+               <option value="4">Cement</option>
+               <option value="5">Cinder</option>
+               <option value="6">Clay</option>
+               <option value="7">Natural</option>
+               <option value="8">Artificial Turf</option>
+               <option value="9">Others</option>
+              </select>
+
+
+
+
             </td>
             <td>
-                <input type="text" class="form-control" name='part_two_play_field[${counting_11}][rating_play_field]'>
+                
+                <select class="form-select"  name='part_two_play_field[${counting_11}][rating_play_field]'  aria-label="Default select example">
+                                     <option selected>Select</option>
+                                    <option value="1">Excellent</option>
+                                    <option value="2">Very Good</option>
+                                    <option value="3">Good</option>
+                                    <option value="4">Average</option>
+                                    <option value="5">Poor</option>
+                                   </select>
             </td>
             <td>
                 <input type="text" class="form-control" name='part_two_play_field[${counting_11}][remark_play_field]'>
@@ -121,10 +144,10 @@ $(document).on('click','.part_two_field_of_play_add',function(){
 $(document).on('click','.remove_two_play_field_remove',function(){
 
     var center_id = $('.center_id').val();
-
-    console.log("center_id",center_id);
+    var data_enc = $(this).data('id_enc');
+    // console.log("center_id",center_id);
     // return false;
-
+    // alert($(this).data("db_id11"));
     if($(this).data("db_id11") != undefined){
 
         $.ajax({
@@ -136,7 +159,6 @@ $(document).on('click','.remove_two_play_field_remove',function(){
         success: function (response) {
 
             if(response.success == false){
-
                 $('.row_'+$(this).data("id11")).remove();
                 // swal("Message",response.message, "error");
                 // $('.error_message').removeClass('d-none');
@@ -146,10 +168,10 @@ $(document).on('click','.remove_two_play_field_remove',function(){
                 $('.error_message').addClass('d-none');
                 $('.message').html(`<strong>Success!</strong> ${response.message}`);
                 $('.message').removeClass('d-none');
-alert("center_id",center_id);
+// alert("center_id",center_id);
                 swal("Message",response.message, "success").then(() => {
 
-                    window.location.href = baseurl + "/review/part-two/"+center_id;
+                    window.location.href = baseurl + "/review/part-two/"+data_enc;
 
                 });
             }
@@ -416,84 +438,84 @@ $(document).on('click','.add_more_two_part_residential_coaches',function(){
             <td>
                 <input type="hidden" class="center_id" name="two_part_residential_coaches[0][center_id]" value="${center_id}">
                 <select required class="form-select  form_1_discipline_${counting_3} form_1_discipline disciplin_grab " data-id="form_1" data-counting_id="${counting_3}" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_discipline_id]"  aria-label="Default select example">
-                 
                 ${getDisciplineHtml(data_dict.form1)}
                 </select>
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2018_19_resi_m]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2018_19_resi_m]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2018_19_resi_f]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2018_19_resi_f]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2018_19_nr_m]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2018_19_nr_m]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2018_19_nr_f]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2018_19_nr_f]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2018_19_nr_c]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2018_19_nr_c]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2019_20_resi_m]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2019_20_resi_m]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2019_20_resi_f]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2019_20_resi_f]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2019_20_nr_m]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2019_20_nr_m]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2019_20_nr_m]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2019_20_nr_m]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2019_20_nr_f]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2019_20_nr_f]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2019_20_nr_c]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2019_20_nr_c]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2020_21_resi_m]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2020_21_resi_m]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2020_21_resi_f]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2020_21_resi_f]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2020_21_nr_m]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2020_21_nr_m]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2020_21_nr_f]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2020_21_nr_f]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_22_resi_m]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_22_resi_m]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_22_resi_f]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_22_resi_f]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_22_nr_m]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_22_nr_m]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_22_nr_f]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_22_nr_f]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_22_nr_c]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_22_nr_c]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_23_resi_m]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_23_resi_m]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_23_resi_f]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_23_resi_f]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_23_nr_m]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_23_nr_m]">
+            </td>
+            
+            <td>
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_23_nr_f]">
             </td>
             <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_23_nr_f]">
-            </td>
-            <td>
-                <input type="text" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_23_nr_c]">
+                <input type="number" min="0" class="form-control" name="two_part_residential_coaches[${counting_3}][strength_residential_coaches_2022_23_nr_c]">
             </td>
             <td>
                 <a href="javascript:void(0)" class="actionbtn remove_two_part_residential_coaches" data-id3="${counting_3}">
@@ -553,45 +575,14 @@ $(document).on('click','.remove_two_part_residential_coaches',function(){
 });
 
 
-$(document).on('click','.add_more_two_part_staff_nutritionist_chef',function(){
 
-    counting_4++;
-    four_form_array_counting.push(counting_4);
-    let center_id = $('.center_id').val();
-    var two_part_staff_nutritionist_chef_html = `<tr class="row_${counting_4}">
-            <td>
-                <input type="hidden" class="center_id" name="staff_nutritionist_chef[0][center_id]" value="${center_id}">
-                <input type="text" class="form-control" name="staff_nutritionist_chef[${counting_4}][snc_designation]">
-            </td>
-            <td>
-                <input type="text" class="form-control" name="staff_nutritionist_chef[${counting_4}][snc_2018_19]">
-            </td>
-            <td>
-                <input type="text" class="form-control" name="staff_nutritionist_chef[${counting_4}][snc_2019_20]">
-            </td>
-            <td>
-                <input type="text" class="form-control" name="staff_nutritionist_chef[${counting_4}][snc_2020_21]">
-            </td>
-            <td>
-                <input type="text" class="form-control" name="staff_nutritionist_chef[${counting_4}][snc_2021_22]">
-            </td>
-            <td>
-                <input type="text" class="form-control" name="staff_nutritionist_chef[${counting_4}][snc_2022_23]">
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="actionbtn remove_two_part_staff_nutritionist_chef" data-id4="${counting_4}">
-                    <i class="fa-solid fa-trash-can"></i>
-                </a>
-            </td>
-        </tr>`;
-    $('#two_part_staff_nutritionist_chef_container').append(two_part_staff_nutritionist_chef_html);
-});
 
 $(document).on('click','.remove_two_part_staff_nutritionist_chef',function(){
 
     let center_id = $('.center_id').val();
-
-    // console.log("center_id",center_id);
+    let id_enc = $(this).data("id_enc");
+    // console.log("center_id",id_enc);
+    // console.log("dataid",$(this).data("db_id4"));
     // return false;
 
         if($(this).data("db_id4") != undefined){
@@ -618,7 +609,7 @@ $(document).on('click','.remove_two_part_staff_nutritionist_chef',function(){
 
                     swal("Message",response.message, "success").then(() => {
 
-                        window.location.href = baseurl + "/review/part-two/"+center_id;
+                        window.location.href = baseurl + "/review/part-two/"+id_enc;
 
                     });
                 }
@@ -641,25 +632,26 @@ $(document).on('click','.add_more_sport_science_staff_doctor',function(){
     counting_5++;
     five_form_array_counting.push(counting_5);
     let center_id = $('.center_id').val();
+    console.log(center_id);
     var two_part_sport_science_staff_doctor_html = `<tr class="row_${counting_5}">
             <td>
-            <input type="hidden" class="center_id" name="sport_science_staff_doctor[0][center_id]" value="${center_id}">
+            <input type="hidden" class="center_id" name="sport_science_staff_doctor[${counting_5}][center_id]" value="${center_id}">
                 <input type="text" class="form-control" name="sport_science_staff_doctor[${counting_5}][ssd_designation]">
             </td>
             <td>
-                <input type="text" class="form-control" name="sport_science_staff_doctor[${counting_5}][ssd_2018_19]">
+                <input type="number" min="0" class="form-control" name="sport_science_staff_doctor[${counting_5}][ssd_2018_19]">
             </td>
             <td>
-                <input type="text" class="form-control" name="sport_science_staff_doctor[${counting_5}][ssd_2019_20]">
+                <input type="number" min="0" class="form-control" name="sport_science_staff_doctor[${counting_5}][ssd_2019_20]">
             </td>
             <td>
-                <input type="text" class="form-control" name="sport_science_staff_doctor[${counting_5}][ssd_2020_21]">
+                <input type="number" min="0" class="form-control" name="sport_science_staff_doctor[${counting_5}][ssd_2020_21]">
             </td>
             <td>
-                <input type="text" class="form-control" name="sport_science_staff_doctor[${counting_5}][ssd_2021_22]">
+                <input type="number" min="0" class="form-control" name="sport_science_staff_doctor[${counting_5}][ssd_2021_22]">
             </td>
             <td>
-                <input type="text" class="form-control" name="sport_science_staff_doctor[${counting_5}][ssd_2022_23]">
+                <input type="number" min="0" class="form-control" name="sport_science_staff_doctor[${counting_5}][ssd_2022_23]">
             </td>
             <td>
                 <a href="javascript:void(0)" class="actionbtn remove_two_part_sport_science_staff_doctor" data-id4="${counting_5}" data-db_id4="${counting_5}">
@@ -670,12 +662,47 @@ $(document).on('click','.add_more_sport_science_staff_doctor',function(){
     $('#two_part_sport_science_staff_doctor_container').append(two_part_sport_science_staff_doctor_html);
 });
 
+
+$(document).on('click','.add_more_two_part_staff_nutritionist_chef',function(){
+
+    counting_4++;
+    four_form_array_counting.push(counting_4);
+    let center_id = $('.center_id').val();
+    var two_part_staff_nutritionist_chef_html = `<tr class="row_${counting_4}">
+            <td>
+                <input type="hidden" class="center_id" name="staff_nutritionist_chef[${counting_4}][center_id]" value="${center_id}">
+                <input type="text"  class="form-control" name="staff_nutritionist_chef[${counting_4}][snc_designation]">
+            </td>
+            <td>
+                <input type="number" min="0" class="form-control" name="staff_nutritionist_chef[${counting_4}][snc_2018_19]">
+            </td>
+            <td>
+                <input type="number" min="0" class="form-control" name="staff_nutritionist_chef[${counting_4}][snc_2019_20]">
+            </td>
+            <td>
+                <input type="number" min="0" class="form-control" name="staff_nutritionist_chef[${counting_4}][snc_2020_21]">
+            </td>
+            <td>
+                <input type="number" min="0" class="form-control" name="staff_nutritionist_chef[${counting_4}][snc_2021_22]">
+            </td>
+            <td>
+                <input type="number" min="0" class="form-control" name="staff_nutritionist_chef[${counting_4}][snc_2022_23]">
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="actionbtn remove_two_part_staff_nutritionist_chef" data-id4="${counting_4}">
+                    <i class="fa-solid fa-trash-can"></i>
+                </a>
+            </td>
+        </tr>`;
+    $('#two_part_staff_nutritionist_chef_container').append(two_part_staff_nutritionist_chef_html);
+});
+
 $(document).on('click','.remove_two_part_sport_science_staff_doctor',function(){
 
     let center_id = $('.center_id').val();
 
-    // console.log("center_id",center_id);
-    // return false;
+    console.log("center_id",center_id);
+    return false;
 
         if($(this).data("db_id5") != undefined){
 
@@ -940,19 +967,19 @@ ${getDisciplineHtml(data_dict.form1)}
         <input type="text" class="form-control" name="administrative_supports[${counting_7}][ssd_designation]">
     </td>
     <td>
-    <input type="text" class="form-control" name="administrative_supports[${counting_7}][ssd_2018_19]">
+    <input type="number" min="0" class="form-control" name="administrative_supports[${counting_7}][ssd_2018_19]">
   </td>
   <td>
-  <input type="text" class="form-control" name="administrative_supports[${counting_7}][ssd_2019_20]">
+  <input type="number" min="0" class="form-control" name="administrative_supports[${counting_7}][ssd_2019_20]">
   </td>
   <td>
-  <input type="text" class="form-control" name="administrative_supports[${counting_7}][ssd_2020_21]">
+  <input type="number" min="0" class="form-control" name="administrative_supports[${counting_7}][ssd_2020_21]">
   </td>
   <td>
-  <input type="text" class="form-control" name="administrative_supports[${counting_7}][ssd_2021_22]">
+  <input type="number" min="0" class="form-control" name="administrative_supports[${counting_7}][ssd_2021_22]">
   </td>
   <td>
-  <input type="text" class="form-control" name="administrative_supports[${counting_7}][ssd_2022_23]">
+  <input type="number" min="0" class="form-control" name="administrative_supports[${counting_7}][ssd_2022_23]">
   </td>
   <td>
       <a href="javascript:void(0)" class="actionbtn remove_two_part_administrative_supports" data-id7="${counting_7}">
@@ -969,7 +996,7 @@ ${getDisciplineHtml(data_dict.form1)}
   
   
   $(document).on('click','.remove_two_part_administrative_supports',function(){
-  
+//   alert('hi');
     let center_id = $('.center_id').val();
   
     // console.log("center_id dfgdsfgsdf",center_id);

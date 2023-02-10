@@ -41,7 +41,10 @@
     <h3 class="text-start mb-4">1.Achievements</h3>
     <h4 class="text-start mb-4">For Individual Sports </h4>
     <form style="display: flex; justify-content: end; margin-bottom: 10px;" class="">
+
+
         <select class="form-control form-select center_id center_change" id="project_center_id" name="center_id" style="width: 20%;">
+       
             @foreach($centers as $p_key => $p_val)
             <option value="{{$p_val->ncoe_id}}" data-id="{{encode5t($p_val->ncoe_id)}}" {{ $p_key == Session::get('user')->user_id ? 'selected' : ''}}>{{$p_val->ncoe_name}}</option>
             @endforeach
@@ -872,7 +875,13 @@
         </div>
 
 
-        <button type="submit" class="btn btn-primary  d-block ms-auto">Next</button>
+        <!-- <button type="submit" class="btn btn-primary  d-block ms-auto">Next</button> -->
+
+        <div class="d-flex justify-content-center">
+        <button class="btn btn-primary " onclick="history.back()">Back</button>&nbsp;
+        <button type="submit" class="btn btn-primary ">Next</button>  
+    
+        </div>
     </form>
 </div>
 @endsection

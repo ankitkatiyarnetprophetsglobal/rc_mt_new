@@ -75,3 +75,5 @@ Route::get('/deletedataform3four/{id}',[ReviewController::class,'DeleteDatapartt
 Route::fallback(function () {
     return view('404_page',['error_code' => 404]);
   });
+  Route::get('generate-pdf', [ReviewController::class, 'generatePDF']);
+  Route::get("/downloadPDF",[ReviewController::class,"downloadPDF"]);

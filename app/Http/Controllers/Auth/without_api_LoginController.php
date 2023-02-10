@@ -37,9 +37,8 @@ class LoginController extends Controller
             $password = "";
             $loginType = 'otp';
         }
-        //dd('done');
         try {
-            //   $response = Http::post('https://nsrswebservice.kheloindia.gov.in/nsrscoreapi/api/Login/generateJWTToken', [
+            //   $response = Http::post('http://192.168.23.253:8034/api/Login/generateJWTToken', [
             //       'roleid' => 0,
             //       'detailid' => 0,
             //       'username' => 'string',
@@ -48,46 +47,50 @@ class LoginController extends Controller
 
             //  $token =  $response->body();
 
-            $response = Http::post('https://nsrswebservice.kheloindia.gov.in/nsrscoreapi/api/Login/Login', [
-                'username' => trim($username),
-                'password' => trim($password),
-                'loginType' => $loginType,
-                'appID' => 3,
-            ]);
-            if ($response->status() == 200) {
-                $data = json_decode($response->body());
-                //  dd($data);
-            } else {
-                //dd('done');
-                Session::flash('error_message', 'Something went wrong, Please try Again.');
-                return back()->withInput();
-            }
-            if ($loginType == 'otp') {
+            // $response = Http::post('http://192.168.23.253:8034/api/Login/Login', [
+            //     'username' => trim($username),
+            //     'password' => trim($password),
+            //     'loginType' => $loginType,
+            //     'appID' => 3,
+            // ]);
+            // //dd($response);
+            // if ($response->status() == 200) {
+            //     $data = json_decode($response->body());
+            //     //  dd($data);
+            // } else {
+            //     //dd('done');
+            //     Session::flash('error_message', 'Something went wrong, Please try Again.');
+            //     return back()->withInput();
+            // }
+            // if ($loginType == 'otp') {
 
-                if ($data->isMultipleExist) {
-                    Session::flash('error_message', 'You cannot login with Mobile number.');
-                    return back()->withInput();
-                } else if ($data->otpId == -1) {
-                    Session::flash(
-                        'error_message',
-                        'Please enter registered Mobile number.'
-                    );
-                    return back()->withInput();
-                } else {
+            //     if ($data->isMultipleExist) {
+            //         Session::flash('error_message', 'You cannot login with Mobile number.');
+            //         return back()->withInput();
+            //     } else if ($data->otpId == -1) {
+            //         Session::flash(
+            //             'error_message',
+            //             'Please enter registered Mobile number.'
+            //         );
+            //         return back()->withInput();
+            //     } else {
 
-                    $mobile_user = [
-                        'otpId' => $data->otpId,
-                        'mobile_no' => $username
-                    ];
-                    $request->session()->put('mobile_user', $mobile_user);
-                    return redirect()->route('verfyOtpPage');
-                }
-            }
+            //         $mobile_user = [
+            //             'otpId' => $data->otpId,
+            //             'mobile_no' => $username
+            //         ];
+            //         $request->session()->put('mobile_user', $mobile_user);
+            //         return redirect()->route('verfyOtpPage');
+            //     }
+            // }
+            // $data = DB::table('user_details')->where('user_name',trim($username))->where('password',trim($password))->get()->toArray();
+            $data = DB::table('user_details')->where('user_name',trim($username))->get()->toArray();
+            
             if (count($data)) {
-                if (!$data[0]->isPasswordValidated) {
-                    Session::flash('error_message', 'Wrong Password.');
-                    return back()->withInput();
-                }
+                // if (!$data[0]->isPasswordValidated) {
+                //     Session::flash('error_message', 'Wrong Password.');
+                //     return back()->withInput();
+                // }
 
                 $rc_id = DB::table('rcacademymappings')->select('rc_id')->where('academy_id', $data[0]->user_id)->first();
                 // dd($rc_id);
@@ -97,12 +100,12 @@ class LoginController extends Controller
                     Session::flash('error_message', 'Access denied!');
                     return back()->withInput();
                 }
-                $data[0]->token_expire_time = time() + (25 * 60);
+                $data[0]->token_expire_time = time() + (300000 * 60);
                 $request->session()->put('user', $data[0]);
                 $request->session()->put('role_details', $role_details);
                 $request->session()->put('rc_id', $rc_id);
-                $request->session()->put('token', $data[0]->token);
-                $request->session()->put('login_expire_time', time() + (25 * 60));
+                 $request->session()->put('token', 'dsgkfgdskgfdhsguyfsidyugf');
+                 $request->session()->put('login_expire_time', time() + (300000 * 60));
 
                 return redirect('/');
             } else {
@@ -153,7 +156,7 @@ class LoginController extends Controller
                 return back()->withInput();
             }
 
-            $response = Http::withToken(Session::get('token'))->get('https://nsrswebservice.kheloindia.gov.in/nsrscoreapi/api/Login/Login_Otp/ConfirmOtp', [
+            $response = Http::withToken(Session::get('token'))->get('http://192.168.23.253:8034/api/Login/Login_Otp/ConfirmOtp', [
                 'otpId' => Session::get('mobile_user')['otpId'],
                 'otp' => $request->otp,
                 'mobile' => Session::get('mobile_user')['mobile_no'],
@@ -191,7 +194,7 @@ class LoginController extends Controller
     public function resendOtp(Request $request)
     {
         try {
-            $response = Http::withToken(Session::get('token'))->get('https://nsrswebservice.kheloindia.gov.in/nsrscoreapi/api/Login/ResendOtp', [
+            $response = Http::withToken(Session::get('token'))->get('http://192.168.23.253:8034/api/Login/ResendOtp', [
                 'otpId' => Session::get('mobile_user')['otpId'],
                 'mobile' => Session::get('mobile_user')['mobile_no'],
             ]);

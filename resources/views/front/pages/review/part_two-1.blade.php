@@ -45,8 +45,8 @@
 
 <div class="container rc-new-container">
     <h1 class="text-center mb-2">Part 2 </h1>
-    <h3 class="text-start mb-4">2.Infrastructure Facilities at Present Available</h3>
-   
+    <h3 class="text-start mb-4">(2).Infrastructure Facilities at present available</h3>
+    
    
     <form id="part_two" action ="{{url('review/part-two-store')}}" method="POST">
         @csrf
@@ -59,7 +59,7 @@
             @endforeach
         </select>
       
-          <div class="d-flex">
+        <div class="d-flex">
             <div class="form-check mx-2">
             <input class="form-check-input" type="radio" name="cat_radio" value="1"  id="flexRadioDefault3" @if($data)  @if($data->cat_radio == 1) {{'checked' ?? ''}} @endif @endif value="Yes">
             <label class="form-check-label" for="flexRadioDefault3">
@@ -95,7 +95,7 @@
            </div>
             </div>
             <div class="col-auto">
-        <input type="number"  min="0" name="area_heactor" class="form-control" @if($data)  value="{{$data->area_heactor}}" @endif>
+        <input type="number"  min="0"  name="area_heactor" novalidate class="form-control area_heactor" @if($data)  value="{{$data->area_heactor}}" @endif>
        </div>
         </div>
        
@@ -137,9 +137,9 @@
                        <tbody>
                            <tr>
                                <td>No of Rooms*</td>
-                               <td><input type="number"  min="0" required name = "accommods_part_two_rooms_male_ac" @if($accommods)  value="{{$accommods->accommods_part_two_rooms_male_ac}}" @endif class="form-control"></td>
+                               <td><input type="number" required min="0" name ="accommods_part_two_rooms_male_ac" @if($accommods)  value="{{$accommods->accommods_part_two_rooms_male_ac}}" @endif class="form-control"></td>
                                <td>
-                                   <select class="form-select"  name="accommods_part_two_rooms_male_ac_rating" aria-label="Default select example">
+                                   <select class="form-select" required name="accommods_part_two_rooms_male_ac_rating" aria-label="Default select example">
                                     <option selected>Select</option>
                                        <option value="1"  @if(isset($accommods['accommods_part_two_rooms_male_ac_rating']) && $accommods['accommods_part_two_rooms_male_ac_rating'] == "1") selected @endif>Excellent</option>
                                        <option value="2" @if(isset($accommods['accommods_part_two_rooms_male_ac_rating']) && $accommods['accommods_part_two_rooms_male_ac_rating'] == "2") selected @endif >Very Good</option>
@@ -148,18 +148,18 @@
                                        <option value="5" @if(isset($accommods['accommods_part_two_rooms_male_ac_rating']) && $accommods['accommods_part_two_rooms_male_ac_rating'] == "5") selected @endif >Poor</option> 
                                      </select>
                                </td>
-                               <td><input type="number"  min="0" required name="accommods_part_two_rooms_male_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_rooms_male_nonac}}" @endif class="form-control"></td>
+                               <td><input type="number"  min="0" required  name="accommods_part_two_rooms_male_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_rooms_male_nonac}}" @endif class="form-control"></td>
                                <td>
-                                   <select class="form-select"  name="accommods_part_two_rooms_male_nonacrating" aria-label="Default select example">
+                                   <select class="form-select" required  name="accommods_part_two_rooms_male_nonacrating" aria-label="Default select example">
                                     <option selected>Select</option>
                                        <option value="1"  @if(isset($accommods['accommods_part_two_rooms_male_nonacrating']) && $accommods['accommods_part_two_rooms_male_nonacrating'] == "1") selected @endif>Good</option>
                                        <option value="2" @if(isset($accommods['accommods_part_two_rooms_male_nonacrating']) && $accommods['accommods_part_two_rooms_male_nonacrating'] == "2") selected @endif >Average</option>
                                        <option value="3" @if(isset($accommods['accommods_part_two_rooms_male_nonacrating']) && $accommods['accommods_part_two_rooms_male_nonacrating'] == "3") selected @endif >Poor</option>
                                      </select>
                                </td>
-                               <td><input type="number"  min="0" required name="accommods_part_two_rooms_female_ac" @if($accommods)  value="{{$accommods->accommods_part_two_rooms_female_ac}}" @endif class="form-control"></td>
+                               <td><input type="number" required  min="0"  name="accommods_part_two_rooms_female_ac" @if($accommods)  value="{{$accommods->accommods_part_two_rooms_female_ac}}" @endif class="form-control"></td>
                                <td>
-                                   <select class="form-select"  name="accommods_part_two_rooms_female_ac_rating" aria-label="Default select example">
+                                   <select class="form-select" required name="accommods_part_two_rooms_female_ac_rating" aria-label="Default select example">
                                     <option selected>Select</option>
                                        <option value="1"  @if(isset($accommods['accommods_part_two_rooms_female_ac_rating']) && $accommods['accommods_part_two_rooms_female_ac_rating'] == "1") selected @endif>Excellent</option>
                                        <option value="2"  @if(isset($accommods['accommods_part_two_rooms_female_ac_rating']) && $accommods['accommods_part_two_rooms_female_ac_rating'] == "2") selected @endif>Very Good</option>
@@ -168,29 +168,29 @@
                                        <option value="5" @if(isset($accommods['accommods_part_two_rooms_female_ac_rating']) && $accommods['accommods_part_two_rooms_female_ac_rating'] == "5") selected @endif >Poor</option>
                                      </select>
                                </td>
-                               <td><input type="number"  min="0" required name="accommods_part_two_rooms_female_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_rooms_female_nonac}}" @endif class="form-control"></td>
+                               <td><input type="number" required min="0" name="accommods_part_two_rooms_female_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_rooms_female_nonac}}" @endif class="form-control"></td>
                                <td>
-                                   <select class="form-select"  name="accommods_part_two_rooms_female_nonacrating" aria-label="Default select example">
+                                   <select class="form-select" required name="accommods_part_two_rooms_female_nonacrating" aria-label="Default select example">
                                     <option selected>Select</option>
                                        <option value="1"  @if(isset($accommods['accommods_part_two_rooms_female_nonacrating']) && $accommods['accommods_part_two_rooms_female_nonacrating'] == "1") selected @endif>Good</option>
                                        <option value="2" @if(isset($accommods['accommods_part_two_rooms_female_nonacrating']) && $accommods['accommods_part_two_rooms_female_nonacrating'] == "2") selected @endif >Average</option>
                                        <option value="2" @if(isset($accommods['accommods_part_two_rooms_female_nonacrating']) && $accommods['accommods_part_two_rooms_female_nonacrating'] == "3") selected @endif >Poor</option>
                                      </select>
                                </td>
-                               <td><input type="text" required name="accommods_part_two_rooms_remark" @if($accommods)  value="{{$accommods->accommods_part_two_rooms_remark}}" @endif class="form-control"></td>
+                               <td><input type="text" required  name="accommods_part_two_rooms_remark" @if($accommods)  value="{{$accommods->accommods_part_two_rooms_remark}}" @endif class="form-control"></td>
                            </tr>
                            <tr>
                                <td>Total Accomodation Capacity of Rooms</td>
-                               <td><input type="number"  min="0" required name="accommods_part_two_accomodation_capacity_male_ac" @if($accommods)  value="{{$accommods->accommods_part_two_accomodation_capacity_male_ac}}" @endif class="form-control"></td>
+                               <td><input type="number" required min="0" name="accommods_part_two_accomodation_capacity_male_ac" @if($accommods)  value="{{$accommods->accommods_part_two_accomodation_capacity_male_ac}}" @endif class="form-control"></td>
                                <td>
-                                   <select class="form-select"  name="accommods_part_two_accomodation_capacity_male_ac_rating" aria-label="Default select example">
+                                   <select class="form-select" disabled name="accommods_part_two_accomodation_capacity_male_ac_rating" aria-label="Default select example">
                                     <option selected>-</option>
                                        <!-- <option value="1"  @if(isset($accommods['accommods_part_two_accomodation_capacity_male_ac_rating']) && $accommods['accommods_part_two_accomodation_capacity_male_ac_rating'] == "1") selected @endif>One</option>
                                        <option value="2" @if(isset($accommods['accommods_part_two_accomodation_capacity_male_ac_rating']) && $accommods['accommods_part_two_accomodation_capacity_male_ac_rating'] == "2") selected @endif >Two</option>
                                        <option value="2" @if(isset($accommods['accommods_part_two_accomodation_capacity_male_ac_rating']) && $accommods['accommods_part_two_accomodation_capacity_male_ac_rating'] == "3") selected @endif >Three</option> -->
                                      </select>
                                </td>
-                               <td><input type="number"  min="0" required name="accommods_part_two_accomodation_capacity_male_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_accomodation_capacity_male_nonac}}" @endif class="form-control"></td>
+                               <td><input type="number" required  min="0" name="accommods_part_two_accomodation_capacity_male_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_accomodation_capacity_male_nonac}}" @endif class="form-control"></td>
                                <td>
                                    <select class="form-select"  name="accommods_part_two_accomodation_capacity_male_nonacrating" aria-label="Default select example">
                                     <option selected>-</option>
@@ -199,7 +199,7 @@
                                        <option value="2" @if(isset($accommods['accommods_part_two_accomodation_capacity_male_nonacrating']) && $accommods['accommods_part_two_accomodation_capacity_male_nonacrating'] == "3") selected @endif >Poor</option> -->
                                      </select>
                                </td>
-                               <td><input type="number"   min="0" required name="accommods_part_two_accomodation_capacity_female_ac" @if($accommods)  value="{{$accommods->accommods_part_two_accomodation_capacity_female_ac}}" @endif class="form-control"></td>
+                               <td><input type="number" required  min="0" name="accommods_part_two_accomodation_capacity_female_ac" @if($accommods)  value="{{$accommods->accommods_part_two_accomodation_capacity_female_ac}}" @endif class="form-control"></td>
                                <td>
                                    <select class="form-select"   name="accommods_part_two_accomodation_capacity_female_ac_rating" aria-label="Default select example">
                                     <option selected>-</option>
@@ -208,7 +208,7 @@
                                        <option value="2" @if(isset($accommods['accommods_part_two_accomodation_capacity_female_ac_rating']) && $accommods['accommods_part_two_accomodation_capacity_female_ac_rating'] == "3") selected @endif >Three</option> -->
                                      </select>
                                </td>
-                               <td><input type="number"  min="0" required name="accommods_part_two_accomodation_capacity_female_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_accomodation_capacity_female_nonac}}" @endif class="form-control"></td>
+                               <td><input type="number" required min="0"  name="accommods_part_two_accomodation_capacity_female_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_accomodation_capacity_female_nonac}}" @endif class="form-control"></td>
                                <td>
                                    <select class="form-select"  name="accommods_part_two_accomodation_capacityrooms_female_nonacrating" aria-label="Default select example">
                                     <option selected>-</option>
@@ -221,9 +221,9 @@
                            </tr>
                            <tr>
                                <td>No of Dormitory*</td>
-                               <td><input type="number"  required min="0" name="accommods_part_two_dormitory_male_ac" @if($accommods)  value="{{$accommods->accommods_part_two_dormitory_male_ac}}" @endif class="form-control"></td>
+                               <td><input type="number" required  min="0" name="accommods_part_two_dormitory_male_ac" @if($accommods)  value="{{$accommods->accommods_part_two_dormitory_male_ac}}" @endif class="form-control"></td>
                                <td>
-                                   <select class="form-select"  name="accommods_part_two_dormitory_male_nonacrating" aria-label="Default select example">
+                                   <select class="form-select" required name="accommods_part_two_dormitory_male_nonacrating" aria-label="Default select example">
                                     <option selected>Select</option>
                                        <option value="1"  @if(isset($accommods['accommods_part_two_dormitory_male_nonacrating']) && $accommods['accommods_part_two_dormitory_male_nonacrating'] == "1") selected @endif>Excellent</option>
                                        <option value="2" @if(isset($accommods['accommods_part_two_dormitory_male_nonacrating']) && $accommods['accommods_part_two_dormitory_male_nonacrating'] == "2") selected @endif >Very Good</option>
@@ -234,16 +234,16 @@
                                </td>
                                <td><input type="number" required min="0" name="accommods_part_two_dormitory_male_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_dormitory_male_nonac}}" @endif class="form-control"></td>
                                <td>
-                                   <select class="form-select"  name="accommods_part_two_dormitory_male_nonacrating" aria-label="Default select example">
+                                   <select class="form-select" required name="accommods_part_two_dormitory_male_nonacrating" aria-label="Default select example">
                                     <option selected>Select</option>
                                        <option value="1"  @if(isset($accommods['accommods_part_two_dormitory_male_nonacrating']) && $accommods['accommods_part_two_dormitory_male_nonacrating'] == "1") selected @endif>Good</option>
                                        <option value="2" @if(isset($accommods['accommods_part_two_dormitory_male_nonacrating']) && $accommods['accommods_part_two_dormitory_male_nonacrating'] == "2") selected @endif >Average</option>
                                        <option value="3" @if(isset($accommods['accommods_part_two_dormitory_male_nonacrating']) && $accommods['accommods_part_two_dormitory_male_nonacrating'] == "3") selected @endif >Poor</option>
                                      </select>
                                </td>
-                               <td><input type="number"  required min="0" name="accommods_part_two_dormitory_female_ac" @if($accommods)  value="{{$accommods->accommods_part_two_dormitory_female_ac}}" @endif class="form-control"></td>
+                               <td><input type="number" required  min="0" name="accommods_part_two_dormitory_female_ac" @if($accommods)  value="{{$accommods->accommods_part_two_dormitory_female_ac}}" @endif class="form-control"></td>
                                <td>
-                                   <select class="form-select"  name="accommods_part_two_dormitory_female_ac_rating" aria-label="Default select example">
+                                   <select class="form-select" required name="accommods_part_two_dormitory_female_ac_rating" aria-label="Default select example">
                                     <option selected>Select</option>
                                        <option value="1"  @if(isset($accommods['accommods_part_two_dormitory_female_ac_rating']) && $accommods['accommods_part_two_dormitory_female_ac_rating'] == "1") selected @endif>Excellent</option>
                                        <option value="2" @if(isset($accommods['accommods_part_two_dormitory_female_ac_rating']) && $accommods['accommods_part_two_dormitory_female_ac_rating'] == "2") selected @endif >Very Good</option>
@@ -252,20 +252,20 @@
                                        <option value="5" @if(isset($accommods['accommods_part_two_dormitory_female_ac_rating']) && $accommods['accommods_part_two_dormitory_female_ac_rating'] == "5") selected @endif >Poor</option>
                                      </select>
                                </td>
-                               <td><input type="number"  min="0" name="accommods_part_two_dormitory_female_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_dormitory_female_nonac}}" @endif class="form-control"></td>
+                               <td><input type="number" required min="0" name="accommods_part_two_dormitory_female_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_dormitory_female_nonac}}" @endif class="form-control"></td>
                                <td>
-                                   <select class="form-select"  name="accommods_part_two_dormitory_female_nonacrating" aria-label="Default select example">
+                                   <select class="form-select" required name="accommods_part_two_dormitory_female_nonacrating" aria-label="Default select example">
                                     <option selected>Select</option>
                                        <option value="1"  @if(isset($accommods['accommods_part_two_dormitory_female_nonacrating']) && $accommods['accommods_part_two_dormitory_female_nonacrating'] == "1") selected @endif>Good</option>
                                        <option value="2" @if(isset($accommods['accommods_part_two_dormitory_female_nonacrating']) && $accommods['accommods_part_two_dormitory_female_nonacrating'] == "2") selected @endif >Average</option>
                                        <option value="3" @if(isset($accommods['accommods_part_two_dormitory_female_nonacrating']) && $accommods['accommods_part_two_dormitory_female_nonacrating'] == "3") selected @endif >Poor</option>
                                      </select>
                                </td>
-                               <td><input type="text"  name="accommods_part_two_dormitory_remark" @if($accommods)  value="{{$accommods->accommods_part_two_dormitory_remark}}" @endif class="form-control"></td>
+                               <td><input type="text" required name="accommods_part_two_dormitory_remark" @if($accommods)  value="{{$accommods->accommods_part_two_dormitory_remark}}" @endif class="form-control"></td>
                            </tr>
                            <tr>
                                <td>Total Accomodation Capacity of Dormitory</td>
-                               <td><input type="number"  min="0" name="accommods_part_two_capacity_dormitory_male_ac" @if($accommods)  value="{{$accommods->accommods_part_two_capacity_dormitory_male_ac}}" @endif class="form-control"></td>
+                               <td><input type="number" required min="0" name="accommods_part_two_capacity_dormitory_male_ac" @if($accommods)  value="{{$accommods->accommods_part_two_capacity_dormitory_male_ac}}" @endif class="form-control"></td>
                                <td>
                                    <select class="form-select"  name="accommods_part_two_capacity_dormitory_male_ac_rating" aria-label="Default select example">
                                     <option selected>-</option>
@@ -274,7 +274,7 @@
                                        <option value="2" @if(isset($accommods['accommods_part_two_capacity_dormitory_male_ac_rating']) && $accommods['accommods_part_two_capacity_dormitory_male_ac_rating'] == "3") selected @endif >Three</option> -->
                                      </select>
                                </td>
-                               <td><input type="number"   min="0" name="accommods_part_two_capacity_dormitory_male_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_capacity_dormitory_male_nonac}}" @endif class="form-control"></td>
+                               <td><input type="number"  required min="0" name="accommods_part_two_capacity_dormitory_male_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_capacity_dormitory_male_nonac}}" @endif class="form-control"></td>
                                <td>
                                    <select class="form-select"  name="accommods_part_two_capacity_dormitory_male_nonacrating" aria-label="Default select example">
                                     <option selected>-</option>
@@ -283,7 +283,7 @@
                                        <option value="2" @if(isset($accommods['accommods_part_two_capacity_dormitory_male_nonacrating']) && $accommods['accommods_part_two_capacity_dormitory_male_nonacrating'] == "3") selected @endif >Three</option> -->
                                      </select>
                                </td>
-                               <td><input type="number"   min="0" name="accommods_part_two_capacity_dormitory_female_ac" @if($accommods)  value="{{$accommods->accommods_part_two_capacity_dormitory_female_ac}}" @endif class="form-control"></td>
+                               <td><input type="number" required  min="0" name="accommods_part_two_capacity_dormitory_female_ac" @if($accommods)  value="{{$accommods->accommods_part_two_capacity_dormitory_female_ac}}" @endif class="form-control"></td>
                                <td>
                                    <select class="form-select" name="accommods_part_two_capacity_dormitory_female_ac_rating" aria-label="Default select example">
                                     <option selected>-</option>
@@ -292,7 +292,7 @@
                                        <option value="2" @if(isset($accommods['accommods_part_two_capacity_dormitory_female_ac_rating']) && $accommods['accommods_part_two_capacity_dormitory_female_ac_rating'] == "3") selected @endif >Three</option> -->
                                      </select>
                                </td>
-                               <td><input type="number"  min="0" name="accommods_part_two_capacity_dormitory_female_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_capacity_dormitory_female_nonac}}" @endif class="form-control"></td>
+                               <td><input type="number" required min="0" name="accommods_part_two_capacity_dormitory_female_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_capacity_dormitory_female_nonac}}" @endif class="form-control"></td>
                                <td>
                                    <select class="form-select" name="accommods_part_two_capacity_dormitory_female_nonacrating" aria-label="Default select example">
                                     <option selected>-</option>
@@ -301,13 +301,13 @@
                                        <option value="2" @if(isset($accommods['accommods_part_two_capacity_dormitory_female_nonacrating']) && $accommods['accommods_part_two_capacity_dormitory_female_nonacrating'] == "3") selected @endif >Three</option> -->
                                      </select>
                                </td>
-                               <td><input type="text"  name="accommods_part_two_capacity_dormitory_remark"  @if($accommods)  value="{{$accommods->accommods_part_two_capacity_dormitory_remark}}" @endif class="form-control"></td>
+                               <td><input type="text" required name="accommods_part_two_capacity_dormitory_remark"  @if($accommods)  value="{{$accommods->accommods_part_two_capacity_dormitory_remark}}" @endif class="form-control"></td>
                            </tr>
                            <tr>
                                <td>No. of Washrooms/Toilet (attached)</td>
-                               <td><input type="number"  min="0" name="accommods_part_two_toilet_attached_male_ac" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_attached_male_ac}}" @endif class="form-control"></td>
+                               <td><input type="number" required min="0" name="accommods_part_two_toilet_attached_male_ac" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_attached_male_ac}}" @endif class="form-control"></td>
                                <td>
-                                   <select class="form-select"  name="accommods_part_two_toilet_attached_male_ac_rating" aria-label="Default select example">
+                                   <select class="form-select" required name="accommods_part_two_toilet_attached_male_ac_rating" aria-label="Default select example">
                                     <option selected>Select</option>
                                        <option value="1"  @if(isset($accommods['accommods_part_two_toilet_attached_male_ac_rating']) && $accommods['accommods_part_two_toilet_attached_male_ac_rating'] == "1") selected @endif>Excellent</option>
                                        <option value="2" @if(isset($accommods['accommods_part_two_toilet_attached_male_ac_rating']) && $accommods['accommods_part_two_toilet_attached_male_ac_rating'] == "2") selected @endif >Very Good</option>
@@ -316,18 +316,18 @@
                                        <option value="5" @if(isset($accommods['accommods_part_two_toilet_attached_male_ac_rating']) && $accommods['accommods_part_two_toilet_attached_male_ac_rating'] == "5") selected @endif >Poor</option>
                                      </select>
                                </td>
-                               <td><input type="number"  min="0" name="accommods_part_two_toilet_attached_male_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_attached_male_nonac}}" @endif class="form-control"></td>
+                               <td><input type="number" required min="0" name="accommods_part_two_toilet_attached_male_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_attached_male_nonac}}" @endif class="form-control"></td>
                                <td>
-                                   <select class="form-select"  name="accommods_part_two_toilet_attached_male_nonacrating" aria-label="Default select example">
+                                   <select class="form-select" required name="accommods_part_two_toilet_attached_male_nonacrating" aria-label="Default select example">
                                     <option selected>Select</option>
                                        <option value="1"  @if(isset($accommods['accommods_part_two_toilet_attached_male_nonacrating']) && $accommods['accommods_part_two_toilet_attached_male_nonacrating'] == "1") selected @endif>Good</option>
                                        <option value="2" @if(isset($accommods['accommods_part_two_toilet_attached_male_nonacrating']) && $accommods['accommods_part_two_toilet_attached_male_nonacrating'] == "2") selected @endif >Average</option>
                                        <option value="3" @if(isset($accommods['accommods_part_two_toilet_attached_male_nonacrating']) && $accommods['accommods_part_two_toilet_attached_male_nonacrating'] == "3") selected @endif >Poor</option>
                                      </select>
                                </td>
-                               <td><input type="number"  min="0" name="accommods_part_two_toilet_attached_female_ac" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_attached_female_ac}}" @endif class="form-control"></td>
+                               <td><input type="number" required min="0" name="accommods_part_two_toilet_attached_female_ac" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_attached_female_ac}}" @endif class="form-control"></td>
                                <td>
-                                   <select class="form-select"   name="accommods_part_two_toilet_attached_female_ac_rating" aria-label="Default select example">
+                                   <select class="form-select"  required name="accommods_part_two_toilet_attached_female_ac_rating" aria-label="Default select example">
                                     <option selected>Select</option>
                                        <option value="1"  @if(isset($accommods['accommods_part_two_toilet_attached_female_ac_rating']) && $accommods['accommods_part_two_toilet_attached_female_ac_rating'] == "1") selected @endif>Excellent</option>
                                        <option value="2" @if(isset($accommods['accommods_part_two_toilet_attached_female_ac_rating']) && $accommods['accommods_part_two_toilet_attached_female_ac_rating'] == "2") selected @endif >Very Good</option>
@@ -336,22 +336,22 @@
                                        <option value="5" @if(isset($accommods['accommods_part_two_toilet_attached_female_ac_rating']) && $accommods['accommods_part_two_toilet_attached_female_ac_rating'] == "5") selected @endif >jPoor</option>
                                      </select>
                                </td>
-                               <td><input type="number"  min="0" name="accommods_part_two_toilet_attached_female_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_attached_female_nonac}}" @endif class="form-control"></td>
+                               <td><input type="number" required  min="0" name="accommods_part_two_toilet_attached_female_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_attached_female_nonac}}" @endif class="form-control"></td>
                                <td>
-                                   <select class="form-select"  name="accommods_part_two_toilet_attached_female_nonacrating" aria-label="Default select example">
+                                   <select class="form-select" required name="accommods_part_two_toilet_attached_female_nonacrating" aria-label="Default select example">
                                     <option selected>Select</option>
                                        <option value="1"  @if(isset($accommods['accommods_part_two_toilet_attached_female_nonacrating']) && $accommods['accommods_part_two_toilet_attached_female_nonacrating'] == "1") selected @endif>Good</option>
                                        <option value="2" @if(isset($accommods['accommods_part_two_toilet_attached_female_nonacrating']) && $accommods['accommods_part_two_toilet_attached_female_nonacrating'] == "2") selected @endif >Average</option>
                                        <option value="3" @if(isset($accommods['accommods_part_two_toilet_attached_female_nonacrating']) && $accommods['accommods_part_two_toilet_attached_female_nonacrating'] == "3") selected @endif >Poor</option>
                                      </select>
                                </td>
-                               <td><input type="text"  name="accommods_part_two_toilet_attached_remark" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_attached_remark}}" @endif class="form-control"></td>
+                               <td><input type="text" required name="accommods_part_two_toilet_attached_remark" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_attached_remark}}" @endif class="form-control"></td>
                            </tr>
                            <tr>
                                <td>No. of Washrooms/Toilet (Non-attached)</td>
-                               <td><input type="number"  min="0" name="accommods_part_two_toilet_non_attached_male_ac" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_non_attached_male_ac}}" @endif class="form-control"></td>
+                               <td><input type="number" required  min="0" name="accommods_part_two_toilet_non_attached_male_ac" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_non_attached_male_ac}}" @endif class="form-control"></td>
                                <td>
-                                   <select class="form-select"  name="accommods_part_two_toilet_non_attached_male_ac_rating" aria-label="Default select example">
+                                   <select class="form-select" required name="accommods_part_two_toilet_non_attached_male_ac_rating" aria-label="Default select example">
                                     <option selected>Select</option>
                                        <option value="1"  @if(isset($accommods['accommods_part_two_toilet_non_attached_male_ac_rating']) && $accommods['accommods_part_two_toilet_non_attached_male_ac_rating'] == "1") selected @endif>Excellent</option>
                                        <option value="2" @if(isset($accommods['accommods_part_two_toilet_non_attached_male_ac_rating']) && $accommods['accommods_part_two_toilet_non_attached_male_ac_rating'] == "2") selected @endif >Very Good</option>
@@ -360,18 +360,18 @@
                                        <option value="5" @if(isset($accommods['accommods_part_two_toilet_non_attached_male_ac_rating']) && $accommods['accommods_part_two_toilet_non_attached_male_ac_rating'] == "5") selected @endif >Poor</option>
                                      </select>
                                </td>
-                               <td><input type="number"  min="0" name="accommods_part_two_toilet_non_attached_male_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_non_attached_male_nonac}}" @endif class="form-control"></td>
+                               <td><input type="number" required min="0" name="accommods_part_two_toilet_non_attached_male_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_non_attached_male_nonac}}" @endif class="form-control"></td>
                                <td>
-                                   <select class="form-select"  name="accommods_part_two_toilet_non_attached_male_nonacrating" aria-label="Default select example">
+                                   <select class="form-select" required name="accommods_part_two_toilet_non_attached_male_nonacrating" aria-label="Default select example">
                                     <option selected>Select</option>
                                        <option value="1"  @if(isset($accommods['accommods_part_two_toilet_non_attached_male_nonacrating']) && $accommods['accommods_part_two_toilet_non_attached_male_nonacrating'] == "1") selected @endif>Good</option>
                                        <option value="2" @if(isset($accommods['accommods_part_two_toilet_non_attached_male_nonacrating']) && $accommods['accommods_part_two_toilet_non_attached_male_nonacrating'] == "2") selected @endif >Average</option>
                                        <option value="3" @if(isset($accommods['accommods_part_two_toilet_non_attached_male_nonacrating']) && $accommods['accommods_part_two_toilet_non_attached_male_nonacrating'] == "3") selected @endif >Poor</option>
                                      </select>
                                </td>
-                               <td><input type="number"  min="0" name="accommods_part_two_toilet_non_attached_female_ac" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_non_attached_female_ac}}" @endif class="form-control"></td>
+                               <td><input type="number" required min="0" name="accommods_part_two_toilet_non_attached_female_ac" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_non_attached_female_ac}}" @endif class="form-control"></td>
                                <td>
-                                   <select class="form-select"  name="accommods_part_two_toilet_non_attached_female_ac_rating" aria-label="Default select example">
+                                   <select class="form-select" required name="accommods_part_two_toilet_non_attached_female_ac_rating" aria-label="Default select example">
                                     <option selected>Select</option>
                                        <option value="1"  @if(isset($accommods['accommods_part_two_toilet_non_attached_female_ac_rating']) && $accommods['accommods_part_two_toilet_non_attached_female_ac_rating'] == "1") selected @endif>Excellent</option>
                                        <option value="2" @if(isset($accommods['accommods_part_two_toilet_non_attached_female_ac_rating']) && $accommods['accommods_part_two_toilet_non_attached_female_ac_rating'] == "2") selected @endif >Very Good</option>
@@ -380,16 +380,16 @@
                                        <option value="5" @if(isset($accommods['accommods_part_two_toilet_non_attached_female_ac_rating']) && $accommods['accommods_part_two_toilet_non_attached_female_ac_rating'] == "5") selected @endif >Poor</option>
                                      </select>
                                </td>
-                               <td><input type="number"  min="0" name="accommods_part_two_toilet_non_attached_female_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_non_attached_female_nonac}}" @endif class="form-control"></td>
+                               <td><input type="number" required min="0" name="accommods_part_two_toilet_non_attached_female_nonac" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_non_attached_female_nonac}}" @endif class="form-control"></td>
                                <td>
-                                   <select class="form-select"  name="accommods_part_two_toilet_non_attached_female_nonacrating" aria-label="Default select example">
+                                   <select class="form-select" required name="accommods_part_two_toilet_non_attached_female_nonacrating" aria-label="Default select example">
                                     <option selected>Select</option>
                                        <option value="1"  @if(isset($accommods['accommods_part_two_toilet_non_attached_female_nonacrating']) && $accommods['accommods_part_two_toilet_non_attached_female_nonacrating'] == "1") selected @endif>Good</option>
                                        <option value="2" @if(isset($accommods['accommods_part_two_toilet_non_attached_female_nonacrating']) && $accommods['accommods_part_two_toilet_non_attached_female_nonacrating'] == "2") selected @endif >Average</option>
                                        <option value="3" @if(isset($accommods['accommods_part_two_toilet_non_attached_female_nonacrating']) && $accommods['accommods_part_two_toilet_non_attached_female_nonacrating'] == "3") selected @endif >Poor</option>
                                      </select>
                                </td>
-                               <td><input type="text"  name="accommods_part_two_toilet_non_attached_remark" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_non_attached_remark}}" @endif class="form-control"></td>
+                               <td><input type="text" required name="accommods_part_two_toilet_non_attached_remark" @if($accommods)  value="{{$accommods->accommods_part_two_toilet_non_attached_remark}}" @endif class="form-control"></td>
                            </tr>
                        </tbody>
                </table>
@@ -447,7 +447,7 @@
                              <td><input type="number"  min="0" name="kitchen_dinings_dining_hall_area_male" @if($kichen)  value="{{$kichen->kitchen_dinings_dining_hall_area_male}}" @endif  class="form-control"></td>
                              <td><input type="number"  min="0" name="kitchen_dinings_dining_hall_area_female" @if($kichen)  value="{{$kichen->kitchen_dinings_dining_hall_area_female}}" @endif  class="form-control"></td>
                              <td>
-                               <select class="form-select"  name="kitchen_dinings_dining_hall_rating" aria-label="Default select example">
+                               <select class="form-select" name="kitchen_dinings_dining_hall_rating" aria-label="Default select example">
                                 <option selected>Select</option>
                                     <option value="1"  @if(isset($kichen['kitchen_dinings_dining_hall_rating']) && $kichen['kitchen_dinings_dining_hall_rating'] == "1") selected @endif>Excellent</option>
                                     <option value="2" @if(isset($kichen['kitchen_dinings_dining_hall_rating']) && $kichen['kitchen_dinings_dining_hall_rating'] == "2") selected @endif >Very Good</option>
@@ -462,7 +462,7 @@
                            <td>
                              <select class="form-select"  name="kitchen_dinings_dining_hall_nonac_rating" aria-label="Default select example">
                                 <option selected>Select</option>
-                                 <option value="1"  @if(isset($kichen['kitchen_dinings_dining_hall_nonac_rating']) && $kichen['kitchen_dinings_dining_hall_nonac_rating'] == "1") selected @endif>Good</option>
+                                 <option value="1"  @if(isset($kichen['kitchen_dinings_dining_hall_nonac_rating']) && $kichen['kitchen_dinings_dining_hall_nonac_rating'] == "1") selected @endif>Very Good</option>
                                     <option value="2" @if(isset($kichen['kitchen_dinings_dining_hall_nonac_rating']) && $kichen['kitchen_dinings_dining_hall_nonac_rating'] == "2") selected @endif >Average</option>
                                     <option value="3" @if(isset($kichen['kitchen_dinings_dining_hall_nonac_rating']) && $kichen['kitchen_dinings_dining_hall_nonac_rating'] == "3") selected @endif >Poor</option>
                                </select>
@@ -473,7 +473,7 @@
                            <tr>
                                <td>Kitchen</td>
                                <td><input type="number"  min="0"name="kitchen_kitchen_hall_ac_count" @if($kichen)  value="{{$kichen->kitchen_kitchen_hall_ac_count}}" @endif  class="form-control"></td>
-                               <td colspan="2" ><input type="text"  name="kitchen_kitchen_dining_hall_area_male" @if($kichen)  value="{{$kichen->kitchen_kitchen_dining_hall_area_male}}" @endif  class="form-control"></td>
+                               <td colspan="2" ><input type="text" name="kitchen_kitchen_dining_hall_area_male" @if($kichen)  value="{{$kichen->kitchen_kitchen_dining_hall_area_male}}" @endif  class="form-control"></td>
                                <!-- <td><input type="number"  min="0"name="kitchen_kitchen_dining_hall_area_female" @if($kichen)  value="{{$kichen->kitchen_kitchen_dining_hall_area_female}}" @endif  class="form-control"></td> -->
                                <td>
                                  <select class="form-select"  name="kitchen_kitchen_dining_hall_rating" aria-label="Default select example">
@@ -486,7 +486,7 @@
                                    </select>
                              </td>
                              <td><input type="number"  min="0"name="kitchen_kitchen_dining_hall_nonac_ac_count" @if($kichen)  value="{{$kichen->kitchen_kitchen_dining_hall_nonac_ac_count}}" @endif  class="form-control"></td>
-                             <td  colspan="2" ><input type="text"  name="kitchen_kitchen_dining_hall_nonac_area_male" @if($kichen)  value="{{$kichen->kitchen_kitchen_dining_hall_nonac_area_male}}" @endif  class="form-control"></td>
+                             <td  colspan="2" ><input type="text" name="kitchen_kitchen_dining_hall_nonac_area_male" @if($kichen)  value="{{$kichen->kitchen_kitchen_dining_hall_nonac_area_male}}" @endif  class="form-control"></td>
                              <!-- <td><input type="number"  min="0" name="kitchen_kitchen_dining_hall_nonac_area_female" @if($kichen)  value="{{$kichen->kitchen_kitchen_dining_hall_nonac_area_female}}" @endif class="form-control"></td> -->
                              <td>
                                <select class="form-select"  name="kitchen_kitchen_dining_hall_nonac_rating" aria-label="Default select example">
@@ -502,7 +502,7 @@
                            <tr>
                                <td>Store room</td>
                                <td><input type="number"  min="0"name="kitchen_store_room_hall_ac_count" @if($kichen)  value="{{$kichen->kitchen_store_room_hall_ac_count}}" @endif  class="form-control"></td>
-                               <td  colspan="2"><input type="text"  name="kitchen_store_room_dining_hall_area_male" @if($kichen)  value="{{$kichen->kitchen_store_room_dining_hall_area_male}}" @endif  class="form-control"></td>
+                               <td  colspan="2"><input type="text" name="kitchen_store_room_dining_hall_area_male" @if($kichen)  value="{{$kichen->kitchen_store_room_dining_hall_area_male}}" @endif  class="form-control"></td>
                                <!-- <td><input type="number"  min="0"name="kitchen_store_room_dining_hall_area_female" @if($kichen)  value="{{$kichen->kitchen_store_room_dining_hall_area_female}}" @endif  class="form-control"></td> -->
                                <td>
                                  <select class="form-select"  name="kitchen_store_room_dining_hall_rating" aria-label="Default select example">
@@ -608,7 +608,7 @@
                            </tr>
                            <tr>
                                <td>Recreation hall</td>
-                               <td><input type="number"   min="0" name="facilities_recreation_hall_ac_count" @if($other_facilities)  value="{{$other_facilities->facilities_recreation_hall_ac_count}}" @endif  class="form-control"></td>
+                               <td><input type="number"  min="0" name="facilities_recreation_hall_ac_count" @if($other_facilities)  value="{{$other_facilities->facilities_recreation_hall_ac_count}}" @endif  class="form-control"></td>
                                <td><input type="number"  min="0" name="facilities_recreation_hall_area_male" @if($other_facilities)  value="{{$other_facilities->facilities_recreation_hall_area_male}}" @endif  class="form-control"></td>
                                <td><input type="number"  min="0" name="facilities_recreation_hall_area_female" @if($other_facilities)  value="{{$other_facilities->facilities_recreation_hall_area_female}}" @endif  class="form-control"></td>
                                <td>
@@ -668,7 +668,7 @@
                            <tr>
                                <td>library</td>
                                <td><input type="number"  min="0" name="facilities_library_ac_count" @if($other_facilities)  value="{{$other_facilities->facilities_library_ac_count}}" @endif  class="form-control"></td>
-                               <td colspan="2"><input type="text"  name="facilities_library_area_male" @if($other_facilities)  value="{{$other_facilities->facilities_library_area_male}}" @endif  class="form-control"></td>
+                               <td colspan="2"><input type="text" name="facilities_library_area_male" @if($other_facilities)  value="{{$other_facilities->facilities_library_area_male}}" @endif  class="form-control"></td>
                                <!-- <td><input type="number"  min="0" name="facilities_library_area_female" @if($other_facilities)  value="{{$other_facilities->facilities_library_area_female}}" @endif  class="form-control"></td> -->
                                <td>
                                  <select class="form-select"  name="facilities_library_rating"  aria-label="Default select example">
@@ -681,7 +681,7 @@
                                    </select>
                              </td>
                              <td ><input type="number"  min="0" name="facilities_library_nonac_ac_count" @if($other_facilities)  value="{{$other_facilities->facilities_library_nonac_ac_count}}" @endif  class="form-control"></td>
-                             <td colspan="2"><input type="text"   name="facilities_library_nonac_area_male" @if($other_facilities)  value="{{$other_facilities->facilities_library_nonac_area_male}}" @endif  class="form-control"></td>
+                             <td colspan="2"><input type="text" name="facilities_library_nonac_area_male" @if($other_facilities)  value="{{$other_facilities->facilities_library_nonac_area_male}}" @endif  class="form-control"></td>
                              <!-- <td><input type="number"  min="0" name="facilities_library_nonac_area_female" @if($other_facilities)  value="{{$other_facilities->facilities_library_nonac_area_female}}" @endif  class="form-control"></td> -->
                              <td>
                                <select class="form-select"  name="facilities_library_nonac_rating"  aria-label="Default select example">
@@ -746,12 +746,12 @@
                                     </select>
                                </td>
 
-                             <td><input type="number" min="0"  class="form-control" name='part_two_play_field[{{ $part_two_play_key }}][no_fop_play_field]' value="{{ $part_two_play_value->no_fop_play_field ?? '' }}"></td>
+                             <td><input type="text"  class="form-control" name='part_two_play_field[{{ $part_two_play_key }}][no_fop_play_field]' value="{{ $part_two_play_value->no_fop_play_field ?? '' }}"></td>
                              <td>
-                                    <select class="form-select"    aria-label="Default select example" name='part_two_play_field[{{ $part_two_play_key }}][fop_play_field]'>
+                                    <select class="form-select"  aria-label="Default select example" name='part_two_play_field[{{ $part_two_play_key }}][fop_play_field]'>
                                     <option selected>Select</option>
-                                        <option value="1" {{ 1 == $part_two_play_value->fop_play_field ? 'selected' : ''}}>Indoor</option>
-                                        <option value="2" {{ 2 == $part_two_play_value->fop_play_field ? 'selected' : ''}}>Outdoor</option>
+                                        <option value="1" {{ 1 == $part_two_play_value->fop_play_field ? 'selected' : 'disabled'}}>Indoor</option>
+                                        <option value="2" {{ 2 == $part_two_play_value->fop_play_field ? 'selected' : 'disabled'}}>Outdoor</option>
                                         {{-- <option value="3" {{ 3 == $part_two_play_value->fop_play_field ? 'selected' : 'disabled'}}>Three</option> --}}
                                     </select>
                                </td>
@@ -795,37 +795,20 @@
                             <td>
                                 <input type="hidden" class="center_id" name="part_two_play_field[0][center_id]" value="{{ $id ?? '' }}">
                                 <input type="hidden" name="part_two_play_field[0][id]" value="">
-                                 <select class="form-select" aria-label="Default select example"  name='part_two_play_field[0][discline_play_field]'>
+                                 <select class="form-select" aria-label="Default select example" name='part_two_play_field[0][discline_play_field]'>
                                     @foreach ($dis_list as $item)
                                             <option  value="{{$item->discipline_id}}">{{$item ->discipline}}</option>
                                     @endforeach
                                  </select>
                             </td>
-                          <td><input type="number" min="0" class="form-control" name='part_two_play_field[0][no_fop_play_field]' ></td>
+                          <td><input type="number"  min="0" class="form-control" name='part_two_play_field[0][no_fop_play_field]' ></td>
                           <td>
                             <select class="form-select"  aria-label="Default select example" name='part_two_play_field[0][fop_play_field]'>
                                 <option value="1">Indoor</option>
                                 <option value="2">Outdoor</option>  
                             </select>
                         </td>
-                        <td>
-						
-						<select class="form-select"  name='part_two_play_field[0][fop_surface_play_field]'  aria-label="Default select example">
-                                     <option selected>Select</option>
-                                    <option value="1" >Synthetic</option>
-                                    <option value="2">Wooden</option>
-                                    <option value="3" >Grass</option>
-                                    <option value="4" >Cement</option>
-                                    <option value="5" >Cinder</option>
-                                    <option value="6" >Clay</option>
-                                    <option value="7"  >Natural</option>
-                                    <option value="8" >Artificial Turf</option>
-                                    <option value="9">Others</option>
-                                   </select>
-						
-						
-						
-						</td>
+                        <td><input type="text" class="form-control"  name='part_two_play_field[0][fop_surface_play_field]' ></td>
                         <td> <select class="form-select" name='part_two_play_field[0][rating_play_field]'  aria-label="Default select example">
                                      <option selected>Select</option>
                                     <option value="1" >Excellent</option>
@@ -834,7 +817,7 @@
                                     <option value="4" >Average</option>
                                     <option value="5" >Poor</option>
                                    </select></td>
-                        <td><input type="text" class="form-control"  name='part_two_play_field[0][remark_play_field]' ></td>
+                        <td><input type="text" class="form-control" name='part_two_play_field[0][remark_play_field]' ></td>
                           <td>
                             <a href="javascript:void(0)" class="actionbtn remove_two_part_two_equipment" data-id11="0" data-db_id11="0">
                                 <i class="fa-solid fa-trash-can"></i>
@@ -899,11 +882,11 @@
                                <td>
                                    <select class="form-select"  aria-label="Default select example"  name='two_part_two_equipment[{{ $sport_quipment_key }}][equipment_suficient]' aria-label="Default select example">
                                        
-                                       <option value="1" {{ 1 == $sport_quipment_value->equipment_suficient ? 'selected' : '' }}>Sufficient</option>
-                                       <option value="2" {{ 2 == $sport_quipment_value->equipment_suficient ? 'selected' : '' }} >Insufficient</option>
+                                       <option value="1" {{ 1 == $sport_quipment_value->equipment_suficient ? 'selected' : 'disabled' }}>Sufficient</option>
+                                       <option value="2" {{ 2 == $sport_quipment_value->equipment_suficient ? 'selected' : 'disabled' }} >Insufficient</option>
                                      </select>
                                </td>
-                               <td><input type="text"  class="form-control" name='two_part_two_equipment[{{ $sport_quipment_key }}][equipment_remark]' value="{{ $sport_quipment_value->equipment_remark ?? '' }}"></td>
+                               <td><input type="text" class="form-control" name='two_part_two_equipment[{{ $sport_quipment_key }}][equipment_remark]' value="{{ $sport_quipment_value->equipment_remark ?? '' }}"></td>
                                <td>
                                 <a href="javascript:void(0)" class="actionbtn remove_two_part_two_equipment" data-id10="{{ $sport_quipment_key }}" data-db_id10="{{ $sport_quipment_value->id ?? '' }}">
                                     <i class="fa-solid fa-trash-can"></i>
@@ -981,20 +964,20 @@
                                             <input type="hidden" class="center_id" name="two_part_two_equipment_consumable[{{ $sport_quipment_consumable_key }}][center_id]" value="{{ $id ?? '' }}">
                                             <input type="hidden" name="two_part_two_equipment_consumable[{{ $sport_quipment_consumable_key }}][id]" value="{{ $sport_quipment_consumable_value->id ?? '' }}">
 
-                                            <select class="form-select"   aria-label="Default select example" name='two_part_two_equipment_consumable[{{ $sport_quipment_consumable_key }}][equipment_discipline]'>
+                                            <select class="form-select"  aria-label="Default select example" name='two_part_two_equipment_consumable[{{ $sport_quipment_consumable_key }}][equipment_discipline]'>
                                                 @foreach ($dis_list as $item)
                                                     <option  value="{{$item->discipline_id}}" @if($sport_quipment_consumable_value->equipment_discipline == $item->discipline_id) selected @endif>{{$item ->discipline}}</option>
                                                 @endforeach
                                             </select>
                                         </td>
                                         <td>
-                                            <select class="form-select"   aria-label="Default select example"  name='two_part_two_equipment_consumable[{{ $sport_quipment_consumable_key }}][equipment_suficient]' aria-label="Default select example">
+                                            <select class="form-select"  aria-label="Default select example"  name='two_part_two_equipment_consumable[{{ $sport_quipment_consumable_key }}][equipment_suficient]' aria-label="Default select example">
                                                 <option selected>Select</option>
-                                                <option value="1" {{ 1 == $sport_quipment_consumable_value->equipment_suficient ? 'selected' : '' }}>Sufficient</option>
-                                                <option value="2" {{ 2 == $sport_quipment_consumable_value->equipment_suficient ? 'selected' : '' }} >Insufficient</option>
+                                                <option value="1" {{ 1 == $sport_quipment_consumable_value->equipment_suficient ? 'selected' : 'disabled' }}>Sufficient</option>
+                                                <option value="2" {{ 2 == $sport_quipment_consumable_value->equipment_suficient ? 'selected' : 'disabled' }} >Insufficient</option>
                                                 </select>
                                         </td>
-                                        <td><input type="text"  class="form-control" name='two_part_two_equipment_consumable[{{ $sport_quipment_consumable_key }}][equipment_remark]' value="{{ $sport_quipment_consumable_value->equipment_remark ?? '' }}"></td>                            
+                                        <td><input type="text" class="form-control" name='two_part_two_equipment_consumable[{{ $sport_quipment_consumable_key }}][equipment_remark]' value="{{ $sport_quipment_consumable_value->equipment_remark ?? '' }}"></td>                            
                                         <td>
                                             <a href="javascript:void(0)" class="actionbtn remove_two_part_sports_equipment" data-id9="{{ $sport_quipment_consumable_key }}" data-db_id9="{{ $sport_quipment_consumable_value->id ?? '' }}">
                                                 <i class="fa-solid fa-trash-can"></i>
@@ -1072,7 +1055,7 @@
                                         <option  value="{{$item->discipline_id}}" @if($sport_quipment_science_value->athletes_discipline == $item->discipline_id) selected @endif>{{$item ->discipline}}</option>
                                     @endforeach
                                 </select>
-                                {{-- <select class="form-select"   aria-label="Default select example" name="two_part_two_sport_science[{{ $sport_quipment_consumable_key }}][science_discipline]">
+                                {{-- <select class="form-select"  aria-label="Default select example" name="two_part_two_sport_science[{{ $sport_quipment_consumable_key }}][science_discipline]">
                                     <option value="">Select</option>
                                     <option value="1" {{ 1 == $sport_quipment_science_value->science_discipline ? 'selected' : 'disabled'}}>One</option>
                                     <option value="2" {{ 2 == $sport_quipment_science_value->science_discipline ? 'selected' : 'disabled'}}>Two</option>
@@ -1082,19 +1065,19 @@
                                <td>
                                 <select class="form-select"  aria-label="Default select example"  name='two_part_two_sport_science[{{ $sport_quipment_science_key }}][sport_consumable]' aria-label="Default select example">
                                     <option selected>Select</option>
-                                    <option value="1" {{ 1 == $sport_quipment_science_value->sport_consumable ? 'selected' : '' }}>Sufficient</option>
-                                    <option value="2" {{ 2 == $sport_quipment_science_value->sport_consumable ? 'selected' : '' }} >Insufficient</option>
+                                    <option value="1" {{ 1 == $sport_quipment_science_value->sport_consumable ? 'selected' : 'disabled' }}>Sufficient</option>
+                                    <option value="2" {{ 2 == $sport_quipment_science_value->sport_consumable ? 'selected' : 'disabled' }} >Insufficient</option>
                                   </select>
                                </td>
                                <td>
                                 <select class="form-select"  aria-label="Default select example"  name='two_part_two_sport_science[{{ $sport_quipment_science_key }}][sport_non_consumable]' aria-label="Default select example">
                                     <option selected>Select</option>
-                                    <option value="1" {{ 1 == $sport_quipment_science_value->sport_non_consumable ? 'selected' : '' }}>Sufficient</option>
-                                    <option value="2" {{ 2 == $sport_quipment_science_value->sport_non_consumable ? 'selected' : '' }} >Insufficient</option>
+                                    <option value="1" {{ 1 == $sport_quipment_science_value->sport_non_consumable ? 'selected' : 'disabled' }}>Sufficient</option>
+                                    <option value="2" {{ 2 == $sport_quipment_science_value->sport_non_consumable ? 'selected' : 'disabled' }} >Insufficient</option>
                                   </select>
                                </td>
                                <td>
-                                    <input type="text"  class="form-control" name='two_part_two_sport_science[{{ $sport_quipment_science_key }}][science_remark]' value="{{ $sport_quipment_science_value->science_remark ?? '' }}">
+                                    <input type="text" class="form-control" name='two_part_two_sport_science[{{ $sport_quipment_science_key }}][science_remark]' value="{{ $sport_quipment_science_value->science_remark ?? '' }}">
                                 </td>
                                 <td>
                                     <a href="javascript:void(0)" class="actionbtn remove_two_part_sports_science_equipment" data-id8="{{ $sport_quipment_science_key }}" data-db_id8="{{ $sport_quipment_science_value->id ?? ''}}">
@@ -1108,7 +1091,7 @@
                             <td>
                                 <input type="hidden" class="center_id" name="two_part_two_sport_science[0][center_id]" value="{{ $id ?? '' }}">
                                 <input type="hidden" name="two_part_two_sport_science[0][id]" value="">
-                                    <select class="form-select"  name="two_part_two_sport_science[0][science_discipline]" aria-label="Default select example">
+                                    <select class="form-select" name="two_part_two_sport_science[0][science_discipline]" aria-label="Default select example">
                                         @foreach ($dis_list as $item)
                                             <option  value="{{$item->discipline_id}}">{{$item ->discipline}}</option>
                                         @endforeach
@@ -1122,13 +1105,13 @@
                                </select>
                             </td>
                             <td>
-                             <select class="form-select"   name="two_part_two_sport_science[0][sport_non_consumable]" aria-label="Default select example">
+                             <select class="form-select"  name="two_part_two_sport_science[0][sport_non_consumable]" aria-label="Default select example">
                                  <option selected>Select</option>
                                  <option value="1">Sufficient</option>
                                  <option value="2">Insufficient</option>
                                </select>
                             </td>                          
-                            <td><input type="text"  name="two_part_two_sport_science[0][science_remark]" class="form-control"></td>
+                            <td><input type="text" name="two_part_two_sport_science[0][science_remark]" class="form-control"></td>
                             <td>
                                 <a href="javascript:void(0)" class="actionbtn remove_two_part_sports_science_equipment" data-id8="0" data-db_id8="0">
                                     <i class="fa-solid fa-trash-can"></i>
@@ -1180,27 +1163,27 @@
                                 <input type="hidden" class="center_id" name="administrative_supports[0][center_id]" value="{{ $id ?? '' }}">
                                 <input type="hidden" name="administrative_supports[{{ $sport_quipment_consumable_key }}][id]" value="{{ $sport_quipment_consumable_value->id }}">
                                 {{-- <input type="number" min="0" class="form-control" name="administrative_supports[0][ssd_designation]"> --}}
-                                <input type="text"  class="form-control" name='administrative_supports[{{ $sport_quipment_consumable_key }}][ssd_designation]' value="{{ $sport_quipment_consumable_value->ssd_designation ?? '' }}">
+                                <input type="text" class="form-control" name='administrative_supports[{{ $sport_quipment_consumable_key }}][ssd_designation]' value="{{ $sport_quipment_consumable_value->ssd_designation ?? '' }}">
                             </td>
                             <td>
                                 {{-- <input type="text" class="form-control" name="administrative_supports[0][ssd_2018_19]"> --}}
-                                <input type="number"  min="0" class="form-control" name='administrative_supports[{{ $sport_quipment_consumable_key }}][ssd_2018_19]' value="{{ $sport_quipment_consumable_value->ssd_2018_19 ?? '' }}">
+                                <input type="number" min="0" class="form-control" name='administrative_supports[{{ $sport_quipment_consumable_key }}][ssd_2018_19]' value="{{ $sport_quipment_consumable_value->ssd_2018_19 ?? '' }}">
                             </td>
                             <td>
                                 {{-- <input type="text" class="form-control" name="administrative_supports[0][ssd_2019_20]"> --}}
-                                <input type="number"  min="0" class="form-control" name='administrative_supports[{{ $sport_quipment_consumable_key }}][ssd_2019_20]' value="{{ $sport_quipment_consumable_value->ssd_2019_20 ?? '' }}">
+                                <input type="number" min="0" class="form-control" name='administrative_supports[{{ $sport_quipment_consumable_key }}][ssd_2019_20]' value="{{ $sport_quipment_consumable_value->ssd_2019_20 ?? '' }}">
                             </td>
                             <td>
                                 {{-- <input type="text" class="form-control" name="administrative_supports[0][ssd_2020_21]"> --}}
-                                <input type="number"  min="0" class="form-control" name='administrative_supports[{{ $sport_quipment_consumable_key }}][ssd_2020_21]' value="{{ $sport_quipment_consumable_value->ssd_2020_21 ?? '' }}">
+                                <input type="number" min="0" class="form-control" name='administrative_supports[{{ $sport_quipment_consumable_key }}][ssd_2020_21]' value="{{ $sport_quipment_consumable_value->ssd_2020_21 ?? '' }}">
                             </td>
                             <td>
                                 {{-- <input type="text" class="form-control" name="administrative_supports[0][ssd_2021_22]"> --}}
-                                <input type="number"  min="0" class="form-control" name='administrative_supports[{{ $sport_quipment_consumable_key }}][ssd_2021_22]' value="{{ $sport_quipment_consumable_value->ssd_2021_22 ?? '' }}">
+                                <input type="number" min="0" class="form-control" name='administrative_supports[{{ $sport_quipment_consumable_key }}][ssd_2021_22]' value="{{ $sport_quipment_consumable_value->ssd_2021_22 ?? '' }}">
                             </td>
                             <td>
                                 {{-- <input type="text" class="form-control" name="administrative_supports[0][ssd_2022_23]"> --}}
-                                <input type="number"  min="0" class="form-control" name='administrative_supports[{{ $sport_quipment_consumable_key }}][ssd_2022_23]' value="{{ $sport_quipment_consumable_value->ssd_2022_23 ?? '' }}">
+                                <input type="number" min="0" class="form-control" name='administrative_supports[{{ $sport_quipment_consumable_key }}][ssd_2022_23]' value="{{ $sport_quipment_consumable_value->ssd_2022_23 ?? '' }}">
                             </td>
                             <td>
                                 <a href="javascript:void(0)" class="actionbtn remove_two_part_administrative_supports" data-id7="{{ $sport_quipment_consumable_key }}" data-db_id7="{{ $sport_quipment_consumable_value->id }}">
@@ -1214,22 +1197,22 @@
                             <td>
                                 <input type="hidden" class="center_id" name="administrative_supports[0][center_id]" value="{{ $id ?? '' }}">
                                 <input type="hidden" name="administrative_supports[0][id]" value="">
-                                <input type="text"  class="form-control" name="administrative_supports[0][ssd_designation]">
+                                <input type="text" class="form-control" name="administrative_supports[0][ssd_designation]">
                             </td>
                             <td>
-                                <input type="number"  class="form-control" name="administrative_supports[0][ssd_2018_19]">
+                                <input type="text" class="form-control" name="administrative_supports[0][ssd_2018_19]">
                             </td>
                             <td>
-                                <input type="number"  class="form-control" name="administrative_supports[0][ssd_2019_20]">
+                                <input type="text" class="form-control" name="administrative_supports[0][ssd_2019_20]">
                             </td>
                             <td>
-                                <input type="number"  class="form-control" name="administrative_supports[0][ssd_2020_21]">
+                                <input type="text" class="form-control" name="administrative_supports[0][ssd_2020_21]">
                             </td>
                             <td>
-                                <input type="number"  class="form-control" name="administrative_supports[0][ssd_2021_22]">
+                                <input type="text" class="form-control" name="administrative_supports[0][ssd_2021_22]">
                             </td>
                             <td>
-                                <input type="number"  class="form-control" name="administrative_supports[0][ssd_2022_23]">
+                                <input type="text" class="form-control" name="administrative_supports[0][ssd_2022_23]">
                             </td>
                             <td>
                                 <a href="javascript:void(0)" class="actionbtn remove_two_part_administrative_supports" data-id7="0" data-db_id7="0">
@@ -1285,22 +1268,22 @@
                                     <td>
                                         <input type="hidden" class="center_id" name="sport_science_staff_doctor[0][center_id]" value="{{ $id ?? '' }}">
                                             <input type="hidden" name="sport_science_staff_doctor[0][id]" value="{{ $sportsciencestaffdoctor_value->id }}">
-                                        <input type="text"  class="form-control" name="sport_science_staff_doctor[{{ $sportsciencestaffdoctor_key }}][ssd_designation]" value="{{ $sportsciencestaffdoctor_value->ssd_designation }}">
+                                        <input type="text" class="form-control" name="sport_science_staff_doctor[{{ $sportsciencestaffdoctor_key }}][ssd_designation]" value="{{ $sportsciencestaffdoctor_value->ssd_designation }}">
                                     </td>
                                     <td>
-                                        <input type="number"  min="0" class="form-control" name="sport_science_staff_doctor[{{ $sportsciencestaffdoctor_key }}][ssd_2018_19]" value="{{ $sportsciencestaffdoctor_value->ssd_2018_19 }}">
+                                        <input type="number" min="0" class="form-control" name="sport_science_staff_doctor[{{ $sportsciencestaffdoctor_key }}][ssd_2018_19]" value="{{ $sportsciencestaffdoctor_value->ssd_2018_19 }}">
                                     </td>
                                     <td>
-                                        <input type="number"  min="0" class="form-control" name="sport_science_staff_doctor[{{ $sportsciencestaffdoctor_key }}][ssd_2019_20]" value="{{ $sportsciencestaffdoctor_value->ssd_2019_20 }}">
+                                        <input type="number" min="0" class="form-control" name="sport_science_staff_doctor[{{ $sportsciencestaffdoctor_key }}][ssd_2019_20]" value="{{ $sportsciencestaffdoctor_value->ssd_2019_20 }}">
                                     </td>
                                     <td>
-                                        <input type="number"  min="0" class="form-control" name="sport_science_staff_doctor[{{ $sportsciencestaffdoctor_key }}][ssd_2020_21]" value="{{ $sportsciencestaffdoctor_value->ssd_2020_21 }}">
+                                        <input type="number" min="0" class="form-control" name="sport_science_staff_doctor[{{ $sportsciencestaffdoctor_key }}][ssd_2020_21]" value="{{ $sportsciencestaffdoctor_value->ssd_2020_21 }}">
                                     </td>
                                     <td>
-                                        <input type="number"  min="0" class="form-control" name="sport_science_staff_doctor[{{ $sportsciencestaffdoctor_key }}][ssd_2021_22]" value="{{ $sportsciencestaffdoctor_value->ssd_2021_22 }}">
+                                        <input type="number" min="0" class="form-control" name="sport_science_staff_doctor[{{ $sportsciencestaffdoctor_key }}][ssd_2021_22]" value="{{ $sportsciencestaffdoctor_value->ssd_2021_22 }}">
                                     </td>
                                     <td>
-                                        <input type="number"  min="0" class="form-control" name="sport_science_staff_doctor[{{ $sportsciencestaffdoctor_key }}][ssd_2022_23]" value="{{ $sportsciencestaffdoctor_value->ssd_2022_23 }}">
+                                        <input type="number" min="0" class="form-control" name="sport_science_staff_doctor[{{ $sportsciencestaffdoctor_key }}][ssd_2022_23]" value="{{ $sportsciencestaffdoctor_value->ssd_2022_23 }}">
                                     </td>
                                     <td>
                                         <a href="javascript:void(0)" class="actionbtn remove_two_part_sport_science_staff_doctor" data-id5="{{ $sportsciencestaffdoctor_key }}" data-db_id5="{{ $sportsciencestaffdoctor_value->id }}">
@@ -1314,19 +1297,19 @@
                                 <td>
                                     <input type="hidden" class="center_id" name="sport_science_staff_doctor[0][center_id]" value="{{ $id ?? '' }}">
                                         <input type="hidden" name="sport_science_staff_doctor[0][id]" value="">
-                                    <input type="text"  min="0" class="form-control" name="sport_science_staff_doctor[0][ssd_designation]">
+                                    <input type="number" min="0" class="form-control" name="sport_science_staff_doctor[0][ssd_designation]">
                                 </td>
                                 <td>
-                                    <input type="number"  min="0" class="form-control" name="sport_science_staff_doctor[0][ssd_2018_19]">
+                                    <input type="number" min="0" class="form-control" name="sport_science_staff_doctor[0][ssd_2018_19]">
                                 </td>
                                 <td>
-                                    <input type="number"  min="0" class="form-control" name="sport_science_staff_doctor[0][ssd_2019_20]">
+                                    <input type="number" min="0" class="form-control" name="sport_science_staff_doctor[0][ssd_2019_20]">
                                 </td>
                                 <td>
-                                    <input type="number"  min="0" class="form-control" name="sport_science_staff_doctor[0][ssd_2020_21]">
+                                    <input type="number" min="0" class="form-control" name="sport_science_staff_doctor[0][ssd_2020_21]">
                                 </td>
                                 <td>
-                                    <input type="number"  min="0" class="form-control" name="sport_science_staff_doctor[0][ssd_2021_22]">
+                                    <input type="number" min="0" class="form-control" name="sport_science_staff_doctor[0][ssd_2021_22]">
                                 </td>
                                 <td>
                                     <input type="number" min="0" class="form-control" name="sport_science_staff_doctor[0][ssd_2022_23]">
@@ -1413,19 +1396,19 @@
                                     <input type="text" class="form-control" name="staff_nutritionist_chef[0][snc_designation]">
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control" name="staff_nutritionist_chef[0][snc_2018_19]">
+                                    <input type="text" class="form-control" name="staff_nutritionist_chef[0][snc_2018_19]">
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control" name="staff_nutritionist_chef[0][snc_2019_20]">
+                                    <input type="text" class="form-control" name="staff_nutritionist_chef[0][snc_2019_20]">
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control" name="staff_nutritionist_chef[0][snc_2020_21]">
+                                    <input type="text" class="form-control" name="staff_nutritionist_chef[0][snc_2020_21]">
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control" name="staff_nutritionist_chef[0][snc_2021_22]">
+                                    <input type="text" class="form-control" name="staff_nutritionist_chef[0][snc_2021_22]">
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control" name="staff_nutritionist_chef[0][snc_2022_23]">
+                                    <input type="text" class="form-control" name="staff_nutritionist_chef[0][snc_2022_23]">
                                 </td>
                                 <td>
                                     <a href="javascript:void(0)" class="actionbtn remove_two_part_staff_nutritionist_chef" data-id4="0" data-db_id4="0">
@@ -2041,7 +2024,7 @@
                                             </td>
                                             <td>
                                                 <input type="hidden" class="center_id" name="two_part_two_athletes[{{ $parttwoathlete_key }}][center_id]" value="{{ $id ?? '' }}">
-                                                <input type="hidden" name="two_part_two_athletes[{{ $parttwoathlete_key }}][id]" value="{{ $parttwoathlete_value->id ?? '' }}">
+                                                <input type="hidden" name="two_part_two_athletes[0][id]" value="{{ $parttwoathlete_value->id ?? '' }}">
                                                 <select class="form-select" aria-label="Default select example" name='two_part_two_athletes[{{ $parttwoathlete_key }}][athletes_discipline]'>
                                                     @foreach ($dis_list as $item)
                                                         <option  value="{{$item->discipline_id}}" @if($parttwoathlete_value->athletes_discipline == $item->discipline_id) selected @endif>{{$item ->discipline}}</option>
@@ -2085,10 +2068,10 @@
                                         </td>
 
                                         <td>
-                                            <input type="number" class="form-control" name='two_part_two_athletes[0][athletes_no_athletes_participated]'>
+                                            <input type="text" class="form-control" name='two_part_two_athletes[0][athletes_no_athletes_participated]'>
                                         </td>
                                         <td>
-                                            <input type="number" class="form-control" name='two_part_two_athletes[0][athletes_no_expenditure_incurred]'>
+                                            <input type="text" class="form-control" name='two_part_two_athletes[0][athletes_no_expenditure_incurred]'>
                                         </td>
                                         <td>
                                             <input type="text" class="form-control" name='two_part_two_athletes[0][athletes_no_achievements]'>
@@ -2182,13 +2165,10 @@
             </div>
             
             </div>
-			</div>
         <div class="d-flex justify-content-center">
-        <button class="btn btn-primary " onclick="history.back()">Back</button> &nbsp;
-        <button type="submit" class="btn btn-primary ">Next</button> 
-        
+        <button type="submit" class="btn btn-primary ">Next</button>  &nbsp;
+        <button class="btn btn-primary " onclick="history.back()">Go Back</button>
         </div>
-      
 </form>
     </div>
 @endsection

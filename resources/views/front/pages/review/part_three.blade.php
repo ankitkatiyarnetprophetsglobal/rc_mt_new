@@ -9,6 +9,7 @@
     </style>
     <script>
         var dis_list_json = <?php echo $dis_list_json; ?>;
+      
         var data_dict = {};
         data_dict = {
             "form1": {},
@@ -570,7 +571,13 @@
             </div>
 
         </div>
-        <button type="submit" class="d-block mx-auto btn btn-primary">Next</button>
+        <!-- <button type="submit" class="d-block mx-auto btn btn-primary">Next</button> -->
+        
+        <div class="d-flex justify-content-center">
+        <button class="btn btn-primary " onclick="history.back()">Back</button> &nbsp;
+        <button type="submit" class="btn btn-primary ">Next</button> 
+        
+        </div>
 
 
 

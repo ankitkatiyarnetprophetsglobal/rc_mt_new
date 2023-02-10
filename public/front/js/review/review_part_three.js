@@ -114,8 +114,6 @@ function getDisciplineHtml(data){
         alert('You cannot remove last row!');
       }
 
-
-
     });
 
 

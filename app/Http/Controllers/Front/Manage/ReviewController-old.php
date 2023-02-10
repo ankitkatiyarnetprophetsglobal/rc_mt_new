@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\DB;
 // use Illuminate\Support\Facades\PDF;
 use PDF;
 use App\Models\Masters\Rcacademymapping;
-use App\Models\Review\DomicileAthlete;
-use App\Models\Review\NcoeAthlete;
 
 //shubham 
 
@@ -46,13 +44,60 @@ use App\Models\Review\Part_three_main;
 use App\Models\Review\part_three_table_coache;
 use App\Models\Review\Part_three_table_discipline;
 
-
 class ReviewController extends Controller
 {
     public function index()
     {
         return view('front.pages.review.index');
     }
+
+    // public function partOneStepOne($center_id = 0)
+    // {
+    //     // dd(Session::get('rc_id'));
+    //     //dd(Session::get('role_details'));
+    //     // dd(Session::get('user'));
+    //     //dd(Session::get('role_details')->name);
+    //     if (Session::get('role_details')->name == 'RC') {
+    //         $centers = Rcacademymapping::where([['status', '=', true], ['created_by', '=', Session::get('rc_id')->rc_id]])->select('academy_name', 'academy_id')->get();
+    //         $dis_list = DB::table('discplines_mapping_master')->select('discipline_id', 'discipline')->where('rc_id', Session::get('rc_id')->rc_id)->orderBy('discipline')->get();
+    //     } elseif (Session::get('role_details')->name == 'NCOE') {
+    //         $centers = Rcacademymapping::where([['status', '=', true], ['academy_id', '=', Session::get('user')->user_id]])->select('academy_name', 'academy_id')->get();
+    //         $dis_list = DB::table('discplines_mapping_master')->select('discipline_id', 'discipline')->where('ncoe_id', Session::get('user')->user_id)->orderBy('discipline')->get();
+    //     }
+        
+    //     if ($center_id != 0) {
+    //         $c_id = decode5t($center_id);
+    //     } else {
+
+    //         $c_id =  $centers[0]->academy_id;
+    //     }
+        
+    //     $form_one = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'ind'], ['form_type', '=', 'medals_won'], ['category', '=', 'category-1']])->get();
+    //     $form_two = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'ind'], ['form_type', '=', 'medals_won'], ['category', '=', 'category-2']])->get();
+    //     $form_three = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'ind'], ['form_type', '=', 'medals_won'], ['category', '=', 'category-3']])->get();
+    //     $form_four = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'ind'], ['form_type', '=', 'participation'], ['category', '=', 'category-1']])->get();
+    //     $form_five = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'ind'], ['form_type', '=', 'participation'], ['category', '=', 'category-2']])->get();
+    //     $form_six = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'ind'], ['form_type', '=', 'participation'], ['category', '=', 'category-3']])->get();
+    //     $form_seven = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'ind'], ['form_type', '=', 'medals_won'], ['level', '=', 'national']])->get();
+    //     $form_eight = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'ind'], ['form_type', '=', 'participation'], ['level', '=', 'national']])->get();
+
+    //     // dd($centers);
+    //     return view('front.pages.review.part_one_step_one', [
+    //         'form_one' => $form_one,
+    //         'form_two' => $form_two,
+    //         'form_three' => $form_three,
+    //         'form_four' => $form_four,
+    //         'form_five' => $form_five,
+    //         'form_six' => $form_six,
+    //         'form_seven' => $form_seven,
+    //         'form_eight' => $form_eight,
+    //         'dis_list' => $dis_list,
+    //         'centers' => $centers,
+    //         'dis_list_json' => json_encode($dis_list),
+    //         'form_one' => $form_one,
+    //         'c_id' => $c_id
+    //     ]);
+    // }
 
     public function partOneStepOne($center_id = 0)
     {
@@ -85,7 +130,7 @@ class ReviewController extends Controller
         $form_seven = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'ind'], ['form_type', '=', 'medals_won'], ['level', '=', 'national']])->get();
         $form_eight = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'ind'], ['form_type', '=', 'participation'], ['level', '=', 'national']])->get();
 
-
+        // dd($centers);
         return view('front.pages.review.part_one_step_one', [
             'form_one' => $form_one,
             'form_two' => $form_two,
@@ -102,6 +147,7 @@ class ReviewController extends Controller
             'c_id' => $c_id
         ]);
     }
+
 
     public function partOneStepOneStore(Request $request)
     {
@@ -343,7 +389,7 @@ class ReviewController extends Controller
 
     public function partOneStepTwo($center_id)
     {
-
+        dd("asfasf");
         $c_id = decode5t($center_id);
 
         if (Session::get('role_details')->name == 'RC') {
@@ -381,7 +427,7 @@ class ReviewController extends Controller
     }
     public function partOneStepTwoStore(Request $request)
     {
-       // dd($request->all());
+        
         if (isset($request->step_two['form_1'])) {
             foreach ($request->step_two['form_1'] as $key => $value) {
                 if (isset($value['id'])) {
@@ -407,7 +453,7 @@ class ReviewController extends Controller
                 $model->team_type = $value['team_type'];
                 $model->form_type = $value['form_type'];
                 $model->status = true;
-                $model->created_for = $request->step_two['created_for'];
+                $model->created_for = $request->step_one['created_for'];
                 $model->save();
             }
         }
@@ -436,7 +482,7 @@ class ReviewController extends Controller
                 $model->team_type = $value['team_type'];
                 $model->form_type = $value['form_type'];
                 $model->status = true;
-                $model->created_for = $request->step_two['created_for'];
+                $model->created_for = $request->step_one['created_for'];
                 $model->save();
             }
         }
@@ -465,7 +511,7 @@ class ReviewController extends Controller
                 $model->team_type = $value['team_type'];
                 $model->form_type = $value['form_type'];
                 $model->status = true;
-                $model->created_for = $request->step_two['created_for'];
+                $model->created_for = $request->step_one['created_for'];
                 $model->save();
             }
         }
@@ -494,7 +540,7 @@ class ReviewController extends Controller
                 $model->team_type = $value['team_type'];
                 $model->form_type = $value['form_type'];
                 $model->status = true;
-                $model->created_for = $request->step_two['created_for'];
+                $model->created_for = $request->step_one['created_for'];
                 $model->save();
             }
         }
@@ -523,7 +569,7 @@ class ReviewController extends Controller
                 $model->team_type = $value['team_type'];
                 $model->form_type = $value['form_type'];
                 $model->status = true;
-                $model->created_for = $request->step_two['created_for'];
+                $model->created_for = $request->step_one['created_for'];
                 $model->save();
             }
         }
@@ -552,7 +598,7 @@ class ReviewController extends Controller
                 $model->team_type = $value['team_type'];
                 $model->form_type = $value['form_type'];
                 $model->status = true;
-                $model->created_for = $request->step_two['created_for'];
+                $model->created_for = $request->step_one['created_for'];
                 $model->save();
             }
         }
@@ -581,7 +627,7 @@ class ReviewController extends Controller
                 $model->team_type = $value['team_type'];
                 $model->form_type = $value['form_type'];
                 $model->status = true;
-                $model->created_for = $request->step_two['created_for'];
+                $model->created_for = $request->step_one['created_for'];
                 $model->save();
             }
         }
@@ -610,12 +656,12 @@ class ReviewController extends Controller
                 $model->team_type = $value['team_type'];
                 $model->form_type = $value['form_type'];
                 $model->status = true;
-                $model->created_for = $request->step_two['created_for'];
+                $model->created_for = $request->step_one['created_for'];
                 $model->save();
             }
         }
 
-        return redirect()->route('review.partOneStepThree', [encode5t($request->step_two['created_for'])]);
+        return redirect()->route('review.partOneStepThree', [encode5t($request->step_one['created_for'])]);
     }
 
     public function partOneStepThree($center_id)
@@ -629,21 +675,18 @@ class ReviewController extends Controller
             $centers = Rcacademymapping::where([['status', '=', true], ['created_by', '=', Session::get('user')->user_id]])->pluck('academy_name', 'academy_id');
             $dis_list = DB::table('discplines_mapping_master')->select('discipline_id', 'discipline')->where('ncoe_id', Session::get('user')->user_id)->orderBy('discipline')->get();
         }
-        $states = DB::table('state_masters')->get();
         $form_one = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'senior_national_coaching_camp']])->get();
          $form_two = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'junior_national_coaching_camp']])->get();
-        $form_three = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'under_tops']])->get();
-        $form_four = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'under_developmental_athlete']])->get();
-        $form_five = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'under_ki']])->get();
-        $form_six = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'weeded_out']])->get();
-        $form_seven = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'newly_inducted']])->get();
-        $form_eight = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'athletes_retained']])->get();
-        $form_nine = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'employment_higher_studies']])->get();
-        $form_ten = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'scheme_personal_reasons']])->get();
-        $form_eleven = DB::table('domicile_athletes')->whereCreatedFor($c_id)->get();
-        $form_twelve = NcoeAthlete::whereCreatedFor($c_id)->get();
-        
-       // $form_twelve = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'senior_national_coaching_camp']])->get();
+        // $form_three = ReviewSportData::whereCreatedFor($user_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'under_tops']])->get();
+        // $form_four = ReviewSportData::whereCreatedFor($user_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'under_developmental_athlete']])->get();
+        // $form_five = ReviewSportData::whereCreatedFor($user_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'under_ki']])->get();
+        // $form_six = ReviewSportData::whereCreatedFor($user_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'weeded_out']])->get();
+        // $form_seven = ReviewSportData::whereCreatedFor($user_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'newly_inducted']])->get();
+        // $form_eight = ReviewSportData::whereCreatedFor($user_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'athletes_retained']])->get();
+        // $form_nine = ReviewSportData::whereCreatedFor($user_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'employment_higher_studies']])->get();
+        // $form_ten = ReviewSportData::whereCreatedFor($user_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'scheme_personal_reasons']])->get();
+        // $form_eleven = ReviewSportData::whereCreatedFor($user_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'senior_national_coaching_camp']])->get();
+        // $form_twelve = ReviewSportData::whereCreatedFor($user_id)->where([['team_type', '=', 'common'], ['form_type', '=', 'senior_national_coaching_camp']])->get();
 
 
         return view('front.pages.review.part_one_step_three', [
@@ -652,25 +695,22 @@ class ReviewController extends Controller
             'centers' => $centers,
             'dis_list' => $dis_list,
             'dis_list_json' => json_encode($dis_list),
-            'form_three' => $form_three,
-            'form_four' => $form_four,
-            'form_five' => $form_five,
-            'form_six' => $form_six,
-            'form_seven' => $form_seven,
-            'form_eight' => $form_eight,
-            'form_nine' => $form_nine,
-            'form_ten' => $form_ten,
-            'form_11' => $form_eleven,
-            'form_12' => $form_twelve,
-            'dis_list' => $dis_list,
-            'centers' => $centers,
-            'dis_list_json' => json_encode($dis_list),
-            'c_id' =>$c_id,
-            'states' => $states,
-            'states_json' => json_encode($states),
-           
+            // 'form_three' => $form_three,
+            // 'form_four' => $form_four,
+            // 'form_five' => $form_five,
+            // 'form_six' => $form_six,
+            // 'form_seven' => $form_seven,
+            // 'form_eight' => $form_eight,
+            // 'form_nine' => $form_nine,
+            // 'form_ten' => $form_ten,
+            // 'form_eleven' => $form_eleven,
+            // 'form_twelve' => $form_twelve,
+            // 'dis_list' => $dis_list,
+            // 'centers' => $centers,
+            // 'dis_list_json' => json_encode($dis_list),
+            // 'form_one' => $form_one
         ]);
-       
+        //return view('front.pages.review.part_one_step_three');
     }
     public function partOneStepThreeStore(Request $request)
     {
@@ -700,7 +740,7 @@ class ReviewController extends Controller
                 $model->team_type = $value['team_type'];
                 $model->form_type = $value['form_type'];
                 $model->status = true;
-                $model->created_for = $request->step_three['created_for'];
+                $model->created_for = Session::get('user')->user_id;
                 $model->save();
             }
         }
@@ -728,281 +768,234 @@ class ReviewController extends Controller
                 $model->team_type = $value['team_type'];
                 $model->form_type = $value['form_type'];
                 $model->status = true;
-                $model->created_for = $request->step_three['created_for'];
+                $model->created_for = Session::get('user')->user_id;
                 $model->save();
             }
         }
-        if (isset($request->step_three['form_3'])) {
-            foreach ($request->step_three['form_3'] as $key => $value) {
-                if (isset($value['id'])) {
-                    $model = ReviewSportData::find($value['id']);
-                    $model->updated_by = Session::get('rc_id')->rc_id;
-                } else {
-                    $model = new ReviewSportData();
-                    $model->created_by = Session::get('rc_id')->rc_id;
-                }
-                //$model = new ReviewSportData();
-                $model->discipline_id = $value['discipline_id'];
-                $model->m_2018_19 = $value['m_2018_19'];
-                $model->f_2018_19 = $value['f_2018_19'];
-                $model->m_2019_20 = $value['m_2019_20'];
-                $model->f_2019_20 = $value['f_2019_20'];
-                $model->m_2020_21 = $value['m_2020_21'];
-                $model->f_2020_21 = $value['f_2020_21'];
-                $model->m_2021_22 = $value['m_2021_22'];
-                $model->f_2021_22 = $value['f_2021_22'];
-                $model->m_2022_23 = $value['m_2022_23'];
-                $model->f_2022_23 = $value['f_2022_23'];
-                $model->team_type = $value['team_type'];
-                $model->form_type = $value['form_type'];
-                $model->status = true;
-                $model->created_for = $request->step_three['created_for'];
-                $model->save();
-            }
-        }
-        if (isset($request->step_three['form_4'])) {
-            foreach ($request->step_three['form_4'] as $key => $value) {
-                if (isset($value['id'])) {
-                    $model = ReviewSportData::find($value['id']);
-                    $model->updated_by = Session::get('rc_id')->rc_id;
-                } else {
-                    $model = new ReviewSportData();
-                    $model->created_by = Session::get('rc_id')->rc_id;
-                }
-                //$model = new ReviewSportData();
-                $model->discipline_id = $value['discipline_id'];
-                $model->m_2018_19 = $value['m_2018_19'];
-                $model->f_2018_19 = $value['f_2018_19'];
-                $model->m_2019_20 = $value['m_2019_20'];
-                $model->f_2019_20 = $value['f_2019_20'];
-                $model->m_2020_21 = $value['m_2020_21'];
-                $model->f_2020_21 = $value['f_2020_21'];
-                $model->m_2021_22 = $value['m_2021_22'];
-                $model->f_2021_22 = $value['f_2021_22'];
-                $model->m_2022_23 = $value['m_2022_23'];
-                $model->f_2022_23 = $value['f_2022_23'];
-                $model->team_type = $value['team_type'];
-                $model->form_type = $value['form_type'];
-                $model->status = true;
-                $model->created_for = $request->step_three['created_for'];
-                $model->save();
-            }
-        }
-        if (isset($request->step_three['form_5'])) {
-            foreach ($request->step_three['form_5'] as $key => $value) {
-                if (isset($value['id'])) {
-                    $model = ReviewSportData::find($value['id']);
-                    $model->updated_by = Session::get('rc_id')->rc_id;
-                } else {
-                    $model = new ReviewSportData();
-                    $model->created_by = Session::get('rc_id')->rc_id;
-                }
-                //$model = new ReviewSportData();
-                $model->discipline_id = $value['discipline_id'];
-                $model->m_2018_19 = $value['m_2018_19'];
-                $model->f_2018_19 = $value['f_2018_19'];
-                $model->m_2019_20 = $value['m_2019_20'];
-                $model->f_2019_20 = $value['f_2019_20'];
-                $model->m_2020_21 = $value['m_2020_21'];
-                $model->f_2020_21 = $value['f_2020_21'];
-                $model->m_2021_22 = $value['m_2021_22'];
-                $model->f_2021_22 = $value['f_2021_22'];
-                $model->m_2022_23 = $value['m_2022_23'];
-                $model->f_2022_23 = $value['f_2022_23'];
-                $model->team_type = $value['team_type'];
-                $model->form_type = $value['form_type'];
-                $model->status = true;
-                $model->created_for = $request->step_three['created_for'];
-                $model->save();
-            }
-        }
-        if (isset($request->step_three['form_6'])) {
-            foreach ($request->step_three['form_6'] as $key => $value) {
-                if (isset($value['id'])) {
-                    $model = ReviewSportData::find($value['id']);
-                    $model->updated_by = Session::get('rc_id')->rc_id;
-                } else {
-                    $model = new ReviewSportData();
-                    $model->created_by = Session::get('rc_id')->rc_id;
-                }
-                //$model = new ReviewSportData();
-                $model->discipline_id = $value['discipline_id'];
-                $model->m_2018_19 = $value['m_2018_19'];
-                $model->f_2018_19 = $value['f_2018_19'];
-                $model->m_2019_20 = $value['m_2019_20'];
-                $model->f_2019_20 = $value['f_2019_20'];
-                $model->m_2020_21 = $value['m_2020_21'];
-                $model->f_2020_21 = $value['f_2020_21'];
-                $model->m_2021_22 = $value['m_2021_22'];
-                $model->f_2021_22 = $value['f_2021_22'];
-                $model->m_2022_23 = $value['m_2022_23'];
-                $model->f_2022_23 = $value['f_2022_23'];
-                $model->team_type = $value['team_type'];
-                $model->form_type = $value['form_type'];
-                $model->status = true;
-                $model->created_for = $request->step_three['created_for'];
-                $model->save();
-            }
-        }
-        if (isset($request->step_three['form_7'])) {
-            foreach ($request->step_three['form_7'] as $key => $value) {
-                if (isset($value['id'])) {
-                    $model = ReviewSportData::find($value['id']);
-                    $model->updated_by = Session::get('rc_id')->rc_id;
-                } else {
-                    $model = new ReviewSportData();
-                    $model->created_by = Session::get('rc_id')->rc_id;
-                }
-                //$model = new ReviewSportData();
-                $model->discipline_id = $value['discipline_id'];
-                $model->m_2018_19 = $value['m_2018_19'];
-                $model->f_2018_19 = $value['f_2018_19'];
-                $model->m_2019_20 = $value['m_2019_20'];
-                $model->f_2019_20 = $value['f_2019_20'];
-                $model->m_2020_21 = $value['m_2020_21'];
-                $model->f_2020_21 = $value['f_2020_21'];
-                $model->m_2021_22 = $value['m_2021_22'];
-                $model->f_2021_22 = $value['f_2021_22'];
-                $model->m_2022_23 = $value['m_2022_23'];
-                $model->f_2022_23 = $value['f_2022_23'];
-                $model->team_type = $value['team_type'];
-                $model->form_type = $value['form_type'];
-                $model->status = true;
-                $model->created_for = $request->step_three['created_for'];
-                $model->save();
-            }
-        }
-        if (isset($request->step_three['form_8'])) {
-            foreach ($request->step_three['form_8'] as $key => $value) {
-                if (isset($value['id'])) {
-                    $model = ReviewSportData::find($value['id']);
-                    $model->updated_by = Session::get('rc_id')->rc_id;
-                } else {
-                    $model = new ReviewSportData();
-                    $model->created_by = Session::get('rc_id')->rc_id;
-                }
-                //$model = new ReviewSportData();
-                $model->discipline_id = $value['discipline_id'];
-                $model->m_2018_19 = $value['m_2018_19'];
-                $model->f_2018_19 = $value['f_2018_19'];
-                $model->m_2019_20 = $value['m_2019_20'];
-                $model->f_2019_20 = $value['f_2019_20'];
-                $model->m_2020_21 = $value['m_2020_21'];
-                $model->f_2020_21 = $value['f_2020_21'];
-                $model->m_2021_22 = $value['m_2021_22'];
-                $model->f_2021_22 = $value['f_2021_22'];
-                $model->m_2022_23 = $value['m_2022_23'];
-                $model->f_2022_23 = $value['f_2022_23'];
-                $model->team_type = $value['team_type'];
-                $model->form_type = $value['form_type'];
-                $model->status = true;
-                $model->created_for = $request->step_three['created_for'];
-                $model->save();
-            }
-        }
-        if (isset($request->step_three['form_9'])) {
-            foreach ($request->step_three['form_9'] as $key => $value) {
-                if (isset($value['id'])) {
-                    $model = ReviewSportData::find($value['id']);
-                    $model->updated_by = Session::get('rc_id')->rc_id;
-                } else {
-                    $model = new ReviewSportData();
-                    $model->created_by = Session::get('rc_id')->rc_id;
-                }
-                //$model = new ReviewSportData();
-                $model->discipline_id = $value['discipline_id'];
-                $model->m_2018_19 = $value['m_2018_19'];
-                $model->f_2018_19 = $value['f_2018_19'];
-                $model->m_2019_20 = $value['m_2019_20'];
-                $model->f_2019_20 = $value['f_2019_20'];
-                $model->m_2020_21 = $value['m_2020_21'];
-                $model->f_2020_21 = $value['f_2020_21'];
-                $model->m_2021_22 = $value['m_2021_22'];
-                $model->f_2021_22 = $value['f_2021_22'];
-                $model->m_2022_23 = $value['m_2022_23'];
-                $model->f_2022_23 = $value['f_2022_23'];
-                $model->team_type = $value['team_type'];
-                $model->form_type = $value['form_type'];
-                $model->status = true;
-                $model->created_for = $request->step_three['created_for'];
-                $model->save();
-            }
-        }
-        if (isset($request->step_three['form_10'])) {
-            foreach ($request->step_three['form_10'] as $key => $value) {
-                if (isset($value['id'])) {
-                    $model = ReviewSportData::find($value['id']);
-                    $model->updated_by = Session::get('rc_id')->rc_id;
-                } else {
-                    $model = new ReviewSportData();
-                    $model->created_by = Session::get('rc_id')->rc_id;
-                }
-                //$model = new ReviewSportData();
-                $model->discipline_id = $value['discipline_id'];
-                $model->m_2018_19 = $value['m_2018_19'];
-                $model->f_2018_19 = $value['f_2018_19'];
-                $model->m_2019_20 = $value['m_2019_20'];
-                $model->f_2019_20 = $value['f_2019_20'];
-                $model->m_2020_21 = $value['m_2020_21'];
-                $model->f_2020_21 = $value['f_2020_21'];
-                $model->m_2021_22 = $value['m_2021_22'];
-                $model->f_2021_22 = $value['f_2021_22'];
-                $model->m_2022_23 = $value['m_2022_23'];
-                $model->f_2022_23 = $value['f_2022_23'];
-                $model->team_type = $value['team_type'];
-                $model->form_type = $value['form_type'];
-                $model->status = true;
-                $model->created_for = $request->step_three['created_for'];
-                $model->save();
-            }
-        }
-        if (isset($request->step_three['form_11'])) {
-            foreach ($request->step_three['form_11'] as $key => $value) {
-                if (isset($value['id'])) {
-                    $model = DomicileAthlete::find($value['id']);
-                    $model->updated_by = Session::get('rc_id')->rc_id;
-                } else {
-                    $model = new DomicileAthlete();
-                    $model->created_by = Session::get('rc_id')->rc_id;
-                }
-                //$model = new ReviewSportData();
-                $model->discipline_id = $value['discipline_id'];
-                $model->state_id = $value['state_id'];
-                $model->no_of_male = $value['no_of_male'];
-                $model->no_of_female = $value['no_of_female'];
-                $model->status = true;
-                $model->created_for = $request->step_three['created_for'];
-                $model->save();
-            }
-        }
-        if (isset($request->step_three['form_12'])) {
-            foreach ($request->step_three['form_12'] as $key => $value) {
-                if (isset($value['id'])) {
-                    $model = NcoeAthlete::find($value['id']);
-                    $model->updated_by = Session::get('rc_id')->rc_id;
-                } else {
-                    $model = new NcoeAthlete();
-                    $model->created_by = Session::get('rc_id')->rc_id;
-                }
-                //$model = new ReviewSportData();
-                $model->discipline_id = $value['discipline_id'];
-                $model->kia_male = $value['kia_male'];
-                $model->kia_female = $value['kia_female'];
-                $model->stc_male = $value['stc_male'];
-                $model->stc_female = $value['stc_female'];
-                $model->state_ac_male = $value['state_ac_male'];
-                $model->state_ac_female = $value['state_ac_female'];
-                $model->pvt_ac_male = $value['pvt_ac_male'];
-                $model->pvt_ac_female = $value['pvt_ac_female'];
-                $model->open_trials_male = $value['open_trials_male'];
-                $model->open_trials_female = $value['open_trials_female'];
-                $model->play_scheme_male = $value['play_scheme_male'];
-                $model->play_scheme_female = $value['play_scheme_female'];
-                $model->status = true;
-                $model->created_for = $request->step_three['created_for'];
-                $model->save();
-            }
-        }
+        // if (isset($request->step_three['form_3'])) {
+        //     foreach ($request->step_three['form_3'] as $key => $value) {
+        //         if (isset($value['id'])) {
+        //             $model = ReviewSportData::find($value['id']);
+        //             $model->updated_by = Session::get('rc_id')->rc_id;
+        //         } else {
+        //             $model = new ReviewSportData();
+        //             $model->created_by = Session::get('rc_id')->rc_id;
+        //         }
+        //         //$model = new ReviewSportData();
+        //         $model->discipline_id = $value['discipline_id'];
+        //         $model->m_2018_19 = $value['m_2018_19'];
+        //         $model->f_2018_19 = $value['f_2018_19'];
+        //         $model->m_2019_20 = $value['m_2019_20'];
+        //         $model->f_2019_20 = $value['f_2019_20'];
+        //         $model->m_2020_21 = $value['m_2020_21'];
+        //         $model->f_2020_21 = $value['f_2020_21'];
+        //         $model->m_2021_22 = $value['m_2021_22'];
+        //         $model->f_2021_22 = $value['f_2021_22'];
+        //         $model->m_2022_23 = $value['m_2022_23'];
+        //         $model->f_2022_23 = $value['f_2022_23'];
+        //         $model->team_type = $value['team_type'];
+        //         $model->form_type = $value['form_type'];
+        //         $model->status = true;
+        //         $model->created_for = Session::get('user')->user_id;
+        //         $model->save();
+        //     }
+        // }
+        // if (isset($request->step_three['form_4'])) {
+        //     foreach ($request->step_three['form_4'] as $key => $value) {
+        //         if (isset($value['id'])) {
+        //             $model = ReviewSportData::find($value['id']);
+        //             $model->updated_by = Session::get('rc_id')->rc_id;
+        //         } else {
+        //             $model = new ReviewSportData();
+        //             $model->created_by = Session::get('rc_id')->rc_id;
+        //         }
+        //         //$model = new ReviewSportData();
+        //         $model->discipline_id = $value['discipline_id'];
+        //         $model->m_2018_19 = $value['m_2018_19'];
+        //         $model->f_2018_19 = $value['f_2018_19'];
+        //         $model->m_2019_20 = $value['m_2019_20'];
+        //         $model->f_2019_20 = $value['f_2019_20'];
+        //         $model->m_2020_21 = $value['m_2020_21'];
+        //         $model->f_2020_21 = $value['f_2020_21'];
+        //         $model->m_2021_22 = $value['m_2021_22'];
+        //         $model->f_2021_22 = $value['f_2021_22'];
+        //         $model->m_2022_23 = $value['m_2022_23'];
+        //         $model->f_2022_23 = $value['f_2022_23'];
+        //         $model->team_type = $value['team_type'];
+        //         $model->form_type = $value['form_type'];
+        //         $model->status = true;
+        //         $model->created_for = Session::get('user')->user_id;
+        //         $model->save();
+        //     }
+        // }
+        // if (isset($request->step_three['form_5'])) {
+        //     foreach ($request->step_three['form_5'] as $key => $value) {
+        //         if (isset($value['id'])) {
+        //             $model = ReviewSportData::find($value['id']);
+        //             $model->updated_by = Session::get('rc_id')->rc_id;
+        //         } else {
+        //             $model = new ReviewSportData();
+        //             $model->created_by = Session::get('rc_id')->rc_id;
+        //         }
+        //         //$model = new ReviewSportData();
+        //         $model->discipline_id = $value['discipline_id'];
+        //         $model->m_2018_19 = $value['m_2018_19'];
+        //         $model->f_2018_19 = $value['f_2018_19'];
+        //         $model->m_2019_20 = $value['m_2019_20'];
+        //         $model->f_2019_20 = $value['f_2019_20'];
+        //         $model->m_2020_21 = $value['m_2020_21'];
+        //         $model->f_2020_21 = $value['f_2020_21'];
+        //         $model->m_2021_22 = $value['m_2021_22'];
+        //         $model->f_2021_22 = $value['f_2021_22'];
+        //         $model->m_2022_23 = $value['m_2022_23'];
+        //         $model->f_2022_23 = $value['f_2022_23'];
+        //         $model->team_type = $value['team_type'];
+        //         $model->form_type = $value['form_type'];
+        //         $model->status = true;
+        //         $model->created_for = Session::get('user')->user_id;
+        //         $model->save();
+        //     }
+        // }
+        // if (isset($request->step_three['form_6'])) {
+        //     foreach ($request->step_three['form_6'] as $key => $value) {
+        //         if (isset($value['id'])) {
+        //             $model = ReviewSportData::find($value['id']);
+        //             $model->updated_by = Session::get('rc_id')->rc_id;
+        //         } else {
+        //             $model = new ReviewSportData();
+        //             $model->created_by = Session::get('rc_id')->rc_id;
+        //         }
+        //         //$model = new ReviewSportData();
+        //         $model->discipline_id = $value['discipline_id'];
+        //         $model->m_2018_19 = $value['m_2018_19'];
+        //         $model->f_2018_19 = $value['f_2018_19'];
+        //         $model->m_2019_20 = $value['m_2019_20'];
+        //         $model->f_2019_20 = $value['f_2019_20'];
+        //         $model->m_2020_21 = $value['m_2020_21'];
+        //         $model->f_2020_21 = $value['f_2020_21'];
+        //         $model->m_2021_22 = $value['m_2021_22'];
+        //         $model->f_2021_22 = $value['f_2021_22'];
+        //         $model->m_2022_23 = $value['m_2022_23'];
+        //         $model->f_2022_23 = $value['f_2022_23'];
+        //         $model->team_type = $value['team_type'];
+        //         $model->form_type = $value['form_type'];
+        //         $model->status = true;
+        //         $model->created_for = Session::get('user')->user_id;
+        //         $model->save();
+        //     }
+        // }
+        // if (isset($request->step_three['form_7'])) {
+        //     foreach ($request->step_three['form_7'] as $key => $value) {
+        //         if (isset($value['id'])) {
+        //             $model = ReviewSportData::find($value['id']);
+        //             $model->updated_by = Session::get('rc_id')->rc_id;
+        //         } else {
+        //             $model = new ReviewSportData();
+        //             $model->created_by = Session::get('rc_id')->rc_id;
+        //         }
+        //         //$model = new ReviewSportData();
+        //         $model->discipline_id = $value['discipline_id'];
+        //         $model->m_2018_19 = $value['m_2018_19'];
+        //         $model->f_2018_19 = $value['f_2018_19'];
+        //         $model->m_2019_20 = $value['m_2019_20'];
+        //         $model->f_2019_20 = $value['f_2019_20'];
+        //         $model->m_2020_21 = $value['m_2020_21'];
+        //         $model->f_2020_21 = $value['f_2020_21'];
+        //         $model->m_2021_22 = $value['m_2021_22'];
+        //         $model->f_2021_22 = $value['f_2021_22'];
+        //         $model->m_2022_23 = $value['m_2022_23'];
+        //         $model->f_2022_23 = $value['f_2022_23'];
+        //         $model->team_type = $value['team_type'];
+        //         $model->form_type = $value['form_type'];
+        //         $model->status = true;
+        //         $model->created_for = Session::get('user')->user_id;
+        //         $model->save();
+        //     }
+        // }
+        // if (isset($request->step_three['form_8'])) {
+        //     foreach ($request->step_three['form_8'] as $key => $value) {
+        //         if (isset($value['id'])) {
+        //             $model = ReviewSportData::find($value['id']);
+        //             $model->updated_by = Session::get('rc_id')->rc_id;
+        //         } else {
+        //             $model = new ReviewSportData();
+        //             $model->created_by = Session::get('rc_id')->rc_id;
+        //         }
+        //         //$model = new ReviewSportData();
+        //         $model->discipline_id = $value['discipline_id'];
+        //         $model->m_2018_19 = $value['m_2018_19'];
+        //         $model->f_2018_19 = $value['f_2018_19'];
+        //         $model->m_2019_20 = $value['m_2019_20'];
+        //         $model->f_2019_20 = $value['f_2019_20'];
+        //         $model->m_2020_21 = $value['m_2020_21'];
+        //         $model->f_2020_21 = $value['f_2020_21'];
+        //         $model->m_2021_22 = $value['m_2021_22'];
+        //         $model->f_2021_22 = $value['f_2021_22'];
+        //         $model->m_2022_23 = $value['m_2022_23'];
+        //         $model->f_2022_23 = $value['f_2022_23'];
+        //         $model->team_type = $value['team_type'];
+        //         $model->form_type = $value['form_type'];
+        //         $model->status = true;
+        //         $model->created_for = Session::get('user')->user_id;
+        //         $model->save();
+        //     }
+        // }
+        // if (isset($request->step_three['form_9'])) {
+        //     foreach ($request->step_three['form_9'] as $key => $value) {
+        //         if (isset($value['id'])) {
+        //             $model = ReviewSportData::find($value['id']);
+        //             $model->updated_by = Session::get('rc_id')->rc_id;
+        //         } else {
+        //             $model = new ReviewSportData();
+        //             $model->created_by = Session::get('rc_id')->rc_id;
+        //         }
+        //         //$model = new ReviewSportData();
+        //         $model->discipline_id = $value['discipline_id'];
+        //         $model->m_2018_19 = $value['m_2018_19'];
+        //         $model->f_2018_19 = $value['f_2018_19'];
+        //         $model->m_2019_20 = $value['m_2019_20'];
+        //         $model->f_2019_20 = $value['f_2019_20'];
+        //         $model->m_2020_21 = $value['m_2020_21'];
+        //         $model->f_2020_21 = $value['f_2020_21'];
+        //         $model->m_2021_22 = $value['m_2021_22'];
+        //         $model->f_2021_22 = $value['f_2021_22'];
+        //         $model->m_2022_23 = $value['m_2022_23'];
+        //         $model->f_2022_23 = $value['f_2022_23'];
+        //         $model->team_type = $value['team_type'];
+        //         $model->form_type = $value['form_type'];
+        //         $model->status = true;
+        //         $model->created_for = Session::get('user')->user_id;
+        //         $model->save();
+        //     }
+        // }
+        // if (isset($request->step_three['form_10'])) {
+        //     foreach ($request->step_three['form_10'] as $key => $value) {
+        //         if (isset($value['id'])) {
+        //             $model = ReviewSportData::find($value['id']);
+        //             $model->updated_by = Session::get('rc_id')->rc_id;
+        //         } else {
+        //             $model = new ReviewSportData();
+        //             $model->created_by = Session::get('rc_id')->rc_id;
+        //         }
+        //         //$model = new ReviewSportData();
+        //         $model->discipline_id = $value['discipline_id'];
+        //         $model->m_2018_19 = $value['m_2018_19'];
+        //         $model->f_2018_19 = $value['f_2018_19'];
+        //         $model->m_2019_20 = $value['m_2019_20'];
+        //         $model->f_2019_20 = $value['f_2019_20'];
+        //         $model->m_2020_21 = $value['m_2020_21'];
+        //         $model->f_2020_21 = $value['f_2020_21'];
+        //         $model->m_2021_22 = $value['m_2021_22'];
+        //         $model->f_2021_22 = $value['f_2021_22'];
+        //         $model->m_2022_23 = $value['m_2022_23'];
+        //         $model->f_2022_23 = $value['f_2022_23'];
+        //         $model->team_type = $value['team_type'];
+        //         $model->form_type = $value['form_type'];
+        //         $model->status = true;
+        //         $model->created_for = Session::get('user')->user_id;
+        //         $model->save();
+        //     }
+        // }
 
         return redirect()->route('review.index');
     }
@@ -1014,24 +1007,6 @@ class ReviewController extends Controller
         $Users->delete();
         return response()->json(['success' => true, 'message' => 'Data Successfully Deleted!!!']);
     }
-    public function deleteDomicile($id)
-    {
-
-        //$Users = new ReviewSportData;
-        $Users = DomicileAthlete::find($id);
-        $Users->delete();
-        return response()->json(['success' => true, 'message' => 'Data Successfully Deleted!!!']);
-    }
-    public function deleteNcoeAthletes($id)
-    {
-
-        //$Users = new ReviewSportData;
-        $Users = NcoeAthlete::find($id);
-       
-        $Users->delete();
-        return response()->json(['success' => true, 'message' => 'Data Successfully Deleted!!!']);
-    }
-
 
     ///////////////Shubham////////////////
     // part two show form
@@ -1436,12 +1411,12 @@ class ReviewController extends Controller
                 if ($athletes_value['id'] != ''){
 
                     $parttwoathlete = parttwoathletes::findOrFail($athletes_value['id']);
-                    $parttwoathlete->athletes_year = $athletes_value['athletes_year'] ?? '';
-                    $parttwoathlete->athletes_discipline = $athletes_value['athletes_discipline'] ?? '';
-                  //  $parttwoathlete->athletes_no_athletes_participated = $athletes_value['athletes_no_athletes_participated'] ?? '';
-                    $parttwoathlete->athletes_no_expenditure_incurred = $athletes_value['athletes_no_expenditure_incurred'] ?? '';
-                    $parttwoathlete->athletes_no_achievements = $athletes_value['athletes_no_achievements'] ?? '';
-                    $parttwoathlete->athletes_no_remarks = $athletes_value['athletes_no_remarks'] ?? '';
+                    $parttwoathlete->athletes_year = $athletes_value['athletes_year'];
+                    $parttwoathlete->athletes_discipline = $athletes_value['athletes_discipline'];
+                    $parttwoathlete->athletes_no_athletes_participated = $athletes_value['athletes_no_athletes_participated'] ?? '';
+                    $parttwoathlete->athletes_no_expenditure_incurred = $athletes_value['athletes_no_expenditure_incurred'];
+                    $parttwoathlete->athletes_no_achievements = $athletes_value['athletes_no_achievements'];
+                    $parttwoathlete->athletes_no_remarks = $athletes_value['athletes_no_remarks'];
                     $parttwoathlete->updated_by = $rc_id;
                     // $Parttwocoachsupportstaff->created_for = $value['project_center_id'];
                     $parttwoathlete->status = 1;
@@ -1450,12 +1425,12 @@ class ReviewController extends Controller
                 }else{
 
                     $parttwoathlete = new parttwoathletes();
-                    $parttwoathlete->athletes_year = $athletes_value['athletes_year'] ?? '';
-                    $parttwoathlete->athletes_discipline = $athletes_value['athletes_discipline'] ?? '';
-                    //$parttwoathlete->athletes_no_athletes_participated = $athletes_value['athletes_no_athletes_participated'] ?? '';
-                    $parttwoathlete->athletes_no_expenditure_incurred = $athletes_value['athletes_no_expenditure_incurred'] ?? '';
-                    $parttwoathlete->athletes_no_achievements = $athletes_value['athletes_no_achievements'] ?? '';
-                    $parttwoathlete->athletes_no_remarks = $athletes_value['athletes_no_remarks'] ?? '';
+                    $parttwoathlete->athletes_year = $athletes_value['athletes_year'];
+                    $parttwoathlete->athletes_discipline = $athletes_value['athletes_discipline'];
+                    $parttwoathlete->athletes_no_athletes_participated = $athletes_value['athletes_no_athletes_participated'];
+                    $parttwoathlete->athletes_no_expenditure_incurred = $athletes_value['athletes_no_expenditure_incurred'];
+                    $parttwoathlete->athletes_no_achievements = $athletes_value['athletes_no_achievements'];
+                    $parttwoathlete->athletes_no_remarks = $athletes_value['athletes_no_remarks'];
                     $parttwoathlete->created_by = $rc_id;
                     // $parttwoathlete->created_for = $value['project_center_id'];
                     $parttwoathlete->status = 1;
@@ -1485,7 +1460,7 @@ class ReviewController extends Controller
                     }else{
     
                         $form_play_field = new Form_two();
-                        $form_play_field->discline_play_field = $part_two_play_fields['discline_play_field'] ?? '';
+                        $form_play_field->discline_play_field = $part_two_play_fields['discline_play_field']  ?? '';
                         $form_play_field->no_fop_play_field = $part_two_play_fields['no_fop_play_field'];
                         $form_play_field->fop_play_field = $part_two_play_fields['fop_play_field'];
                         $form_play_field->fop_surface_play_field = $part_two_play_fields['fop_surface_play_field'];
@@ -1575,7 +1550,7 @@ class ReviewController extends Controller
                         // dd(22);
                         $two_part_equipment = FormTwoEquipment::findOrFail($two_part_two_equipments['id']);
                         $two_part_equipment->equipment_discipline = $two_part_two_equipments['equipment_discipline'] ?? '';
-                        $two_part_equipment->equipment_suficient = $two_part_two_equipments['equipment_suficient'] ?? '';
+                        $two_part_equipment->equipment_suficient = $two_part_two_equipments['equipment_suficient'];
                         $two_part_equipment->equipment_remark = $two_part_two_equipments['equipment_remark'];
                         $two_part_equipment->updated_by = $rc_id;
                         // $Parttwocoachsupportstaff->created_for = $value['project_center_id'];
@@ -1677,7 +1652,7 @@ class ReviewController extends Controller
                     $parttwostrengthresidentialcoaches->strength_residential_coaches_2020_21_resi_f = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_2020_21_resi_f'];
                     $parttwostrengthresidentialcoaches->strength_residential_coaches_2020_21_nr_m = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_2020_21_nr_m'];
                     $parttwostrengthresidentialcoaches->strength_residential_coaches_2020_21_nr_f = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_2020_21_nr_f'];
-                   // $parttwostrengthresidentialcoaches->strength_residential_coaches_2020_21_nr_c = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_2020_21_nr_c'] ?? '';
+                    $parttwostrengthresidentialcoaches->strength_residential_coaches_2020_21_nr_c = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_2020_21_nr_c'];
                     // $parttwostrengthresidentialcoaches->strength_residential_coaches_2022_22_resi_m = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_2022_22_resi_m'] ?? '';
                     $parttwostrengthresidentialcoaches->strength_residential_coaches_2022_22_resi_f = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_2022_22_resi_f'];
                     $parttwostrengthresidentialcoaches->strength_residential_coaches_2022_22_nr_m = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_2022_22_nr_m'];
@@ -1709,7 +1684,7 @@ class ReviewController extends Controller
                     $parttwostrengthresidentialcoaches->strength_residential_coaches_2020_21_resi_f = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_2020_21_resi_f'];
                     $parttwostrengthresidentialcoaches->strength_residential_coaches_2020_21_nr_m = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_2020_21_nr_m'];
                     $parttwostrengthresidentialcoaches->strength_residential_coaches_2020_21_nr_f = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_2020_21_nr_f'];
-                   // $parttwostrengthresidentialcoaches->strength_residential_coaches_2020_21_nr_c = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_2020_21_nr_c'] ?? '';
+                    $parttwostrengthresidentialcoaches->strength_residential_coaches_2020_21_nr_c = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_2020_21_nr_c'] ?? "";
                     // $parttwostrengthresidentialcoaches->strength_residential_coaches_2022_22_resi_m = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_2022_22_resi_m'];
                     $parttwostrengthresidentialcoaches->strength_residential_coaches_2022_22_resi_f = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_2022_22_resi_f'];
                     $parttwostrengthresidentialcoaches->strength_residential_coaches_2022_22_nr_m = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_2022_22_nr_m'];
@@ -1904,7 +1879,7 @@ class ReviewController extends Controller
                 }
            }
            
-        public function nutritionistchefById($id){
+                public function nutritionistchefById($id){
 
 
     
@@ -2065,10 +2040,9 @@ class ReviewController extends Controller
                 return response()->json(['success' => false, 'message' => $ex->getMessage()]);
             }
         }
-    //form three save
-   public function partThreeform($center_id = 0){
-    $user_id = decode5t($center_id);
-    // dd($user_id);
+    //form three save shubham
+    public function partThreeform($center_id = 0){
+        $user_id = decode5t($center_id);
 
     $form_one = part_three_dis_discounted::whereCreatedFor($user_id)->get();
     $form_two = Part_three_dis_added::whereCreatedFor($user_id)->get();
@@ -2077,29 +2051,15 @@ class ReviewController extends Controller
     $form_five=DB::table('part_three_mains')->where('comment_type','advantage')->whereCreatedFor($user_id)->first();
     $form_six=DB::table('part_three_mains')->where('comment_type','disadvantage')->whereCreatedFor($user_id)->first();
 
-    // if (Session::get('role_details')->name == 'RC') {
-        // $centers = Rcacademymapping::where([['status', '=', true], ['created_by', '=', Session::get('rc_id')->rc_id]])->select('academy_name', 'academy_id')->get();
-        // $dis_list = DB::table('discplines_mapping_master')->select('discipline_id', 'discipline')->where('rc_id', Session::get('rc_id')->rc_id)->orderBy('discipline')->get();
-    // } elseif (Session::get('role_details')->name == 'NCOE') {
-        // $centers = Rcacademymapping::where([['status', '=', true], ['academy_id', '=', Session::get('user')->user_id]])->select('academy_name', 'academy_id')->get();
-        // $dis_list = DB::table('discplines_mapping_master')->select('discipline_id', 'discipline')->where('ncoe_id', Session::get('user')->user_id)->orderBy('discipline')->get();
-    // }
-	
-	  if (Session::get('role_details')->name == 'RC') {
+    if (Session::get('role_details')->name == 'RC') {
         $centers = Rcacademymapping::where([['status', '=', true], ['created_by', '=', Session::get('rc_id')->rc_id]])->select('academy_name', 'academy_id')->get();
-         $dis_list = DB::table('discplines_mapping_master')->select('discipline_id', 'discipline')->where('rc_id', Session::get('rc_id')->rc_id)->orderBy('discipline')->get();
-		 $dis_id = DB::table('discplines_mapping_master')->select('discipline_id', 'discipline')->where('rc_id', Session::get('rc_id')->rc_id)->pluck('discipline_id')->toArray();
-         $dis_list_3_2 = DB::table('descipline_master')->select('discipline_id', 'discipline')->whereNotIn('discipline_id',$dis_id)->orderBy('discipline')->get();
-	  
+        // $dis_list = DB::table('discplines_mapping_master')->select('discipline_id', 'discipline')->where('rc_id', Session::get('rc_id')->rc_id)->orderBy('discipline')->get();
+        $dis_list = DB::table('descipline_master')->select('discipline_id', 'discipline')->orderBy('discipline')->get();
     } elseif (Session::get('role_details')->name == 'NCOE') {
         $centers = Rcacademymapping::where([['status', '=', true], ['academy_id', '=', Session::get('user')->user_id]])->select('academy_name', 'academy_id')->get();
-         $dis_list = DB::table('discplines_mapping_master')->select('discipline_id', 'discipline')->where('ncoe_id', Session::get('user')->user_id)->orderBy('discipline')->get();
-       		 $dis_id = DB::table('discplines_mapping_master')->select('discipline_id', 'discipline')->where('ncoe_id', Session::get('user')->user_id)->pluck('discipline_id')->toArray();
-         $dis_list_3_2 = DB::table('descipline_master')->select('discipline_id', 'discipline')->whereNotIn('discipline_id',$dis_id)->orderBy('discipline')->get();
-	   // $dis_list = DB::table('descipline_master')->select('discipline_id', 'discipline')->orderBy('discipline')->get();
+        // $dis_list = DB::table('discplines_mapping_master')->select('discipline_id', 'discipline')->where('ncoe_id', Session::get('user')->user_id)->orderBy('discipline')->get();
+        $dis_list = DB::table('descipline_master')->select('discipline_id', 'discipline')->orderBy('discipline')->get();
     }
-    
-
     return view('front.pages.review.part_three',
     ['id'=>$center_id,
     'form_one'=> $form_one ,
@@ -2111,8 +2071,6 @@ class ReviewController extends Controller
     'centers'=> $centers ,
     'c_id' => $user_id,
     'dis_list'=>$dis_list,
-	'dis_list_3_2' => $dis_list_3_2,
-	'dis_list_3_2_json' => json_encode($dis_list_3_2),
      'dis_list_json'=>json_encode($dis_list)]);
     }
 
@@ -2263,11 +2221,13 @@ public function DeleteDatapartthreethree($id){
 
 //    public function generatePDF()
 //    {
-//        $data = [
-//            'title' => 'Welcome to CodeSolutionStuff.com',
-//            'date' => date('m/d/Y')
-//        ];
-         
+//      $user_id = Session::get('user')->user_id;
+//     //    $data = [
+//     //        'title' => 'Welcome to CodeSolutionStuff.com',
+//     //        'date' => date('m/d/Y')
+//     //    ];
+//        $data = Part_two_other_facilitie::whereCreatedBy($user_id)->get();
+//         dd($data);
 //        $pdf = PDF::loadView('myPDF', $data);
    
 //        return $pdf->download('codesolutionstuff.pdf');
@@ -2285,7 +2245,6 @@ public function DeleteDatapartthreethree($id){
         $pdf = PDF::loadView('myPDF', compact('data'))->setOptions(['defaultFont' => 'arial']);
         return $pdf->download('data.pdf');
     }
-
 
 
 

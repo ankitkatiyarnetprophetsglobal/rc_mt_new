@@ -23,7 +23,7 @@ function decode5t($str)
 function getRcList()
 {
 	$token = getJwtToken();
-	$response = Http::withToken($token)->get('http://192.168.23.253:8034/api/StakeHolder/GetStakeHolder_RDList');
+	$response = Http::withToken($token)->get('https://nsrswebservice.kheloindia.gov.in/nsrscoreapi/api/StakeHolder/GetStakeHolder_RDList');
 	$data = json_decode($response->body());
 	return $data;
 }
@@ -32,7 +32,7 @@ function getRcDetails($id)
 {
 	// echo $id;
 	$token = getJwtToken();
-	$response = Http::withToken($token)->get('http://192.168.23.253:8034/api/StakeHolder/GetStakeHolder_RDDetail', ['user_id' => $id]);
+	$response = Http::withToken($token)->get('https://nsrswebservice.kheloindia.gov.in/nsrscoreapi/api/StakeHolder/GetStakeHolder_RDDetail', ['user_id' => $id]);
 	// $rc_details = $response->collect();
 	$rc_details = json_decode($response->body());
 	// $rc_details = $response->body();
@@ -58,7 +58,7 @@ function getRcDetails($id)
 function getJwtToken()
 {
 
-	$response = Http::post('http://192.168.23.253:8034/api/Login/generateJWTToken', [
+	$response = Http::post('https://nsrswebservice.kheloindia.gov.in/nsrscoreapi/api/Login/generateJWTToken', [
 		'roleid' => 0,
 		'detailid' => 0,
 		'username' => 'string',

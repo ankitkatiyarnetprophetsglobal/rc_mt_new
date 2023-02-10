@@ -11,4 +11,7 @@ class Rcacademymapping extends Model
     public function center_get(){
         return $this->hasOne(Rcacademymapping::class,'id','academy_id');
     }
+    public function center_get_displine(){
+        return $this->hasOne(Rcacademymapping::class,'id','academy_id');
+    }
 }

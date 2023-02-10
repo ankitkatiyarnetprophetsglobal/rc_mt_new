@@ -109,7 +109,7 @@
               </div>
             </div>
             <a
-              href="http://192.168.23.253:8000/#/forgot-password"
+              href="http://192.168.23.254:8000/#/forgot-password"
               class="forgot text-center mt-3 d-block text-decoration-underline"
             >
               Forgot your password?</a

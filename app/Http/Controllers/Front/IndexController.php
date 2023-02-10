@@ -10,7 +10,7 @@ class IndexController extends Controller
 {
     public function index(){
        // dd(Session::get('role_details'));
-        $response = Http::post('http://192.168.23.253:8034/api/Login/generateJWTToken', [
+        $response = Http::post('https://nsrswebservice.kheloindia.gov.in/nsrscoreapi/api/Login/generateJWTToken', [
             'roleid' => 0,
             'detailid' => 0,
             'username' => 'string',
@@ -19,7 +19,7 @@ class IndexController extends Controller
 
        $token =  $response->body();
 
-       $response = Http::withToken($token)->get('http://192.168.23.253:8034/api/StakeHolder/GetStakeHolder_Ath_Coach_SS_Count', [
+       $response = Http::withToken($token)->get('https://nsrswebservice.kheloindia.gov.in/nsrscoreapi/api/StakeHolder/GetStakeHolder_Ath_Coach_SS_Count', [
         'roleid' => 47,
         'userid' => 2495,
        ]);

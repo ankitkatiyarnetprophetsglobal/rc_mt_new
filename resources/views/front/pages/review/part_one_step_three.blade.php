@@ -1295,11 +1295,12 @@
                 </div>
             </div>
         </div>
-       
-
-
-
-        <button type="submit" class="btn btn-primary  d-block ms-auto">Next</button>
+        <!-- <button type="submit" class="btn btn-primary  d-block ms-auto">Next</button> -->
+        
+        <div class="d-flex justify-content-center">
+        <button class="btn btn-primary " onclick="history.back()">Back</button> &nbsp;
+        <button type="submit" class="btn btn-primary ">Next</button> 
+        </div>
     </form>
 </div>
 @endsection

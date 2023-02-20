@@ -19,7 +19,7 @@
         "form6": {},
         "form7": {},
         "form8": {},
-        
+
 
     };
 
@@ -49,7 +49,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <h6 class="mb-2">Category -1 </h6>
-                        <h6 class="mb-2">1.9 At International level (medals won) – Individual Sports</h6>
+                        <h6 class="mb-2">1.9 At International level (medals won) – Team Sports</h6>
 
                         <a href="javascript::void(0)" class="text-decoration-none"> <button type="button" class="btn btn-primary  d-block ms-auto medal_won_step_two">+ Add</button></a>
                         <thead class="text-center align-middle">
@@ -78,10 +78,7 @@
                         <tbody class="form_first_container">
                             @if($form_one->count())
                             @foreach($form_one as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form1[dis_id];
-                            </script>
+                          
                             <tr class="row_medals_won_{{$key}}">
                                 <td><select class="form-select  form_1_discipline_{{$key}} form_1_discipline disciplin_grab " data-id="form_1" data-counting_id="{{$key}}"  name="step_two[form_1][{{$key}}][discipline_id]" aria-label="Default select example" required>
                                 <option disabled selected value="">Select </option>
@@ -154,7 +151,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <h6 class="mb-2">Category -2 </h6>
-                        <h6 class="mb-2">1.10 At International level (medals won) – Individual Sports</h6>
+                        <h6 class="mb-2">1.10 At International level (medals won) – Team Sports</h6>
                         <a href="javascript::void(0)" class="text-decoration-none"> <button type="button" class="btn btn-primary  d-block ms-auto medal_won_category_2">+ Add</button></a>
                         <thead class="text-center align-middle">
                             <tr>
@@ -182,10 +179,7 @@
                         <tbody class="form_second_container">
                             @if($form_two->count())
                             @foreach($form_two as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form2[dis_id];
-                            </script>
+                            
                             <tr class="row_medals_won_category_2_{{$key}}">
                                 <td><select class="form-select  form_2_discipline_{{$key}} form_2_discipline disciplin_grab " data-id="form_2" data-counting_id="{{$key}}"  name="step_two[form_2][{{$key}}][discipline_id]" aria-label="Default select example" required>
                                 <option disabled selected value="">Select </option>
@@ -258,7 +252,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <h6 class="mb-2">Category -3 </h6>
-                        <h6 class="mb-2">1.11 At International level (medals won) – Individual Sports</h6>
+                        <h6 class="mb-2">1.11 At International level (medals won) – Team Sports</h6>
                         <a href="javascript::void(0)" class="text-decoration-none"> <button type="button" class="btn btn-primary  d-block ms-auto medal_won_category_3">+ Add</button></a>
                         <thead class="text-center align-middle">
                             <tr>
@@ -286,10 +280,7 @@
                         <tbody class="form_three_container">
                             @if($form_three->count())
                             @foreach($form_three as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form3[dis_id];
-                            </script>
+                          
                             <tr class="row_medals_won_category_3_{{$key}}">
                                 <td><select class="form-select  form_3_discipline_{{$key}} form_3_discipline disciplin_grab " data-id="form_3" data-counting_id="{{$key}}"  name="step_two[form_3][{{$key}}][discipline_id]" aria-label="Default select example" required>
                                 <option disabled selected value="">Select </option>
@@ -363,7 +354,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <h6 class="mb-2">Category -1 </h6>
-                        <h6 class="mb-2">1.12 At International Level (Participation)- Individual Sports</h6>
+                        <h6 class="mb-2">1.12 At International Level (Participation)- Team Sports</h6>
                         <a href="javascript::void(0)" class="text-decoration-none"> <button type="button" class="btn btn-primary  d-block ms-auto participation_category_1">+ Add</button></a>
                         <thead class="text-center align-middle">
                             <tr>
@@ -391,10 +382,7 @@
                         <tbody class="form_four_container">
                             @if($form_four->count())
                             @foreach($form_four as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form4[dis_id];
-                            </script>
+                            
                             <tr class="row_participation_cat_1_{{$key}}">
                                 <td><select class="form-select  form_4_discipline_{{$key}} form_4_discipline disciplin_grab " data-id="form_4" data-counting_id="{{$key}}"  name="step_two[form_4][{{$key}}][discipline_id]" aria-label="Default select example" required>
                                 <option disabled selected value="">Select </option>
@@ -467,7 +455,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <h6 class="mb-2">Category -2 </h6>
-                        <h6 class="mb-2">1.13 At International level (medals won) – Individual Sports</h6>
+                        <h6 class="mb-2">1.13 At International level (medals won) – Team Sports</h6>
                         <a href="javascript::void(0)" class="text-decoration-none"> <button type="button" class="btn btn-primary  d-block ms-auto participation_category_2">+ Add</button></a>
                         <thead class="text-center align-middle">
                             <tr>
@@ -495,10 +483,7 @@
                         <tbody class="form_five_container">
                             @if($form_five->count())
                             @foreach($form_five as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form5[dis_id];
-                            </script>
+                         
                             <tr class="row_participation_cat_2_{{$key}}">
                                 <td><select class="form-select  form_5_discipline_{{$key}} form_5_discipline disciplin_grab " data-id="form_5" data-counting_id="{{$key}}"  name="step_two[form_5][{{$key}}][discipline_id]" aria-label="Default select example" required>
                                 <option disabled selected value="">Select </option>
@@ -571,7 +556,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <h6 class="mb-2">Category -3 </h6>
-                        <h6 class="mb-2">1.14 At International level (Participation) – Individual Sports</h6>
+                        <h6 class="mb-2">1.14 At International level (Participation) – Team Sports</h6>
                         <a href="javascript::void(0)" class="text-decoration-none"> <button type="button" class="btn btn-primary  d-block ms-auto participation_category_3">+ Add</button></a>
                         <thead class="text-center align-middle">
                             <tr>
@@ -599,10 +584,7 @@
                         <tbody class="form_six_container">
                             @if($form_six->count())
                             @foreach($form_six as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form6[dis_id];
-                            </script>
+                          
                             <tr class="row_participation_category_3_{{$key}}">
                                 <td><select class="form-select  form_6_discipline_{{$key}} form_6_discipline disciplin_grab " data-id="form_6" data-counting_id="{{$key}}" name="step_two[form_6][{{$key}}][discipline_id]" aria-label="Default select example" required>
                                 <option disabled selected value="">Select </option>
@@ -675,7 +657,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered">
 
-                        <h6 class="mb-2"> 1.15 At National level (Medals won) – Individual Sports</h6>
+                        <h6 class="mb-2"> 1.15 At National level (Medals won) – Team Sports</h6>
                         <a href="javascript::void(0)" class="text-decoration-none"> <button type="button" class="btn btn-primary  d-block ms-auto medal_won_national">+ Add</button></a>
                         <thead class="text-center align-middle">
                             <tr>
@@ -703,10 +685,7 @@
                         <tbody class="form_seven_container">
                             @if($form_seven->count())
                             @foreach($form_seven as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form7[dis_id];
-                            </script>
+                           
                             <tr class="row_medal_won_national_{{$key}}">
                                 <td><select class="form-select  form_7_discipline_{{$key}} form_7_discipline disciplin_grab " data-id="form_7" data-counting_id="{{$key}}"  name="step_two[form_7][{{$key}}][discipline_id]" aria-label="Default select example" required>
                                 <option disabled selected value="">Select </option>
@@ -741,7 +720,7 @@
 
                             <tr class="row_medal_won_national_0">
                                 <td><select class="form-select  form_7_discipline_0 form_7_discipline disciplin_grab " data-id="form_7" data-counting_id="0"  name="step_two[form_7][0][discipline_id]" aria-label="Default select example" required>
-                                <option disabled selected value="">Select </option>    
+                                <option disabled selected value="">Select </option>
                                         @foreach($dis_list as $key => $value)
                                         <option value="{{$value->discipline_id}}">{{$value->discipline}}</option>
                                         @endforeach
@@ -779,7 +758,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered">
 
-                        <h6 class="mb-2"> 1.16 At National Level (Participation)- Individual Sports</h6>
+                        <h6 class="mb-2"> 1.16 At National Level (Participation)- Team Sports</h6>
                         <a href="javascript::void(0)" class="text-decoration-none"> <button type="button" class="btn btn-primary  d-block ms-auto participation_national">+ Add</button></a>
                         <thead class="text-center align-middle">
                             <tr>
@@ -806,10 +785,7 @@
                         </thead>
                         <tbody class="form_eight_container">
                             @if($form_eight->count())
-                                          <script>
-                                            dis_id = "{{$value->discipline_id}}";
-                                            delete data_dict.form8[dis_id];
-                                        </script>
+                                      
                             @foreach($form_eight as $key => $value)
                             <tr class="row_participation_national_{{$key}}">
                                 <td><select class="form-select  form_8_discipline_{{$key}} form_8_discipline disciplin_grab " data-id="form_8" data-counting_id="{{$key}}"  name="step_two[form_8][{{$key}}][discipline_id]" aria-label="Default select example" required>
@@ -882,10 +858,10 @@
 
         <!-- <button type="submit" class="btn btn-primary  d-block ms-auto">Next</button> -->
 
-        
+
         <div class="d-flex justify-content-center">
-        <button class="btn btn-primary " onclick="history.back()"> Back</button> &nbsp;
-        <button type="submit" class="btn btn-primary ">Next</button> 
+            <a href="{{url('/review/part-one/step-one/'.encode5t($c_id))}}" class="btn btn-primary ">Back</a>&nbsp;
+        <button type="submit" class="btn btn-primary ">Next</button>
 
         </div>
     </form>
@@ -909,9 +885,9 @@
     var form_six_count = "{{$form_six->count()}}";
     var form_seven_count = "{{$form_seven->count()}}";
     var form_eight_count = "{{$form_eight->count()}}";
-    
+
     var url = baseurl + '/review/part-one/step-one/' + "{{encode5t($c_id)}}";
-   
+
 </script>
 <script src="{{asset('public/front/js/review/review_part_one_step_two.js')}}"></script>
 

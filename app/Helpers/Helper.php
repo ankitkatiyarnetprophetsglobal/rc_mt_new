@@ -23,7 +23,7 @@ function decode5t($str)
 function getRcList()
 {
 	$token = getJwtToken();
-	$response = Http::withToken($token)->get('https://nsrswebservice.kheloindia.gov.in/nsrscoreapi/api/StakeHolder/GetStakeHolder_RDList');
+	$response = Http::withToken($token)->get(env('DYNAMIC_URL') .'api/StakeHolder/GetStakeHolder_RDList');
 	$data = json_decode($response->body());
 	return $data;
 }
@@ -32,33 +32,18 @@ function getRcDetails($id)
 {
 	// echo $id;
 	$token = getJwtToken();
-	$response = Http::withToken($token)->get('https://nsrswebservice.kheloindia.gov.in/nsrscoreapi/api/StakeHolder/GetStakeHolder_RDDetail', ['user_id' => $id]);
+	$response = Http::withToken($token)->get(env('DYNAMIC_URL') .'api/StakeHolder/GetStakeHolder_RDDetail', ['user_id' => $id]);
 	// $rc_details = $response->collect();
 	$rc_details = json_decode($response->body());
 	// $rc_details = $response->body();
 	// print_r($rc_details);
 	return $rc_details;
-
-
-
-	// $rc_array = [
-	// 	['id' => 1,'name' => 'RC MUMBAI'],
-	// 	['id' => 2,'name' => 'RC GANDHINAGAR'],
-	// 	['id' => 3,'name' => 'RC BHOPAL'],
-	// 	['id' => 4,'name' => 'RC DELHI'],
-	// ];
-	// $rc_ids = array_column($rc_array, $rc_array->user_id);
-
-	// $matching = array_intersect_key($rc_array, array_intersect($rc_ids,[$id]));
-	// foreach($matching as $val){
-	// 	return $val;
-	// }
 }
 
 function getJwtToken()
 {
 
-	$response = Http::post('https://nsrswebservice.kheloindia.gov.in/nsrscoreapi/api/Login/generateJWTToken', [
+	$response = Http::post(env('DYNAMIC_URL') .'api/Login/generateJWTToken', [
 		'roleid' => 0,
 		'detailid' => 0,
 		'username' => 'string',

@@ -6,6 +6,7 @@ use App\Models\Masters\Miscmaster;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\discplinesMappingMaster;
 
 class Parttwocoachsupportstaffs extends Model
 {
@@ -18,5 +19,9 @@ class Parttwocoachsupportstaffs extends Model
         'coach_support_staff_remarks',
         'status',
         'remarks'];
+
+        public function center(){
+            return $this->hasOne(discplinesMappingMaster::class,'ncoe_id','created_for');
+        }
 
 }

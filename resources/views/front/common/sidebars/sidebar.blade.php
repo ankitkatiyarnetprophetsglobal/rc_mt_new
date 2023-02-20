@@ -45,6 +45,13 @@
             </li>
              @endif 
 
+            @if(Session::get('role_details')->name == 'OPS') 
+                        <li class="nav-item"><a href="{{url('review/download_excel')}}"><i class="icon-TENDER"></i><span
+                            class="menu-title">NCOE Review Excel Download </span></a>
+                        </li>
+            @endif 
+             
+
             <!-- <li class="nav-item has-sub">
       <a href="#" class="link"><i class="fa fa-question-circle-o"></i><span class="menu-title">Lorem
           Ipsum</span></a>

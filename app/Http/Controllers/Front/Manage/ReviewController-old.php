@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 use PDF;
 use App\Models\Masters\Rcacademymapping;
 
-//shubham 
+//shubham
 
 use App\Models\Review\Form_two;
 use App\Models\Review\Formtwomain;
@@ -28,7 +28,7 @@ use App\Models\Review\FormTwoSportScience;
 use App\Models\Review\FormTwoAddStaffAdministrator;
 
 
-// Ankit 
+// Ankit
 use App\Models\Review\Parttwocoachsupportstaffs;
 use App\Models\Review\Parttwoathletes;
 use App\Models\Review\Parttwostrengthresidentialcoachesdisciplines;
@@ -64,14 +64,14 @@ class ReviewController extends Controller
     //         $centers = Rcacademymapping::where([['status', '=', true], ['academy_id', '=', Session::get('user')->user_id]])->select('academy_name', 'academy_id')->get();
     //         $dis_list = DB::table('discplines_mapping_master')->select('discipline_id', 'discipline')->where('ncoe_id', Session::get('user')->user_id)->orderBy('discipline')->get();
     //     }
-        
+
     //     if ($center_id != 0) {
     //         $c_id = decode5t($center_id);
     //     } else {
 
     //         $c_id =  $centers[0]->academy_id;
     //     }
-        
+
     //     $form_one = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'ind'], ['form_type', '=', 'medals_won'], ['category', '=', 'category-1']])->get();
     //     $form_two = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'ind'], ['form_type', '=', 'medals_won'], ['category', '=', 'category-2']])->get();
     //     $form_three = ReviewSportData::whereCreatedFor($c_id)->where([['team_type', '=', 'ind'], ['form_type', '=', 'medals_won'], ['category', '=', 'category-3']])->get();
@@ -101,20 +101,20 @@ class ReviewController extends Controller
 
     public function partOneStepOne($center_id = 0)
     {
-       
+
         // dd(Session::get('rc_id'));
         //dd(Session::get('role_details'));
         // dd(Session::get('user'));
         //dd(Session::get('role_details')->name);
         if (Session::get('role_details')->name == 'RC') {
             $centers = DB::table('discplines_mapping_master')->where([['status', '=', true], ['rc_id', '=', Session::get('rc_id')->rc_id]])->select('ncoe_name', 'ncoe_id')->groupBy('ncoe_id','ncoe_name')->get();
-            $dis_list = DB::table('discplines_mapping_master')->select('discipline_id', 'discipline')->where('rc_id', Session::get('rc_id')->rc_id)->orderBy('discipline')->get();
+            $dis_list = DB::table('discplines_mapping_master')->select('discipline_id', 'discipline')->where('rc_id', Session::get('rc_id')->rc_id)->orderBy('discipline')->groupBy('discipline_id')->get();
         } elseif (Session::get('role_details')->name == 'NCOE') {
             $centers = DB::table('discplines_mapping_master')->where([['status', '=', true], ['ncoe_id', '=', Session::get('user')->user_id]])->select('ncoe_name', 'ncoe_id')->groupBy('ncoe_id','ncoe_name')->get();
            // $centers = Rcacademymapping::where([['status', '=', true], ['academy_id', '=', Session::get('user')->user_id]])->select('academy_name', 'academy_id')->get();
-            $dis_list = DB::table('discplines_mapping_master')->select('discipline_id', 'discipline')->where('ncoe_id', Session::get('user')->user_id)->orderBy('discipline')->get();
+            $dis_list = DB::table('discplines_mapping_master')->select('discipline_id', 'discipline')->where('ncoe_id', Session::get('user')->user_id)->orderBy('discipline')->groupBy('discipline_id')->get();
         }
-
+dd($dis_list);
         if ($center_id != 0) {
             $c_id = decode5t($center_id);
         } else {
@@ -427,7 +427,7 @@ class ReviewController extends Controller
     }
     public function partOneStepTwoStore(Request $request)
     {
-        
+
         if (isset($request->step_two['form_1'])) {
             foreach ($request->step_two['form_1'] as $key => $value) {
                 if (isset($value['id'])) {
@@ -714,7 +714,7 @@ class ReviewController extends Controller
     }
     public function partOneStepThreeStore(Request $request)
     {
-        
+
 
         if (isset($request->step_three['form_1'])) {
             foreach ($request->step_three['form_1'] as $key => $value) {
@@ -1017,13 +1017,13 @@ class ReviewController extends Controller
 
             $user_id = decode5t($center_id);
             $data=Formtwomain::where('user_id',$user_id)->with('playField')->first();
-            $accommods=Part_two_achieve_accommods::where('form_id',$user_id)->first();      
-            $kichen=Part_two_kitchen_dining::where('form_id',$user_id)->first();      
-            $other_facilities=Part_two_other_facilitie::where('form_id',$user_id)->first();      
-            $utilization =part_two_utilization_fund::where('form_id',$user_id)->first();      
+            $accommods=Part_two_achieve_accommods::where('form_id',$user_id)->first();
+            $kichen=Part_two_kitchen_dining::where('form_id',$user_id)->first();
+            $other_facilities=Part_two_other_facilitie::where('form_id',$user_id)->first();
+            $utilization =part_two_utilization_fund::where('form_id',$user_id)->first();
             $parttwocoachsupportstaff = Parttwocoachsupportstaffs::where('created_by',$user_id)->where('deleted_by','=', null)->get();
             $parttwoathlete = parttwoathletes::where('created_by',$user_id)->where('deleted_at','=', null)->get();
-            
+
             $parttwostrengthresidentialcoachesdisciplines = Parttwostrengthresidentialcoachesdisciplines::where('created_by',$user_id)->where('deleted_at','=', null)->get();
             $staffnutritionistchefs = Staffnutritionistchefs::where('created_by',$user_id)->where('deleted_at','=', null)->get();
             $sportsciencestaffdoctor = Sportsciencestaffdoctors::where('created_by',$user_id)->where('deleted_at','=', null)->get();
@@ -1048,13 +1048,13 @@ class ReviewController extends Controller
                // $centers = Rcacademymapping::where([['status', '=', true], ['academy_id', '=', Session::get('user')->user_id]])->select('academy_name', 'academy_id')->get();
                 $dis_list = DB::table('discplines_mapping_master')->select('discipline_id', 'discipline')->where('ncoe_id', Session::get('user')->user_id)->orderBy('discipline')->get();
             }
-    
+
             // dd($centers);
             //   dd(decode5t($center_id));
             // if ($center_id != 0) {
             //     $c_id = decode5t($center_id);
             // } else {
-        
+
             //     $c_id =  $centers[0]->academy_id;
             // }
 
@@ -1082,7 +1082,7 @@ class ReviewController extends Controller
                     ]);
 
         }
-    
+
         public function partTwoformStore(Request $request){
             // dd($request->all());
             // dd(decode5t($request->user_id));
@@ -1091,7 +1091,7 @@ class ReviewController extends Controller
             $kichen=Part_two_kitchen_dining::where('form_id',decode5t($request->user_id))->first();
             $other_facilities=Part_two_other_facilitie::where('form_id',decode5t($request->user_id))->first();
             $utilization=part_two_utilization_fund::where('form_id',decode5t($request->user_id))->first();
-         
+
             if(!isset($main) || empty($main)){
             $main= new Formtwomain;
             }
@@ -1100,7 +1100,7 @@ class ReviewController extends Controller
             $main->area_heactor=$request->area_heactor;
             $main->user_id=decode5t($request->user_id);
             $main->save();
-        
+
             //accomodation  ---
             if(!isset($accomodation) || empty($accomodation)){
                 $accomodation =  new Part_two_achieve_accommods;
@@ -1169,7 +1169,7 @@ class ReviewController extends Controller
             // $accomodation->updated_at = '';
             // $accomodation->deleted_at = '';
             $accomodation->save();
-        
+
             //kichen  --------------------------------------------------------
             if(!isset($kichen) || empty($kichen)){
                 $kichen =  new Part_two_kitchen_dining;
@@ -1212,12 +1212,12 @@ class ReviewController extends Controller
             // $kichen->updated_at = '';
             // $kichen->deleted_at = '';
             $kichen->save();
-        
-            //other facilieties  
+
+            //other facilieties
             if(!isset($other_facilities) || empty($other_facilities)){
                 $other_facilities =  new Part_two_other_facilitie;
             }
-        
+
             // $other_facilities = new Part_two_other_facilitie;
             $other_facilities->form_id = $main->user_id;
             $other_facilities->facilities_guest_room_ac_count = $request->facilities_guest_room_ac_count;
@@ -1264,7 +1264,7 @@ class ReviewController extends Controller
             // $other_facilities->updated_at = '';
             // $other_facilities->deleted_at = '';
             $other_facilities->save();
-            //utilization fund code...  
+            //utilization fund code...
             if(!isset($utilization) || empty($utilization)){
                 $utilization =  new part_two_utilization_fund;
             }
@@ -1378,8 +1378,8 @@ class ReviewController extends Controller
             // $utilization->updated_at = '';
             // $utilization->deleted_at = '';
             $utilization->save();
-        
-        
+
+
             // if($main->id ){
             // for($i=0 ;$i < count($request->discline_play_field);$i++){
             //     if(isset($request['dbId'][$i])){
@@ -1389,9 +1389,9 @@ class ReviewController extends Controller
             //     }
             //     }
             //     else{
-            //      $new_from_two_data = new Form_two;   
+            //      $new_from_two_data = new Form_two;
             //     }
-                
+
             // $new_from_two_data->form_id = $main->id;
             // $new_from_two_data->discline_play_field=$request["discline_play_field"][$i];
             // $new_from_two_data->no_fop_play_field=$request["no_fop_play_field"][$i];
@@ -1438,12 +1438,12 @@ class ReviewController extends Controller
 
                 }
             }
-                //Shubham play of field 
+                //Shubham play of field
 
                 foreach ($request->part_two_play_field as $part_two_play_field_key => $part_two_play_fields) {
                     // dd($part_two_play_fields);
                     if ($part_two_play_fields['id'] != ''){
-    
+
                         $form_play_field = Form_two::findOrFail($part_two_play_fields['id']);
                         $form_play_field->discline_play_field = $part_two_play_fields['discline_play_field'] ?? '';
                         $form_play_field->no_fop_play_field = $part_two_play_fields['no_fop_play_field'];
@@ -1456,9 +1456,9 @@ class ReviewController extends Controller
                         $form_play_field->status = 1;
                         // dd(1);
                         $form_play_field->save();
-                       
+
                     }else{
-    
+
                         $form_play_field = new Form_two();
                         $form_play_field->discline_play_field = $part_two_play_fields['discline_play_field']  ?? '';
                         $form_play_field->no_fop_play_field = $part_two_play_fields['no_fop_play_field'];
@@ -1471,7 +1471,7 @@ class ReviewController extends Controller
                         $form_play_field->status = 1;
                         // dd(2);
                         $form_play_field->save();
-                        
+
                     }
                 }
 
@@ -1480,7 +1480,7 @@ class ReviewController extends Controller
                     // dd($two_part_two_sport_sciences);
                     // if (isset($two_part_two_sport_sciences['id']) && $two_part_two_sport_sciences['id'] != ''){
                     if ($two_part_two_sport_sciences['id'] != ''){
-    
+
                         $form_sport_science = FormTwoSportScience::findOrFail($two_part_two_sport_sciences['id']);
                         $form_sport_science->science_discipline = $two_part_two_sport_sciences['science_discipline'] ?? null;
                         $form_sport_science->sport_consumable = $two_part_two_sport_sciences['sport_consumable'];
@@ -1503,14 +1503,14 @@ class ReviewController extends Controller
                         $form_sport_science->status = 1;
                         // dd(2);
                         $form_sport_science->save();
-                        
+
                     }
                 }
 
-                // dd($request->administrative_supports);  
+                // dd($request->administrative_supports);
 
                 foreach ($request->administrative_supports as $administrative_supports => $administrative_supports_centers) {
-                    
+
                     // if (isset($administrative_supports_centers['id']) && $administrative_supports_centers['id'] != ''){
                     if ($administrative_supports_centers['id'] != ''){
                         $form_administrative = FormTwoAddStaffAdministrator::findOrFail($administrative_supports_centers['id']);
@@ -1525,9 +1525,9 @@ class ReviewController extends Controller
                         $form_administrative->status = 1;
                         // dd(1);
                         $form_administrative->save();
-                       
+
                     }else{
-    
+
                         $form_administrative = new FormTwoAddStaffAdministrator();
                         $form_administrative->ssd_designation = $administrative_supports_centers['ssd_designation'];
                         $form_administrative->ssd_2018_19 = $administrative_supports_centers['ssd_2018_19'];
@@ -1540,7 +1540,7 @@ class ReviewController extends Controller
                         $form_administrative->status = 1;
                         // dd(2);
                         $form_administrative->save();
-                        
+
                     }
                 }
                 // dd($request->two_part_two_equipment);
@@ -1557,7 +1557,7 @@ class ReviewController extends Controller
                         $two_part_equipment->status = 1;
                         // dd(1);
                         $two_part_equipment->save();
-                       
+
                     }else{
                         // dd(1);
                         $two_part_equipment = new FormTwoEquipment();
@@ -1569,7 +1569,7 @@ class ReviewController extends Controller
                         $two_part_equipment->status = 1;
                         // dd(2);
                         $two_part_equipment->save();
-                        
+
                     }
                 }
                 // dd($request->two_part_two_equipment_consumable);
@@ -1586,7 +1586,7 @@ class ReviewController extends Controller
                         $two_part_equipment_consumable->status = 1;
                         // dd(1);
                         $two_part_equipment_consumable->save();
-                       
+
                     }else{
                         // dd(1);
                         $two_part_equipment_consumable = new FormTwoEquipment_consumable();
@@ -1598,10 +1598,10 @@ class ReviewController extends Controller
                         $two_part_equipment_consumable->status = 1;
                         // dd(2);
                         $two_part_equipment_consumable->save();
-                        
+
                     }
                 }
-            
+
             foreach ($request->coach_support_staff_form as $key => $value) {
                 if (isset($value['id']) && $value['id'] != '') {
                     // dd(12);
@@ -1628,13 +1628,13 @@ class ReviewController extends Controller
                 }
             }
 
-            // 
+            //
             // dd($request->all());
-            foreach ($request->two_part_residential_coaches as $parttwostrengthresidentialcoaches_key => $parttwostrengthresidentialcoaches_value) 
+            foreach ($request->two_part_residential_coaches as $parttwostrengthresidentialcoaches_key => $parttwostrengthresidentialcoaches_value)
             {
                 // dd($parttwostrengthresidentialcoaches_value);
-                if ( isset($parttwostrengthresidentialcoaches_value['id']) && $parttwostrengthresidentialcoaches_value['id'] != '') 
-                {                
+                if ( isset($parttwostrengthresidentialcoaches_value['id']) && $parttwostrengthresidentialcoaches_value['id'] != '')
+                {
 
                     $parttwostrengthresidentialcoaches = Parttwostrengthresidentialcoachesdisciplines::findOrFail($parttwostrengthresidentialcoaches_value['id']);
                     $parttwostrengthresidentialcoaches->strength_residential_coaches_discipline_id = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_discipline_id'];
@@ -1667,7 +1667,7 @@ class ReviewController extends Controller
                     $parttwostrengthresidentialcoaches->updated_by = $rc_id;
                     $parttwostrengthresidentialcoaches->status = 1;
                     $parttwostrengthresidentialcoaches->save();
-                }else{                    
+                }else{
                     $parttwostrengthresidentialcoaches = new Parttwostrengthresidentialcoachesdisciplines();
                     $parttwostrengthresidentialcoaches->strength_residential_coaches_discipline_id = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_discipline_id'];
                     $parttwostrengthresidentialcoaches->strength_residential_coaches_2018_19_resi_m = $parttwostrengthresidentialcoaches_value['strength_residential_coaches_2018_19_resi_m'];
@@ -1699,93 +1699,93 @@ class ReviewController extends Controller
                     $parttwostrengthresidentialcoaches->created_by = $rc_id;
                     $parttwostrengthresidentialcoaches->status = 1;
                     $parttwostrengthresidentialcoaches->save();
-                
+
                 }
             }
             // dd($request->all());
-            foreach ($request->staff_nutritionist_chef as $staff_nutritionist_chef_key => $staff_nutritionist_chef_value) 
+            foreach ($request->staff_nutritionist_chef as $staff_nutritionist_chef_key => $staff_nutritionist_chef_value)
             {
                 // dd($staff_nutritionist_chef_value);
                 // dd($staff_nutritionist_chef_value['snc_designation']);
-                if (isset($staff_nutritionist_chef_value['id']) && $staff_nutritionist_chef_value['id'] != '') 
-                {                
+                if (isset($staff_nutritionist_chef_value['id']) && $staff_nutritionist_chef_value['id'] != '')
+                {
 
                     $staffnutritionistchef = Staffnutritionistchefs::findOrFail($staff_nutritionist_chef_value['id']);
-                    $staffnutritionistchef->snc_designation = $staff_nutritionist_chef_value['snc_designation'];    
-                    $staffnutritionistchef->snc_2018_19 = $staff_nutritionist_chef_value['snc_2018_19'];    
-                    $staffnutritionistchef->snc_2019_20 = $staff_nutritionist_chef_value['snc_2019_20'];    
-                    $staffnutritionistchef->snc_2020_21 = $staff_nutritionist_chef_value['snc_2020_21'];    
-                    $staffnutritionistchef->snc_2021_22 = $staff_nutritionist_chef_value['snc_2021_22'];    
-                    $staffnutritionistchef->snc_2022_23=  $staff_nutritionist_chef_value['snc_2022_23'];                    
+                    $staffnutritionistchef->snc_designation = $staff_nutritionist_chef_value['snc_designation'];
+                    $staffnutritionistchef->snc_2018_19 = $staff_nutritionist_chef_value['snc_2018_19'];
+                    $staffnutritionistchef->snc_2019_20 = $staff_nutritionist_chef_value['snc_2019_20'];
+                    $staffnutritionistchef->snc_2020_21 = $staff_nutritionist_chef_value['snc_2020_21'];
+                    $staffnutritionistchef->snc_2021_22 = $staff_nutritionist_chef_value['snc_2021_22'];
+                    $staffnutritionistchef->snc_2022_23=  $staff_nutritionist_chef_value['snc_2022_23'];
                     // $Parttwocoachsupportstaff->created_for = $value['project_center_id'];
                     $staffnutritionistchef->updated_by = $rc_id;
                     $staffnutritionistchef->status = 1;
                     $staffnutritionistchef->save();
-                }else{                    
+                }else{
                     $staffnutritionistchef = new Staffnutritionistchefs();
-                    $staffnutritionistchef->snc_designation = $staff_nutritionist_chef_value['snc_designation'];    
-                    $staffnutritionistchef->snc_2018_19 = $staff_nutritionist_chef_value['snc_2018_19'];    
-                    $staffnutritionistchef->snc_2019_20 = $staff_nutritionist_chef_value['snc_2019_20'];    
-                    $staffnutritionistchef->snc_2020_21 = $staff_nutritionist_chef_value['snc_2020_21'];    
-                    $staffnutritionistchef->snc_2021_22 = $staff_nutritionist_chef_value['snc_2021_22'];    
+                    $staffnutritionistchef->snc_designation = $staff_nutritionist_chef_value['snc_designation'];
+                    $staffnutritionistchef->snc_2018_19 = $staff_nutritionist_chef_value['snc_2018_19'];
+                    $staffnutritionistchef->snc_2019_20 = $staff_nutritionist_chef_value['snc_2019_20'];
+                    $staffnutritionistchef->snc_2020_21 = $staff_nutritionist_chef_value['snc_2020_21'];
+                    $staffnutritionistchef->snc_2021_22 = $staff_nutritionist_chef_value['snc_2021_22'];
                     $staffnutritionistchef->snc_2022_23= $staff_nutritionist_chef_value['snc_2022_23'];
                     // $Parttwocoachsupportstaff->created_for = $value['project_center_id'];
                     $staffnutritionistchef->created_by = $rc_id;
                     // $parttwostrengthresidentialcoaches->created_by = $rc_id;
                     $staffnutritionistchef->status = 1;
                     $staffnutritionistchef->save();
-                
+
                  }
             }
             // dd($staff_nutritionist_chef_value['snc_designation']);
-            
-            foreach ($request->sport_science_staff_doctor as $sport_science_staff_doctor_key => $sport_science_staff_doctor_value) 
+
+            foreach ($request->sport_science_staff_doctor as $sport_science_staff_doctor_key => $sport_science_staff_doctor_value)
             {
                 // dd($sport_science_staff_doctor_value);
-               
-                if (  isset($sport_science_staff_doctor_value['id']) &&  $sport_science_staff_doctor_value['id'] != '') 
-                {                
+
+                if (  isset($sport_science_staff_doctor_value['id']) &&  $sport_science_staff_doctor_value['id'] != '')
+                {
 
                     $sportsciencestaffdoctor = Sportsciencestaffdoctors::findOrFail($sport_science_staff_doctor_value['id']);
-                    $sportsciencestaffdoctor->ssd_designation = $sport_science_staff_doctor_value['ssd_designation'];    
-                    $sportsciencestaffdoctor->ssd_2018_19 = $sport_science_staff_doctor_value['ssd_2018_19'];    
-                    $sportsciencestaffdoctor->ssd_2019_20 = $sport_science_staff_doctor_value['ssd_2019_20'];    
-                    $sportsciencestaffdoctor->ssd_2020_21 = $sport_science_staff_doctor_value['ssd_2020_21'];    
-                    $sportsciencestaffdoctor->ssd_2021_22 = $sport_science_staff_doctor_value['ssd_2021_22'];    
-                    $sportsciencestaffdoctor->ssd_2022_23=  $sport_science_staff_doctor_value['ssd_2022_23'];                    
+                    $sportsciencestaffdoctor->ssd_designation = $sport_science_staff_doctor_value['ssd_designation'];
+                    $sportsciencestaffdoctor->ssd_2018_19 = $sport_science_staff_doctor_value['ssd_2018_19'];
+                    $sportsciencestaffdoctor->ssd_2019_20 = $sport_science_staff_doctor_value['ssd_2019_20'];
+                    $sportsciencestaffdoctor->ssd_2020_21 = $sport_science_staff_doctor_value['ssd_2020_21'];
+                    $sportsciencestaffdoctor->ssd_2021_22 = $sport_science_staff_doctor_value['ssd_2021_22'];
+                    $sportsciencestaffdoctor->ssd_2022_23=  $sport_science_staff_doctor_value['ssd_2022_23'];
                     // $Parttwocoachsupportstaff->created_for = $value['project_center_id'];
                     $sportsciencestaffdoctor->updated_by = $rc_id;
                     $sportsciencestaffdoctor->status = 1;
                     $sportsciencestaffdoctor->save();
-                }else{                    
+                }else{
                     $sportsciencestaffdoctor = new Sportsciencestaffdoctors();
-                    $sportsciencestaffdoctor->ssd_designation = $sport_science_staff_doctor_value['ssd_designation'];    
-                    $sportsciencestaffdoctor->ssd_2018_19 = $sport_science_staff_doctor_value['ssd_2018_19'];    
-                    $sportsciencestaffdoctor->ssd_2019_20 = $sport_science_staff_doctor_value['ssd_2019_20'];    
-                    $sportsciencestaffdoctor->ssd_2020_21 = $sport_science_staff_doctor_value['ssd_2020_21'];    
-                    $sportsciencestaffdoctor->ssd_2021_22 = $sport_science_staff_doctor_value['ssd_2021_22'];    
+                    $sportsciencestaffdoctor->ssd_designation = $sport_science_staff_doctor_value['ssd_designation'];
+                    $sportsciencestaffdoctor->ssd_2018_19 = $sport_science_staff_doctor_value['ssd_2018_19'];
+                    $sportsciencestaffdoctor->ssd_2019_20 = $sport_science_staff_doctor_value['ssd_2019_20'];
+                    $sportsciencestaffdoctor->ssd_2020_21 = $sport_science_staff_doctor_value['ssd_2020_21'];
+                    $sportsciencestaffdoctor->ssd_2021_22 = $sport_science_staff_doctor_value['ssd_2021_22'];
                     $sportsciencestaffdoctor->ssd_2022_23= $sport_science_staff_doctor_value['ssd_2022_23'];
                     // $Parttwocoachsupportstaff->created_for = $value['project_center_id'];
                     $sportsciencestaffdoctor->created_by = $rc_id;
                     // $parttwostrengthresidentialcoaches->created_by = $rc_id;
                     $sportsciencestaffdoctor->status = 1;
                     $sportsciencestaffdoctor->save();
-                
+
                  }
             }
             // dd(123);
             return redirect()->route('review.index');
            }
-        
-        
-        
+
+
+
         //    public function deleteDatabyId($id){
-         
-        //     $Users = new ReviewSportData;        
-        //     $Users = ReviewSportData::find($id); 
+
+        //     $Users = new ReviewSportData;
+        //     $Users = ReviewSportData::find($id);
         //     $Users->delete();
         //     return response()->json(['success' => true,'message'=>'Data Successfully Deleted!!!']);
-                
+
         //    }
         //    public function DeleteDataFormTwo($id){
         //     Form_two::find($id)->delete();
@@ -1797,14 +1797,14 @@ class ReviewController extends Controller
 
             $user_id = Session::get('user')->user_id;
                 try {
-        
+
                     $parttwocoachsupportstaff = Parttwocoachsupportstaffs::findOrFail($id);
-        
+
                     if ($parttwocoachsupportstaff->delete()) {
                         $parttwocoachsupportstaff->deleted_by = $user_id;
                         $parttwocoachsupportstaff->save();
                         return response()->json(['success' => true, 'message' => 'Records Deleted.']);
-        
+
                     }else{
                         return response()->json(['success' => true, 'message' => 'Records Deleted.']);
                     }
@@ -1818,14 +1818,14 @@ class ReviewController extends Controller
         //     $user_id = Session::get('user')->user_id;
         //     // dd($user_id);
         //         try {
-        
+
         //             $form_playfield = Form_two::findOrFail($id);
-        
+
         //             if ($form_playfield->delete()) {
         //                 $form_playfield->deleted_by = $user_id;
         //                 $form_playfield->save();
         //                 return response()->json(['success' => true, 'message' => 'Records Deleted.']);
-        
+
         //             }else{
         //                 return response()->json(['success' => true, 'message' => 'Records Deleted.']);
         //             }
@@ -1833,20 +1833,20 @@ class ReviewController extends Controller
         //             return response()->json(['success' => false, 'message' => $ex->getMessage()]);
         //         }
         //    }
-        
+
            public function parttwoathletesById($id){
-        
+
             $user_id = Session::get('user')->user_id;
-        
+
                 try {
-        
+
                     $parttwoathlete = Parttwoathletes::findOrFail($id);
-        
+
                     if ($parttwoathlete->delete()) {
                         $parttwoathlete->deleted_by = $user_id;
                         $parttwoathlete->save();
                         return response()->json(['success' => true, 'message' => 'Records Deleted.']);
-        
+
                     }else{
                         return response()->json(['success' => true, 'message' => 'Records Deleted.']);
                     }
@@ -1854,23 +1854,23 @@ class ReviewController extends Controller
                     return response()->json(['success' => false, 'message' => $ex->getMessage()]);
                 }
            }
-           
-           
+
+
            public function twopartresidentialcoachesById($id){
 
 
-        
+
             $user_id = Session::get('user')->user_id;
-        
+
                 try {
-        
+
                     $parttwoathlete = Parttwostrengthresidentialcoachesdisciplines::findOrFail($id);
-        
+
                     if ($parttwoathlete->delete()) {
                         $parttwoathlete->deleted_by = $user_id;
                         $parttwoathlete->save();
                         return response()->json(['success' => true, 'message' => 'Records Deleted.']);
-        
+
                     }else{
                         return response()->json(['success' => true, 'message' => 'Records Deleted.']);
                     }
@@ -1878,22 +1878,22 @@ class ReviewController extends Controller
                     return response()->json(['success' => false, 'message' => $ex->getMessage()]);
                 }
            }
-           
+
                 public function nutritionistchefById($id){
 
 
-    
+
         $user_id = Session::get('user')->user_id;
-    
+
             try {
-    
+
                 $parttwoathlete = Staffnutritionistchefs::findOrFail($id);
-    
+
                 if ($parttwoathlete->delete()) {
                     $parttwoathlete->deleted_by = $user_id;
                     $parttwoathlete->save();
                     return response()->json(['success' => true, 'message' => 'Records Deleted.']);
-    
+
                 }else{
                     return response()->json(['success' => true, 'message' => 'Records Deleted.']);
                 }
@@ -1901,22 +1901,22 @@ class ReviewController extends Controller
                 return response()->json(['success' => false, 'message' => $ex->getMessage()]);
             }
         }
-    
+
         public function sciencestaffdoctorById($id){
 
 
-    
+
         $user_id = Session::get('user')->user_id;
-       
+
             try {
-    
+
                 $parttwoathlete = Sportsciencestaffdoctors::findOrFail($id);
-    
+
                 if ($parttwoathlete->delete()) {
                     $parttwoathlete->deleted_by = $user_id;
                     $parttwoathlete->save();
                     return response()->json(['success' => true, 'message' => 'Records Deleted.']);
-    
+
                 }else{
                     return response()->json(['success' => true, 'message' => 'Records Deleted.']);
                 }
@@ -1928,18 +1928,18 @@ class ReviewController extends Controller
         public function administrativesupportsById($id){
 
 
-    
+
         $user_id = Session::get('user')->user_id;
-    
+
             try {
-    
+
                 $AddStaffAdministrator = FormTwoAddStaffAdministrator::findOrFail($id);
-    
+
                 if ($AddStaffAdministrator->delete()) {
                     $AddStaffAdministrator->deleted_by = $user_id;
                     $AddStaffAdministrator->save();
                     return response()->json(['success' => true, 'message' => 'Records Deleted.']);
-    
+
                 }else{
                     return response()->json(['success' => true, 'message' => 'Records Deleted.']);
                 }
@@ -1947,22 +1947,22 @@ class ReviewController extends Controller
                 return response()->json(['success' => false, 'message' => $ex->getMessage()]);
             }
         }
-    
+
         public function partsportsequipmentById($id){
 
 
-    
+
         $user_id = Session::get('user')->user_id;
-    
+
             try {
-    
+
                 $formTwoEquipment = FormTwoEquipment_consumable::findOrFail($id);
-    
+
                 if ($formTwoEquipment->delete()) {
                     $formTwoEquipment->deleted_by = $user_id;
                     $formTwoEquipment->save();
                     return response()->json(['success' => true, 'message' => 'Records Deleted.']);
-    
+
                 }else{
                     return response()->json(['success' => true, 'message' => 'Records Deleted.']);
                 }
@@ -1970,22 +1970,22 @@ class ReviewController extends Controller
                 return response()->json(['success' => false, 'message' => $ex->getMessage()]);
             }
         }
-    
+
         public function sportsscienceequipmentById($id){
 
 
-    
+
         $user_id = Session::get('user')->user_id;
-    
+
             try {
-    
+
                 $twosportscience = FormTwoSportScience::findOrFail($id);
-    
+
                 if ($twosportscience->delete()) {
                     $twosportscience->deleted_by = $user_id;
                     $twosportscience->save();
                     return response()->json(['success' => true, 'message' => 'Records Deleted.']);
-    
+
                 }else{
                     return response()->json(['success' => true, 'message' => 'Records Deleted.']);
                 }
@@ -1997,18 +1997,18 @@ class ReviewController extends Controller
         public function twoparttwoequipmentById($id){
 
 
-    
+
         $user_id = Session::get('user')->user_id;
-    
+
             try {
-    
+
                 $formTwoEquipment = FormTwoEquipment::findOrFail($id);
-    
+
                 if ($formTwoEquipment->delete()) {
                     $formTwoEquipment->deleted_by = $user_id;
                     $formTwoEquipment->save();
                     return response()->json(['success' => true, 'message' => 'Records Deleted.']);
-    
+
                 }else{
                     return response()->json(['success' => true, 'message' => 'Records Deleted.']);
                 }
@@ -2016,22 +2016,22 @@ class ReviewController extends Controller
                 return response()->json(['success' => false, 'message' => $ex->getMessage()]);
             }
         }
-        
+
         public function playfieldById($id){
 
 
             // dd(123);
             $user_id = Session::get('user')->user_id;
-    
+
             try {
-    
+
                 $form_two_paly = Form_two::findOrFail($id);
-    
+
                 if ($form_two_paly->delete()) {
                     $form_two_paly->deleted_by = $user_id;
                     $form_two_paly->save();
                     return response()->json(['success' => true, 'message' => 'Records Deleted.']);
-    
+
                 }else{
                     return response()->json(['success' => true, 'message' => 'Records Deleted.']);
                 }
@@ -2229,7 +2229,7 @@ public function DeleteDatapartthreethree($id){
 //        $data = Part_two_other_facilitie::whereCreatedBy($user_id)->get();
 //         dd($data);
 //        $pdf = PDF::loadView('myPDF', $data);
-   
+
 //        return $pdf->download('codesolutionstuff.pdf');
 //    }
 

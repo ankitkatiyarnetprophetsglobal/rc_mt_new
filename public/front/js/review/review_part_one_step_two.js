@@ -6,35 +6,35 @@ function getDisciplineHtml(data){
   return dis_html1;
 }
 
-$(document).on('change','.disciplin_grab',function(){
-   var form = $(this).data('id');
-  // $(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val();
-  if(form == 'form_1'){
-    delete data_dict.form1[$(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val()];
-  }
-  if(form == 'form_2'){
-    delete data_dict.form2[$(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val()];
-  }
-  if(form == 'form_3'){
-    delete data_dict.form3[$(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val()];
-  }
-  if(form == 'form_4'){
-    delete data_dict.form4[$(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val()];
-  }
-  if(form == 'form_5'){
-    delete data_dict.form5[$(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val()];
-  }
-  if(form == 'form_6'){
-    delete data_dict.form6[$(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val()];
-  }
-  if(form == 'form_7'){
-    delete data_dict.form7[$(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val()];
-  }
-  if(form == 'form_8'){
-    delete data_dict.form8[$(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val()];
-  }
+// $(document).on('change','.disciplin_grab',function(){
+//    var form = $(this).data('id');
+//   // $(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val();
+//   if(form == 'form_1'){
+//     delete data_dict.form1[$(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val()];
+//   }
+//   if(form == 'form_2'){
+//     delete data_dict.form2[$(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val()];
+//   }
+//   if(form == 'form_3'){
+//     delete data_dict.form3[$(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val()];
+//   }
+//   if(form == 'form_4'){
+//     delete data_dict.form4[$(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val()];
+//   }
+//   if(form == 'form_5'){
+//     delete data_dict.form5[$(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val()];
+//   }
+//   if(form == 'form_6'){
+//     delete data_dict.form6[$(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val()];
+//   }
+//   if(form == 'form_7'){
+//     delete data_dict.form7[$(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val()];
+//   }
+//   if(form == 'form_8'){
+//     delete data_dict.form8[$(`.${$(this).data('id')}_discipline_${$(this).data("counting_id")} option:selected`).val()];
+//   }
   
-})
+// })
 
 
 
@@ -50,7 +50,7 @@ $(document).on('click','.medal_won_step_two',function(){
 
   form_first_html = `<tr class="row_medals_won_${counting}">
   <td><select class="form-select form_1_discipline_${counting} form_1_discipline disciplin_grab" data-id = "form_1" data-counting_id="${counting}"  aria-label="Default select example" name="step_two[form_1][${counting}][discipline_id]" required>
-  <option disabled selected value="">Select </option>
+  <option disabled selected value="">Select</option>
   ${getDisciplineHtml(data_dict.form1)}
     </select>
     <input type="hidden" name="step_two[form_1][${counting}][team_type]" value='team' class="form-control" required>
@@ -80,7 +80,7 @@ $(document).on('click','.medal_won_category_2',function(){
 form_second_html = `<tr class="row_medals_won_category_2_${counting2}">
   <td><select class="form-select form_2_discipline_${counting2} form_2_discipline disciplin_grab" data-id = "form_2" data-counting_id="${counting2}"  aria-label="Default select example" name="step_two[form_2][${counting2}][discipline_id]" required>
       
-  <option disabled selected value="">Select </option>
+  <option disabled selected value="">Select</option>
   ${getDisciplineHtml(data_dict.form2)}
     </select>
     <input type="hidden" name="step_two[form_2][${counting2}][team_type]" value='team' class="form-control" required>
@@ -112,7 +112,7 @@ $(document).on('click','.medal_won_category_3',function(){
   form_second_html = `<tr class="row_medals_won_category_3_${counting3}">
   <td><select class="form-select form_3_discipline_${counting3} form_3_discipline disciplin_grab" data-id = "form_3" data-counting_id="${counting3}"  aria-label="Default select example" name="step_two[form_3][${counting3}][discipline_id]" required>
      
-  <option disabled selected value="">Select </option>
+  <option disabled selected value="">Select</option>
   ${getDisciplineHtml(data_dict.form3)}
     </select>
     <input type="hidden" name="step_two[form_3][${counting3}][team_type]" value='team' class="form-control" required>
@@ -143,7 +143,7 @@ $(document).on('click','.participation_category_1',function(){
 form_four_html = `<tr class="row_participation_cat_1_${counting4}">
   <td><select class="form-select form_4_discipline_${counting4} form_4_discipline disciplin_grab" data-id = "form_4" data-counting_id="${counting4}"  aria-label="Default select example" name="step_two[form_4][${counting4}][discipline_id]" required>
      
-  <option disabled selected value="">Select </option>
+  <option disabled selected value="">Select</option>
   ${getDisciplineHtml(data_dict.form4)}
     </select>
     <input type="hidden" name="step_two[form_4][${counting4}][team_type]" value='team' class="form-control" required>
@@ -174,7 +174,7 @@ $(document).on('click','.participation_category_2',function(){
   form_five_html = `<tr class="row_participation_cat_2_${counting5}">
   <td><select class="form-select form_5_discipline_${counting5} form_5_discipline disciplin_grab" data-id = "form_5" data-counting_id="${counting5}"  aria-label="Default select example" name="step_two[form_5][${counting5}][discipline_id]" required>
      
-  <option disabled selected value="">Select </option>
+  <option disabled selected value="">Select</option>
   ${getDisciplineHtml(data_dict.form5)}
     </select>
     <input type="hidden" name="step_two[form_5][${counting5}][team_type]" value='team' class="form-control" required>
@@ -205,7 +205,7 @@ $(document).on('click','.participation_category_3',function(){
   form_six_html = `<tr class="row_participation_cat_3_${counting6}">
   <td><select class="form-select form_6_discipline_${counting6} form_6_discipline disciplin_grab" data-id = "form_6" data-counting_id="${counting6}"  aria-label="Default select example" name="step_two[form_6][${counting6}][discipline_id]" required>
      
-  <option disabled selected value="">Select </option>
+  <option disabled selected value="">Select</option>
   ${getDisciplineHtml(data_dict.form6)}
     </select>
     <input type="hidden" name="step_two[form_6][${counting6}][team_type]" value='team' class="form-control" required>
@@ -236,7 +236,7 @@ $(document).on('click','.medal_won_national',function(){
   form_seven_html = `<tr class="row_medal_won_national_${counting7}">
   <td><select class="form-select form_7_discipline_${counting7} form_7_discipline disciplin_grab" data-id = "form_7" data-counting_id="${counting7}"  aria-label="Default select example" name="step_two[form_7][${counting7}][discipline_id]" required>
      
-  <option disabled selected value="">Select </option>
+  <option disabled selected value="">Select</option>
   ${getDisciplineHtml(data_dict.form7)}
     </select>
     <input type="hidden" name="step_two[form_7][${counting7}][team_type]" value='team' class="form-control" required>
@@ -267,7 +267,7 @@ $(document).on('click','.participation_national',function(){
   form_eight_html = `<tr class="row_participation_national_${counting8}">
   <td><select class="form-select form_8_discipline_${counting8} form_8_discipline disciplin_grab" data-id = "form_8" data-counting_id="${counting8}"  aria-label="Default select example" name="step_two[form_8][${counting8}][discipline_id]" required>
      
-  <option disabled selected value="">Select </option>
+  <option disabled selected value="">Select</option>
   ${getDisciplineHtml(data_dict.form8)}
     </select>
     <input type="hidden" name="step_two[form_8][${counting8}][team_type]" value='team' class="form-control" required>
@@ -295,23 +295,23 @@ $('.form_eight_container').append(form_eight_html);
 
 
 $(document).on('click','.remove_btn_row_medals_won_cat_1',function(){
-  let discipline_id = $(`.form_1_discipline_${$(this).data("id")} option:selected`).val();
-  let discipline = $(`.form_1_discipline_${$(this).data("id")} option:selected`).text();
-  if(discipline != 'Select'){
-    data_dict.form1[discipline_id]={"discipline_id":discipline_id,"discipline":discipline};
+  // let discipline_id = $(`.form_1_discipline_${$(this).data("id")} option:selected`).val();
+  // let discipline = $(`.form_1_discipline_${$(this).data("id")} option:selected`).text();
+  // if(discipline != 'Select'){
+  //   data_dict.form1[discipline_id]={"discipline_id":discipline_id,"discipline":discipline};
    
-    if($(`.form_1_discipline[value='${discipline_id}']`).length > 0){
-      console.log("if");
-  }else{
-      console.log("else");
+  //   if($(`.form_1_discipline[value='${discipline_id}']`).length > 0){
+  //     console.log("if");
+  // }else{
+  //     console.log("else");
       
-          $(`.form_1_discipline`).append($("<option></option>")
-          .attr("value", discipline_id)
-          .text(discipline));
+  //         $(`.form_1_discipline`).append($("<option></option>")
+  //         .attr("value", discipline_id)
+  //         .text(discipline));
      
      
-  }
-  } 
+  // }
+  // } 
   if((counting*1) > 0){
     if(form_first_count > counting || form_first_count == counting){
      
@@ -352,23 +352,23 @@ $(document).on('click','.remove_btn_row_medals_won_cat_1',function(){
    
 });
 $(document).on('click','.remove_btn_row_medals_won_cat_2',function(){
-  let discipline_id = $(`.form_2_discipline_${$(this).data("id")} option:selected`).val();
-  let discipline = $(`.form_2_discipline_${$(this).data("id")} option:selected`).text();
-  if(discipline != 'Select'){
-    data_dict.form2[discipline_id]={"discipline_id":discipline_id,"discipline":discipline};
+  // let discipline_id = $(`.form_2_discipline_${$(this).data("id")} option:selected`).val();
+  // let discipline = $(`.form_2_discipline_${$(this).data("id")} option:selected`).text();
+  // if(discipline != 'Select'){
+  //   data_dict.form2[discipline_id]={"discipline_id":discipline_id,"discipline":discipline};
    
-    if($(`.form_2_discipline[value='${discipline_id}']`).length > 0){
-      console.log("if");
-  }else{
-      console.log("else");
+  //   if($(`.form_2_discipline[value='${discipline_id}']`).length > 0){
+  //     console.log("if");
+  // }else{
+  //     console.log("else");
       
-          $(`.form_2_discipline`).append($("<option></option>")
-          .attr("value", discipline_id)
-          .text(discipline));
+  //         $(`.form_2_discipline`).append($("<option></option>")
+  //         .attr("value", discipline_id)
+  //         .text(discipline));
      
      
-  }
-  }  
+  // }
+  // }  
 if((counting2*1) > 0){
   if(form_second_count > counting2 || form_second_count == counting2){
      
@@ -409,23 +409,23 @@ counting2--;
    
 });
 $(document).on('click','.remove_btn_row_medals_won_cat_3',function(){
-  let discipline_id = $(`.form_3_discipline_${$(this).data("id")} option:selected`).val();
-  let discipline = $(`.form_3_discipline_${$(this).data("id")} option:selected`).text();
-  if(discipline != 'Select'){
-    data_dict.form3[discipline_id]={"discipline_id":discipline_id,"discipline":discipline};
+  // let discipline_id = $(`.form_3_discipline_${$(this).data("id")} option:selected`).val();
+  // let discipline = $(`.form_3_discipline_${$(this).data("id")} option:selected`).text();
+  // if(discipline != 'Select'){
+  //   data_dict.form3[discipline_id]={"discipline_id":discipline_id,"discipline":discipline};
    
-    if($(`.form_3_discipline[value='${discipline_id}']`).length > 0){
-      console.log("if");
-  }else{
-      console.log("else");
+  //   if($(`.form_3_discipline[value='${discipline_id}']`).length > 0){
+  //     console.log("if");
+  // }else{
+  //     console.log("else");
       
-          $(`.form_1_discipline`).append($("<option></option>")
-          .attr("value", discipline_id)
-          .text(discipline));
+  //         $(`.form_1_discipline`).append($("<option></option>")
+  //         .attr("value", discipline_id)
+  //         .text(discipline));
      
      
-  }
-  }
+  // }
+  // }
    
 if((counting3*1) > 0){
 if(form_three_count > counting3 || form_three_count == counting3){
@@ -466,23 +466,23 @@ alert('You cannot remove last row!');
    
 });
 $(document).on('click','.remove_btn_row_participation_cat_1',function(){
-  let discipline_id = $(`.form_4_discipline_${$(this).data("id")} option:selected`).val();
-  let discipline = $(`.form_4_discipline_${$(this).data("id")} option:selected`).text();
-  if(discipline != 'Select'){
-    data_dict.form4[discipline_id]={"discipline_id":discipline_id,"discipline":discipline};
+  // let discipline_id = $(`.form_4_discipline_${$(this).data("id")} option:selected`).val();
+  // let discipline = $(`.form_4_discipline_${$(this).data("id")} option:selected`).text();
+  // if(discipline != 'Select'){
+  //   data_dict.form4[discipline_id]={"discipline_id":discipline_id,"discipline":discipline};
    
-    if($(`.form_4_discipline[value='${discipline_id}']`).length > 0){
-      console.log("if");
-  }else{
-      console.log("else");
+  //   if($(`.form_4_discipline[value='${discipline_id}']`).length > 0){
+  //     console.log("if");
+  // }else{
+  //     console.log("else");
       
-          $(`.form_4_discipline`).append($("<option></option>")
-          .attr("value", discipline_id)
-          .text(discipline));
+  //         $(`.form_4_discipline`).append($("<option></option>")
+  //         .attr("value", discipline_id)
+  //         .text(discipline));
      
      
-  }
-  }
+  // }
+  // }
    if((counting4*1) > 0){
     if(form_four_count > counting4 || form_four_count == counting4){
      
@@ -523,23 +523,23 @@ $(document).on('click','.remove_btn_row_participation_cat_1',function(){
    
 });
 $(document).on('click','.remove_btn_row_participation_cat_2',function(){
-  let discipline_id = $(`.form_5_discipline_${$(this).data("id")} option:selected`).val();
-  let discipline = $(`.form_5_discipline_${$(this).data("id")} option:selected`).text();
-  if(discipline != 'Select'){
-    data_dict.form5[discipline_id]={"discipline_id":discipline_id,"discipline":discipline};
+  // let discipline_id = $(`.form_5_discipline_${$(this).data("id")} option:selected`).val();
+  // let discipline = $(`.form_5_discipline_${$(this).data("id")} option:selected`).text();
+  // if(discipline != 'Select'){
+  //   data_dict.form5[discipline_id]={"discipline_id":discipline_id,"discipline":discipline};
    
-    if($(`.form_5_discipline[value='${discipline_id}']`).length > 0){
-      console.log("if");
-  }else{
-      console.log("else");
+  //   if($(`.form_5_discipline[value='${discipline_id}']`).length > 0){
+  //     console.log("if");
+  // }else{
+  //     console.log("else");
       
-          $(`.form_5_discipline`).append($("<option></option>")
-          .attr("value", discipline_id)
-          .text(discipline));
+  //         $(`.form_5_discipline`).append($("<option></option>")
+  //         .attr("value", discipline_id)
+  //         .text(discipline));
      
      
-  }
-  }
+  // }
+  // }
    if((counting5*1) > 0){
     if(form_five_count > counting5 || form_five_count == counting5){
      
@@ -580,23 +580,23 @@ $(document).on('click','.remove_btn_row_participation_cat_2',function(){
    
 });
 $(document).on('click','.remove_btn_row_participation_cat_3',function(){
-  let discipline_id = $(`.form_6_discipline_${$(this).data("id")} option:selected`).val();
-  let discipline = $(`.form_6_discipline_${$(this).data("id")} option:selected`).text();
-  if(discipline != 'Select'){
-    data_dict.form6[discipline_id]={"discipline_id":discipline_id,"discipline":discipline};
+  // let discipline_id = $(`.form_6_discipline_${$(this).data("id")} option:selected`).val();
+  // let discipline = $(`.form_6_discipline_${$(this).data("id")} option:selected`).text();
+  // if(discipline != 'Select'){
+  //   data_dict.form6[discipline_id]={"discipline_id":discipline_id,"discipline":discipline};
    
-    if($(`.form_6_discipline[value='${discipline_id}']`).length > 0){
-      console.log("if");
-  }else{
-      console.log("else");
+  //   if($(`.form_6_discipline[value='${discipline_id}']`).length > 0){
+  //     console.log("if");
+  // }else{
+  //     console.log("else");
       
-          $(`.form_6_discipline`).append($("<option></option>")
-          .attr("value", discipline_id)
-          .text(discipline));
+  //         $(`.form_6_discipline`).append($("<option></option>")
+  //         .attr("value", discipline_id)
+  //         .text(discipline));
      
      
-  }
-  }
+  // }
+  // }
    if((counting6*1) > 0){
     if(form_six_count > counting6 || form_five_count == counting6){
      
@@ -637,23 +637,23 @@ $(document).on('click','.remove_btn_row_participation_cat_3',function(){
    
 });
 $(document).on('click','.remove_btn_row_medal_won_national',function(){
-  let discipline_id = $(`.form_7_discipline_${$(this).data("id")} option:selected`).val();
-  let discipline = $(`.form_7_discipline_${$(this).data("id")} option:selected`).text();
-  if(discipline != 'Select'){
-    data_dict.form7[discipline_id]={"discipline_id":discipline_id,"discipline":discipline};
+  // let discipline_id = $(`.form_7_discipline_${$(this).data("id")} option:selected`).val();
+  // let discipline = $(`.form_7_discipline_${$(this).data("id")} option:selected`).text();
+  // if(discipline != 'Select'){
+  //   data_dict.form7[discipline_id]={"discipline_id":discipline_id,"discipline":discipline};
    
-    if($(`.form_7_discipline[value='${discipline_id}']`).length > 0){
-      console.log("if");
-  }else{
-      console.log("else");
+  //   if($(`.form_7_discipline[value='${discipline_id}']`).length > 0){
+  //     console.log("if");
+  // }else{
+  //     console.log("else");
       
-          $(`.form_7_discipline`).append($("<option></option>")
-          .attr("value", discipline_id)
-          .text(discipline));
+  //         $(`.form_7_discipline`).append($("<option></option>")
+  //         .attr("value", discipline_id)
+  //         .text(discipline));
      
      
-  }
-  }
+  // }
+  // }
    if((counting7*1) > 0){
     if(form_seven_count > counting7 || form_seven_count == counting7){
      
@@ -694,23 +694,23 @@ $(document).on('click','.remove_btn_row_medal_won_national',function(){
    
 });
 $(document).on('click','.remove_btn_row_participation_national',function(){
-  let discipline_id = $(`.form_8_discipline_${$(this).data("id")} option:selected`).val();
-  let discipline = $(`.form_8_discipline_${$(this).data("id")} option:selected`).text();
-  if(discipline != 'Select'){
-    data_dict.form8[discipline_id]={"discipline_id":discipline_id,"discipline":discipline};
+  // let discipline_id = $(`.form_8_discipline_${$(this).data("id")} option:selected`).val();
+  // let discipline = $(`.form_8_discipline_${$(this).data("id")} option:selected`).text();
+  // if(discipline != 'Select'){
+  //   data_dict.form8[discipline_id]={"discipline_id":discipline_id,"discipline":discipline};
    
-    if($(`.form_8_discipline[value='${discipline_id}']`).length > 0){
-      console.log("if");
-  }else{
-      console.log("else");
+  //   if($(`.form_8_discipline[value='${discipline_id}']`).length > 0){
+  //     console.log("if");
+  // }else{
+  //     console.log("else");
       
-          $(`.form_8_discipline`).append($("<option></option>")
-          .attr("value", discipline_id)
-          .text(discipline));
+  //         $(`.form_8_discipline`).append($("<option></option>")
+  //         .attr("value", discipline_id)
+  //         .text(discipline));
      
      
-  }
-  }
+  // }
+  // }
    if((counting8*1) > 0){
     if(form_eight_count > counting8 || form_eight_count == counting8){
      

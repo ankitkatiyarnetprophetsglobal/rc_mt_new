@@ -88,13 +88,10 @@
                         <tbody class="form_first_container">
                             @if($form_one->count())
                             @foreach($form_one as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form1[dis_id];
-                            </script>
+                           
                             <tr class="senior_national_coaching_camp_{{$key}}">
                                 <td><select class="form-select form_1_discipline_{{$key}} form_1_discipline disciplin_grab " data-id="form_1" data-counting_id="{{$key}}" name="step_three[form_1][{{$key}}][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $k => $val)
                                         <option value="{{$val->discipline_id}}" @if($val->discipline_id == $value->discipline_id) selected @endif>{{$val->discipline}}</option>
                                         @endforeach
@@ -125,7 +122,7 @@
 
                             <tr class="senior_national_coaching_camp_0">
                                 <td><select class="form-select form_1_discipline_0 form_1_discipline disciplin_grab " data-id="form_1" data-counting_id="0"  name="step_three[form_1][0][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $key => $value)
                                         <option value="{{$value->discipline_id}}">{{$value->discipline}}</option>
                                         @endforeach
@@ -192,13 +189,10 @@
                         <tbody class="form_second_container">
                             @if($form_two->count())
                             @foreach($form_two as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form2[dis_id];
-                            </script>
+                         
                             <tr class="junior_national_coaching_camp_{{$key}}">
                                 <td><select class="form-select form_2_discipline_{{$key}} form_2_discipline disciplin_grab " data-id="form_2" data-counting_id="{{$key}}"  name="step_three[form_2][{{$key}}][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $k => $val)
                                         <option value="{{$val->discipline_id}}" @if($val->discipline_id == $value->discipline_id) selected @endif>{{$val->discipline}}</option>
                                         @endforeach
@@ -228,8 +222,8 @@
                             @else
 
                             <tr class="junior_national_coaching_camp_0">
-                                <td><select class="form-select form_2_discipline_0 form_2_discipline disciplin_grab " data-id="form_2" data-counting_id="{{$key}}"  name="step_three[form_2][0][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                <td><select class="form-select form_2_discipline_0 form_2_discipline disciplin_grab " data-id="form_2" data-counting_id="0"  name="step_three[form_2][0][discipline_id]" aria-label="Default select example" required>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $key => $value)
                                         <option value="{{$value->discipline_id}}">{{$value->discipline}}</option>
                                         @endforeach
@@ -295,13 +289,10 @@
                         <tbody class="form_three_container">
                             @if($form_three->count())
                             @foreach($form_three as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form3[dis_id];
-                            </script>
+                           
                             <tr class="under_tops_{{$key}}">
                                 <td><select class="form-select form_3_discipline_{{$key}} form_3_discipline disciplin_grab " data-id="form_3" data-counting_id="{{$key}}"  name="step_three[form_3][{{$key}}][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $k => $val)
                                         <option value="{{$val->discipline_id}}" @if($val->discipline_id == $value->discipline_id) selected @endif>{{$val->discipline}}</option>
                                         @endforeach
@@ -332,7 +323,7 @@
 
                             <tr class="under_tops_0">
                                 <td><select class="form-select form_3_discipline_0 form_1_discipline disciplin_grab " data-id="form_3" data-counting_id="0"  name="step_three[form_3][0][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $key => $value)
                                         <option value="{{$value->discipline_id}}">{{$value->discipline}}</option>
                                         @endforeach
@@ -398,13 +389,10 @@
                         <tbody class="form_four_container">
                             @if($form_four->count())
                             @foreach($form_four as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form4[dis_id];
-                            </script>
+                           
                             <tr class="under_developmental_athlete_{{$key}}">
                                 <td><select class="form-select form_4_discipline_{{$key}} form_4_discipline disciplin_grab " data-id="form_4" data-counting_id="{{$key}}"  name="step_three[form_4][{{$key}}][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $k => $val)
                                         <option value="{{$val->discipline_id}}" @if($val->discipline_id == $value->discipline_id) selected @endif>{{$val->discipline}}</option>
                                         @endforeach
@@ -435,7 +423,7 @@
 
                             <tr class="under_developmental_athlete_0">
                                 <td><select class="form-select form_4_discipline_0 form_4_discipline disciplin_grab " data-id="form_4" data-counting_id="0"  name="step_three[form_4][0][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $key => $value)
                                         <option value="{{$value->discipline_id}}">{{$value->discipline}}</option>
                                         @endforeach
@@ -501,13 +489,10 @@
                         <tbody class="form_five_container">
                             @if($form_five->count())
                             @foreach($form_five as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form5[dis_id];
-                            </script>
+                         
                             <tr class="under_ki_{{$key}}">
                                 <td><select class="form-select form_5_discipline_{{$key}} form_5_discipline disciplin_grab " data-id="form_5" data-counting_id="{{$key}}"  name="step_three[form_5][{{$key}}][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $k => $val)
                                         <option value="{{$val->discipline_id}}" @if($val->discipline_id == $value->discipline_id) selected @endif>{{$val->discipline}}</option>
                                         @endforeach
@@ -538,7 +523,7 @@
 
                             <tr class="under_ki_0">
                                 <td><select class="form-select form_5_discipline_0 form_5_discipline disciplin_grab " data-id="form_5" data-counting_id="0"  name="step_three[form_5][0][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $key => $value)
                                         <option value="{{$value->discipline_id}}">{{$value->discipline}}</option>
                                         @endforeach
@@ -604,13 +589,10 @@
                         <tbody class="form_six_container">
                             @if($form_six->count())
                             @foreach($form_six as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form6[dis_id];
-                            </script>
+                           
                             <tr class="weeded_out_{{$key}}">
                                 <td><select class="form-select form_6_discipline_{{$key}} form_6_discipline disciplin_grab " data-id="form_6" data-counting_id="{{$key}}"  name="step_three[form_6][{{$key}}][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $k => $val)
                                         <option value="{{$val->discipline_id}}" @if($val->discipline_id == $value->discipline_id) selected @endif>{{$val->discipline}}</option>
                                         @endforeach
@@ -641,7 +623,7 @@
 
                             <tr class="weeded_out_0">
                                 <td><select class="form-select form_6_discipline_0 form_6_discipline disciplin_grab " data-id="form_6" data-counting_id="0"  name="step_three[form_6][0][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $key => $value)
                                         <option value="{{$value->discipline_id}}">{{$value->discipline}}</option>
                                         @endforeach
@@ -707,13 +689,10 @@
                         <tbody class="form_seven_container">
                             @if($form_seven->count())
                             @foreach($form_seven as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form7[dis_id];
-                            </script>
+                          
                             <tr class="newly_inducted_{{$key}}">
                                 <td><select class="form-select form_7_discipline_{{$key}} form_7_discipline disciplin_grab " data-id="form_7" data-counting_id="{{$key}}"  name="step_three[form_7][{{$key}}][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $k => $val)
                                         <option value="{{$val->discipline_id}}" @if($val->discipline_id == $value->discipline_id) selected @endif>{{$val->discipline}}</option>
                                         @endforeach
@@ -743,8 +722,8 @@
                             @else
 
                             <tr class="newly_inducted_0">
-                                <td><select class="form-select form_7_discipline_0 form_7_discipline disciplin_grab " data-id="form_7" data-counting_id="{{$key}}"  name="step_three[form_7][0][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                <td><select class="form-select form_7_discipline_0 form_7_discipline disciplin_grab " data-id="form_7" data-counting_id="0"  name="step_three[form_7][0][discipline_id]" aria-label="Default select example" required>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $key => $value)
                                         <option value="{{$value->discipline_id}}">{{$value->discipline}}</option>
                                         @endforeach
@@ -810,13 +789,10 @@
                         <tbody class="form_eight_container">
                             @if($form_eight->count())
                             @foreach($form_eight as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form8[dis_id];
-                            </script>
+                          
                             <tr class="athletes_retained_{{$key}}">
                                 <td><select class="form-select form_8_discipline_{{$key}} form_8_discipline disciplin_grab " data-id="form_8" data-counting_id="{{$key}}"  name="step_three[form_8][{{$key}}][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $k => $val)
                                         <option value="{{$val->discipline_id}}" @if($val->discipline_id == $value->discipline_id) selected @endif>{{$val->discipline}}</option>
                                         @endforeach
@@ -847,7 +823,7 @@
 
                             <tr class="athletes_retained_0">
                                 <td><select class="form-select form_8_discipline_0 form_8_discipline disciplin_grab " data-id="form_8" data-counting_id="0"  name="step_three[form_8][0][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $key => $value)
                                         <option value="{{$value->discipline_id}}">{{$value->discipline}}</option>
                                         @endforeach
@@ -913,13 +889,10 @@
                         <tbody class="form_nine_container">
                             @if($form_nine->count())
                             @foreach($form_nine as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form9[dis_id];
-                            </script>
+                          
                             <tr class="employment_higher_studies_{{$key}}">
                                 <td><select class="form-select form_9_discipline_{{$key}} form_9_discipline disciplin_grab " data-id="form_9" data-counting_id="{{$key}}"  name="step_three[form_9][{{$key}}][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $k => $val)
                                         <option value="{{$val->discipline_id}}" @if($val->discipline_id == $value->discipline_id) selected @endif>{{$val->discipline}}</option>
                                         @endforeach
@@ -950,7 +923,7 @@
 
                             <tr class="employment_higher_studies_0">
                                 <td><select class="form-select form_9_discipline_0 form_9_discipline disciplin_grab " data-id="form_9" data-counting_id="0"  name="step_three[form_9][0][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $key => $value)
                                         <option value="{{$value->discipline_id}}">{{$value->discipline}}</option>
                                         @endforeach
@@ -1016,13 +989,10 @@
                         <tbody class="form_ten_container">
                             @if($form_ten->count())
                             @foreach($form_ten as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form10[dis_id];
-                            </script>
+                         
                             <tr class="scheme_personal_reasons_{{$key}}">
                                 <td><select class="form-select form_10_discipline_{{$key}} form_10_discipline disciplin_grab " data-id="form_10" data-counting_id="{{$key}}"  name="step_three[form_10][{{$key}}][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $k => $val)
                                         <option value="{{$val->discipline_id}}" @if($val->discipline_id == $value->discipline_id) selected @endif>{{$val->discipline}}</option>
                                         @endforeach
@@ -1052,8 +1022,8 @@
                             @else
 
                             <tr class="scheme_personal_reasons_0">
-                                <td><select class="form-select form_10_discipline_0 form_10_discipline disciplin_grab " data-id="form_1" data-counting_id="{{$key}}"  name="step_three[form_10][0][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                <td><select class="form-select form_10_discipline_0 form_10_discipline disciplin_grab " data-id="form_10" data-counting_id="0"  name="step_three[form_10][0][discipline_id]" aria-label="Default select example" required>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $key => $value)
                                         <option value="{{$value->discipline_id}}">{{$value->discipline}}</option>
                                         @endforeach
@@ -1106,13 +1076,10 @@
                         <tbody class="form_11_container">
                             @if($form_11->count())
                             @foreach($form_11 as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form11[dis_id];
-                            </script>
+                          
                             <tr class="domicile_{{$key}}">
                                 <td><select class="form-select" data-id="form_11"   name="step_three[form_11][{{$key}}][state_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($states as $s => $val)
                                         <option value="{{$val->id}}" @if($val->id == $value->state_id) selected @endif>{{$val->state_name}}</option>
                                         @endforeach
@@ -1123,7 +1090,7 @@
 
                                 </td>
                                 <td><select class="form-select form_11_discipline_{{$key}} form_11_discipline disciplin_grab " data-id="form_11" data-counting_id="{{$key}}"  name="step_three[form_11][{{$key}}][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $k => $val)
                                         <option value="{{$val->discipline_id}}" @if($val->discipline_id == $value->discipline_id) selected @endif>{{$val->discipline}}</option>
                                         @endforeach
@@ -1145,7 +1112,7 @@
 
                             <tr class="domicile_0">
                                 <td><select class="form-select"  name="step_three[form_11][0][state_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                     @foreach($states as $s => $val)
                                         <option value="{{$val->id}}" >{{$val->state_name}}</option>
                                         @endforeach
@@ -1156,7 +1123,7 @@
 
                                 </td>
                                 <td><select class="form-select form_11_discipline_0 form_11_discipline disciplin_grab " data-id="form_11" data-counting_id="0"  name="step_three[form_11][0][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $k => $val)
                                         <option value="{{$val->discipline_id}}" @if($val->discipline_id == $value->discipline_id) selected @endif>{{$val->discipline}}</option>
                                         @endforeach
@@ -1219,14 +1186,11 @@
                         <tbody class="form_12_container">
                             @if($form_12->count())
                             @foreach($form_12 as $key => $value)
-                            <script>
-                                dis_id = "{{$value->discipline_id}}";
-                                delete data_dict.form12[dis_id];
-                            </script>
+                        
                             <tr class="ncoe_{{$key}}">
                                 
                                 <td><select class="form-select form_12_discipline_{{$key}} form_12_discipline disciplin_grab " data-id="form_12" data-counting_id="{{$key}}"  name="step_three[form_12][{{$key}}][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $k => $val)
                                         <option value="{{$val->discipline_id}}" @if($val->discipline_id == $value->discipline_id) selected @endif>{{$val->discipline}}</option>
                                         @endforeach
@@ -1261,7 +1225,7 @@
                             <tr class="ncoe_0">
                                 
                                 <td><select class="form-select form_12_discipline_0 form_12_discipline disciplin_grab " data-id="form_12" data-counting_id="0"  name="step_three[form_12][0][discipline_id]" aria-label="Default select example" required>
-                                    <option disabled selected value="">Select </option>
+                                    <option disabled selected value="">Select</option>
                                         @foreach($dis_list as $k => $val)
                                         <option value="{{$val->discipline_id}}" >{{$val->discipline}}</option>
                                         @endforeach
@@ -1298,7 +1262,7 @@
         <!-- <button type="submit" class="btn btn-primary  d-block ms-auto">Next</button> -->
         
         <div class="d-flex justify-content-center">
-        <button class="btn btn-primary " onclick="history.back()">Back</button> &nbsp;
+            <a href="{{url('/review/part-one/step-two/'.encode5t($c_id))}}" class="btn btn-primary ">Back</a>&nbsp;
         <button type="submit" class="btn btn-primary ">Next</button> 
         </div>
     </form>

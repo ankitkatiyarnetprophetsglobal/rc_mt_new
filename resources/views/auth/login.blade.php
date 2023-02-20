@@ -43,7 +43,7 @@
               WELCOME BACK!
             </p>
             <div class="login-form row justify-content-center p-1">
-            
+
               <div class="col-lg-6 col-md-9 col-12 bg-white p-5">
                 @if (Session::has('message'))
                 <div class="alert alert-success">
@@ -56,10 +56,10 @@
                 </div>
                 @endif
                 <div class="d-flex justify-content-center align-items-center mb-4">
-                 
+
                     <img src="{{asset('public/front/themes/images/login/user.png')}}"  height="24px" width="24px" alt="">
                     <p class="login-heading ms-2 mb-0">LOG IN</p>
-                    
+
                 </div>
                 <form action="{{url('login')}}" method="POST" id="LoginForm">
                   @csrf
@@ -108,12 +108,7 @@
                 </form>
               </div>
             </div>
-            <a
-              href="http://192.168.23.254:8000/#/forgot-password"
-              class="forgot text-center mt-3 d-block text-decoration-underline"
-            >
-              Forgot your password?</a
-            >
+            {{-- <a href="http://192.168.23.254:8000/#/forgot-password" class="forgot text-center mt-3 d-block text-decoration-underline">Forgot your password?</a> --}}
           </div>
 
           <!-- <div class="col-6">asdas</div> -->
@@ -132,7 +127,7 @@
         $(document).on('keyup','#login_mobile_no',function(){
           $('#login_username').val("");
           $('#login_password').val("");
-          $('.error_password').text(''); 
+          $('.error_password').text('');
           $('.error_username').text('');
          })
         $(document).on('keyup','#login_username',function(){
@@ -152,12 +147,12 @@
         if ($('#login_password').hasClass('hide-password')){
             $('#login_password').attr('type','text');
             $('#login_password').removeClass('hide-password');
-            
+
         }else{
             $('#login_password').attr('type','password');
             $('#login_password').addClass('hide-password');
         }
-        
+
     });
     function encryptionAES(plainText) {
       let enc_Key = '7739826323491690';
@@ -172,41 +167,41 @@
     }).toString();
     return encrypted
   }
-  
+
   $(document).on('submit','#LoginForm',function(){
 
     if($('#login_username').val() == '' && $('#login_mobile_no').val() == ''){
-          $('.error_password').text(''); 
+          $('.error_password').text('');
           $('.error_mobile_no').text('');
            $('.error_username').text('Enter username.');
            $('#login_username').focus();
            return false;
     }else if($('#login_username').val() != '' &&   $('#login_password').val() == '' &&   $('#login_mobile_no').val() == ''){
-           $('.error_password').text('Enter password.'); 
-           $('.error_username').text(''); 
+           $('.error_password').text('Enter password.');
+           $('.error_username').text('');
            $('.error_mobile_no').text('');
            $('#login_password').focus();
-           return false; 
+           return false;
     }else if($('#login_username').val() == '' && $('#login_password').val() == '' && $('#login_mobile_no').val() != ''){
         var filter = /^[0-9-+]+$/;
       if (!filter.test($('#login_mobile_no').val())) {
-        $('.error_password').text(''); 
-        $('.error_username').text(''); 
+        $('.error_password').text('');
+        $('.error_username').text('');
         $('.error_mobile_no').text('Please enter a valid phone number.');
         $('#login_mobile_no').focus();
         return false;
       }
-           $('.error_password').text(''); 
-           $('.error_username').text(''); 
-           $('.error_mobile_no').text(''); 
+           $('.error_password').text('');
+           $('.error_username').text('');
+           $('.error_mobile_no').text('');
     }else{
       $('#login_password').attr('type','password');
       let password = encryptionAES($('#login_password').val());
       $('#login_password').val(password);
     }
 
-    
-    
+
+
   });
     </script>
   </body>

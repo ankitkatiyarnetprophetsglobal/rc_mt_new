@@ -36,6 +36,7 @@ Route::post('/login',[LoginController::class,'login']);
 });
 Route::middleware(['customAuth'])->prefix('review')->name('review.')->group(function () {
   Route::get('/index', [ReviewController::class, 'index'])->name('index');
+  Route::get('/download_excel', [ReviewController::class, 'download_excel'])->name('download_excel');
   Route::get('/part-one/step-one/{centerid?}', [ReviewController::class, 'partOneStepOne'])->name('partOneStepOne');
   Route::post('/part-one/step-one/store', [ReviewController::class, 'partOneStepOneStore'])->name('partOneStepOneStore');
   Route::get('/part-one/step-two/{centerid}', [ReviewController::class, 'partOneStepTwo'])->name('partOneStepTwo');
@@ -51,13 +52,17 @@ Route::middleware(['customAuth'])->prefix('review')->name('review.')->group(func
   Route::get('twopartresidentialcoachesById/{id}', [ReviewController::class, 'twopartresidentialcoachesById'])->name('twopartresidentialcoachesById');
   Route::get('nutritionistchefById/{id}', [ReviewController::class, 'nutritionistchefById'])->name('nutritionistchefById');
   Route::get('sciencestaffdoctorById/{id}', [ReviewController::class, 'sciencestaffdoctorById'])->name('sciencestaffdoctorById');
-  Route::get('play_field_ById/{id}', [ReviewController::class, 'play_field_ById'])->name('play_field_ById');
+  Route::get('play_field_ById/{id}', [ReviewController::class, 'playfieldById'])->name('play_field_ById');
+  Route::get('parttwoformeighttById/{id}', [ReviewController::class, 'parttwoformeighttById'])->name('parttwoformeighttById');
+  Route::get('parttwoformnineById/{id}', [ReviewController::class, 'parttwoformnineById'])->name('parttwoformnineById');
+  Route::get('administrativesupportsById/{id}', [ReviewController::class, 'administrativesupportsById'])->name('administrativesupportsById');
+  Route::get('partsportsequipmentById/{id}', [ReviewController::class, 'partsportsequipmentById'])->name('partsportsequipmentById');
 /////////shubham routes 
-Route::get('/part-two/{centerid}', [ReviewController::class, 'partTwoform'])->name('part-two');
+Route::get('/part-two/{centerid?}', [ReviewController::class, 'partTwoform'])->name('part-two');
   Route::post('/part-two-store', [ReviewController::class, 'partTwoformStore'])->name('part-two-store');
   Route::post('/delete-data-form2/{id}', [ReviewController::class, 'DeleteDataFormTwo'])->name('delete-data-form2');
 ////Monu
- Route::get('/part-three/{centerid}', [ReviewController::class, 'partThreeform'])->name('part-three');
+ Route::get('/part-three/{centerid?}', [ReviewController::class, 'partThreeform'])->name('part-three');
   Route::post('/part-three-store', [ReviewController::class, 'partThreeformStore'])->name('part-three-store');
 
 });
@@ -72,8 +77,11 @@ Route::get('/deletedataform3two/{id}',[ReviewController::class,'DeleteDatapartth
 Route::get('/deletedataform3three/{id}',[ReviewController::class,'DeleteDatapartthreethree'])->name('deletedataform3three');
 //four
 Route::get('/deletedataform3four/{id}',[ReviewController::class,'DeleteDatapartthreefour'])->name('deletedataform3four');
+/////shubham
+Route::get("/download_forms_data/{centerid?}",[ReviewController::class,"download_forms_data"]);
+Route::get("/download_forms_part_three/{centerid?}",[ReviewController::class,"download_forms_part_three"]);
+Route::get("/download_forms_part_two/{centerid?}",[ReviewController::class,"download_forms_part_two"]);
 Route::fallback(function () {
     return view('404_page',['error_code' => 404]);
   });
-  Route::get('generate-pdf', [ReviewController::class, 'generatePDF']);
-  Route::get("/downloadPDF",[ReviewController::class,"downloadPDF"]);
+  

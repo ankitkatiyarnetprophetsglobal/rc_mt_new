@@ -39,7 +39,7 @@ class LoginController extends Controller
         }
         //dd('done');
         try {
-            //   $response = Http::post('https://nsrswebservice.kheloindia.gov.in/nsrscoreapi/api/Login/generateJWTToken', [
+            //   $response = Http::post('http://192.168.23.254:8034/api/Login/generateJWTToken', [
             //       'roleid' => 0,
             //       'detailid' => 0,
             //       'username' => 'string',
@@ -48,7 +48,8 @@ class LoginController extends Controller
 
             //  $token =  $response->body();
 
-            $response = Http::post('https://nsrswebservice.kheloindia.gov.in/nsrscoreapi/api/Login/Login', [
+            // $response = Http::post('http://192.168.23.254:8034/api/Login/Login', [
+            $response = Http::post(env('DYNAMIC_URL') ."api/Login/Login",[
                 'username' => trim($username),
                 'password' => trim($password),
                 'loginType' => $loginType,
@@ -97,12 +98,12 @@ class LoginController extends Controller
                     Session::flash('error_message', 'Access denied!');
                     return back()->withInput();
                 }
-                $data[0]->token_expire_time = time() + (25 * 60);
+                $data[0]->token_expire_time = time() + (250000 * 60);
                 $request->session()->put('user', $data[0]);
                 $request->session()->put('role_details', $role_details);
                 $request->session()->put('rc_id', $rc_id);
                 $request->session()->put('token', $data[0]->token);
-                $request->session()->put('login_expire_time', time() + (25 * 60));
+                $request->session()->put('login_expire_time', time() + (250000 * 60));
 
                 return redirect('/');
             } else {
@@ -153,7 +154,7 @@ class LoginController extends Controller
                 return back()->withInput();
             }
 
-            $response = Http::withToken(Session::get('token'))->get('https://nsrswebservice.kheloindia.gov.in/nsrscoreapi/api/Login/Login_Otp/ConfirmOtp', [
+            $response = Http::withToken(Session::get('token'))->get('http://192.168.23.254:8034/api/Login/Login_Otp/ConfirmOtp', [
                 'otpId' => Session::get('mobile_user')['otpId'],
                 'otp' => $request->otp,
                 'mobile' => Session::get('mobile_user')['mobile_no'],
@@ -191,7 +192,7 @@ class LoginController extends Controller
     public function resendOtp(Request $request)
     {
         try {
-            $response = Http::withToken(Session::get('token'))->get('https://nsrswebservice.kheloindia.gov.in/nsrscoreapi/api/Login/ResendOtp', [
+            $response = Http::withToken(Session::get('token'))->get('http://192.168.23.254:8034/api/Login/ResendOtp', [
                 'otpId' => Session::get('mobile_user')['otpId'],
                 'mobile' => Session::get('mobile_user')['mobile_no'],
             ]);
